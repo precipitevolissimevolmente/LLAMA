@@ -31,7 +31,6 @@
             document.getElementById("next").disabled = true;
             $scope.data = {next_action: "img/start.png", data: ""};
             // $scope.participantName = "Napoleon";
-            // $scope.participantSurname = "Bonaparte";
             $scope.randomisationSequence = 2003;
             $scope.nrOfSeconds = 120;
             $scope.progress = 0;
@@ -71,18 +70,15 @@
                 var nrOfSeconds = $scope.nrOfSeconds;
                 var randomisationSequence = $scope.randomisationSequence;
                 var participantName = $scope.participantName;
-                var participantSurname = $scope.participantSurname;
 
-                if (participantName == null || participantName == "" || participantSurname == null || participantSurname == "" ||
+                if (participantName == null || participantName == "" ||
                     nrOfSeconds == null || nrOfSeconds == "" || randomisationSequence == null || randomisationSequence == "") {
                     alert("Please Fill All Required Field");
                     return false;
                 }
 
-
                 var parameter = JSON.stringify({
                     name: participantName,
-                    surname: participantSurname,
                     nrOfSeconds: nrOfSeconds,
                     randomisationSequence: randomisationSequence,
                     action: "START"

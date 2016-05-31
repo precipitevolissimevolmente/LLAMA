@@ -132,8 +132,13 @@
     background-color: #ffff00;
 }
 
-input[type=text] {
-    font-size: 13px;
+.options input[type=text] {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.central-controller input[type=text] {
+    font-size: 19px;
     font-weight: bold;
 }
 
@@ -153,7 +158,7 @@ input[type=text] {
 }
 
 .input-large {
-    width: 100px;
+    width: 150px;
     height: 20px;
 }
 

@@ -23,9 +23,8 @@
                 <div>
                     <img src="img/pencil2.jpg" class="left"/>
                     <div class="left padding4">
-                        <input ng-model="participantName" required id="participantName" type="text" placeholder="Napoleon"
-                               class="input-large input-blue"/>
-                        <input ng-model="participantSurname" required id="participantSurname" type="text" placeholder="Bonaparte"
+                        <input ng-model="participantName" required id="participantName" type="text"
+                               placeholder="Name"
                                class="input-large input-blue"/>
                     </div>
                 </div>
@@ -40,7 +39,8 @@
                         <input ng-model="nrOfSeconds" required id="nrOfSeconds" type="number"
                                class="input-small input-blue"/>
                     </div>
-                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small" onclick="startTimer()">
+                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small"
+                            onclick="startTimer()">
                         <img src="img/start.png">
                     </button>
                 </div>
@@ -179,12 +179,11 @@
 </body>
 <script>
     function startTimer() {
-        var nrOfSeconds =  document.getElementById("nrOfSeconds").value;
+        var nrOfSeconds = document.getElementById("nrOfSeconds").value;
         var randomisationSequence = document.getElementById("randomisationSequence").value;
         var participantName = document.getElementById("participantName").value;
-        var participantSurname = document.getElementById("participantSurname").value;
 
-        if (participantName == null || participantName == "" || participantSurname == null || participantSurname == "" ||
+        if (participantName == null || participantName == "" ||
                 nrOfSeconds == null || nrOfSeconds == "" || randomisationSequence == null || randomisationSequence == "") {
             return false;
         }

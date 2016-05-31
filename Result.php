@@ -3,7 +3,6 @@
 class Result
 {
     var $name;
-    var $surname;
     var $randomisationSequence;
     var $nrOfSeconds;
     var $testResults = [];
@@ -15,7 +14,6 @@ class Result
 //        logg($json);
         $result = new Result();
         $result->setName($json["name"]);
-        $result->setSurname($json["surname"]);
         $result->setRandomisationSequence($json["randomisationSequence"]);
         $result->setNrOfSeconds($json["nrOfSeconds"]);
         if(isset($json["finalResult"])) {
@@ -44,22 +42,6 @@ class Result
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSurname()
-    {
-        return $this->surname;
-    }
-
-    /**
-     * @param mixed $surname
-     */
-    public function setSurname($surname)
-    {
-        $this->surname = $surname;
     }
 
     /**

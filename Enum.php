@@ -28,7 +28,6 @@ abstract class ProgramPhase
 
 abstract class Resources
 {
-    const USER_PARAMETERS = "USER_PARAMETERS";
     const RESULT = "RESULT";
     const PROGRAM_PHASE = "PROGRAM_PHASE";
     const VOCABULARY_KEY_VALUE = "VOCABULARY_KEY_VALUE";

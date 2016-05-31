@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($data['action'] == Action::START) {
         initVocabulary($data);
-        $_SESSION[Resources::USER_PARAMETERS] = $data;
         $result = initResult($data);
         $_SESSION[Resources::RESULT] = json_encode($result);
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::LEARN_PHASE_STARTED;
@@ -188,7 +187,7 @@ function writeResultToFile()
 {
     $result = Result::fromJSON($_SESSION[Resources::RESULT]);
     $result->setFinalResult((($result->getFinalResult() * 100) / 20) . "%");
-    $file_name = $result->getName() . "_" . $result->getSurname() . "_" . (new \DateTime())->format('Y-m-d His') . ".json";
+    $file_name = $result->getName() . "_" . (new \DateTime())->format('Y-m-d His') . ".json";
     $nameWithPath = "results/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));
@@ -203,7 +202,6 @@ function initResult($data)
 {
     $result = new Result();
     $result->setName($data["name"]);
-    $result->setSurname($data["surname"]);
     $result->setNrOfSeconds($data["nrOfSeconds"]);
     $result->setRandomisationSequence($data["randomisationSequence"]);
     $result->setFinalResult(0);
