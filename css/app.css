@@ -1,0 +1,213 @@
+*, html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0;
+    width: 600px;
+}
+
+.header {
+    margin-top: 10px;
+    padding: 0;
+}
+
+#participant {
+    padding: 4px;
+}
+
+.top-header {
+    padding: 10px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.company {
+    font-family: "Comic Sans MS", serif;
+}
+
+.options {
+    margin-top: 7px;
+    padding: 5px 10px;
+}
+
+.main {
+    margin-top: 7px;
+    padding: 5px 10px;
+}
+
+.central-controller {
+    margin: auto;
+}
+
+#pic-name {
+    width: 90%;
+    height: 25px;
+    border: 1px inset;
+    background-color: #c0c0c0;
+    margin-left: 5%;
+    font-weight: bold;
+    color: #0007ca;
+}
+
+#next {
+    margin-top: 5px;
+    margin-left: 5%;
+}
+
+#timer {
+    margin-top: 5px;
+}
+
+.bottom-controller {
+    margin-top: 7px;
+    padding: 10px;
+}
+
+#status {
+    margin-right: 20px;
+    border: 1px inset;
+    height: 33px;
+}
+
+#status img {
+    height: 33px;
+}
+
+#score {
+    margin-right: 15px;
+    border: 1px inset;
+    background-color: #c0c0c0;
+}
+
+#progress {
+    border: 1px solid;
+    margin-left: 3px;
+    background-color: #808080;
+    width: 335px;
+}
+
+.footer {
+    margin-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 13px;
+}
+
+.author {
+    font-weight: bold;
+}
+
+.group:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.padding4 {
+    padding: 4px;
+}
+
+.margin-top7 {
+    margin-top: 7px;
+}
+
+.blue {
+    background-color: #010080;
+}
+
+.grey {
+    background-color: #cbcbcb;
+}
+
+.grey2 {
+    background-color: #c0c0c0;
+}
+
+.yellow {
+    background-color: #ffff00;
+}
+
+input[type=text] {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.input-blue {
+    background-color: #010080;
+    color: #ffffff;
+}
+
+.input-small {
+    width: 60px;
+    height: 20px;
+}
+
+.input-medium {
+    width: 70px;
+    height: 20px;
+}
+
+.input-large {
+    width: 100px;
+    height: 20px;
+}
+
+.img-mini {
+    height: 20px;
+    margin-top: 7px;
+}
+
+.img-small {
+    height: 25px;
+}
+
+.img-medium {
+    height: 80px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px;
+}
+
+.main-table {
+    margin: auto;
+    border: 2px inset;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.btn {
+    margin-top: 2px;
+    height: 27px;
+    background-color: #f0f0f0;
+}
+
+.btn-small {
+    width: 45px;
+}
+
+.btn-large {
+    width: 135px;
+}
+
+.btn img {
+    height: 20px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #010080;
+}
+
+progress::-moz-progress-bar {
+    background-color: #010080;
+}
