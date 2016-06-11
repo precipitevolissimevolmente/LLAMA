@@ -2,7 +2,7 @@
 function sendEmailWithAttachment($file_name, $fileNameWithPath)
 {
 
-    $from_email = 'terrainfoplus.md@terrainfoplus.md'; //sender email
+    $from_email = 'llama@catatik.se'; //sender email
     $recipient_email = 'llama.results@gmail.com'; //recipient email
     $subject = 'LLAMA results for ' . $file_name; //subject of email
     $message = 'results were attached to this email'; //message body

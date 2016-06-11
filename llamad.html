@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LLAMA B</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/angular-1.5.5/angular.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/countdown.js"></script>
+</head>
+<body ng-app="llamab" class="blue">
+
+<div ng-controller="mainController" class="container llamad">
+    <div class="header">
+        <div class="top-header grey group">
+            <p class="left title">Llama_B</p>
+            <sup class="left">v1.0</sup>
+            <p class="right company">_lognostics</p>
+        </div>
+
+        <div class="options grey2 group">
+            <form name="inputParams">
+                <div>
+                    <img src="img/pencil2.jpg" class="left"/>
+                    <div class="left padding4">
+                        <input ng-model="participantName" required id="participantName" type="text"
+                               placeholder="Name"
+                               class="input-large input-blue"/>
+                    </div>
+                </div>
+                <div class="right">
+                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small"
+                            onclick="startTimer()">
+                        <img src="img/start.png">
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="main grey group">
+        <table class="main-table">
+
+        </table>
+    </div>
+
+    <div class="bottom-controller grey group">
+        <div class="left">
+            <img src="img/smile.png" class="img-mini left">
+            <div class="margin-top7 left">
+                <progress id="progress" ng-model="progress" value="{{progress}}" max="20"></progress>
+            </div>
+        </div>
+        <div class="right">
+            <div class="margin-top7 left">
+                <input ng-model="score" id="score" type="text" disabled class="input-medium"/>
+            </div>
+            <div id="status" class="yellow left">
+                <img src="{{data.next_action}}">
+            </div>
+            <button class="btn left btn-small" ng-click="close()">
+                <img src="img/end.png">
+            </button>
+        </div>
+    </div>
+
+    <footer class="footer grey group">
+        <p class="left author"> Paul Meara </p>
+        <p class="right">&copy;2005 University of Wales Swansea</p>
+    </footer>
+</div>
+
+</body>
+<script>
+    function startTimer() {
+        var nrOfSeconds = document.getElementById("nrOfSeconds").value;
+        var randomisationSequence = document.getElementById("randomisationSequence").value;
+        var participantName = document.getElementById("participantName").value;
+
+        if (participantName == null || participantName == "" ||
+                nrOfSeconds == null || nrOfSeconds == "" || randomisationSequence == null || randomisationSequence == "") {
+            return false;
+        }
+        startTimerCanvas(nrOfSeconds);
+    }
+</script>
+</html>
