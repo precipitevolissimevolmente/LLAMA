@@ -5,7 +5,7 @@
     <title>LLAMA B</title>
     <link rel="stylesheet" href="css/app.css">
     <script src="js/angular-1.5.5/angular.js"></script>
-    <script src="js/controller.js"></script>
+    <script src="js/controllerD.js"></script>
     <script src="js/countdown.js"></script>
 </head>
 <body ng-app="llamab" class="blue">
@@ -13,12 +13,14 @@
 <div ng-controller="mainController" class="container llamad">
     <div class="header">
         <div class="top-header grey group">
-            <p class="left title">Llama_B</p>
+            <p class="left title">Llama_D</p>
             <sup class="left">v1.0</sup>
             <p class="right company">_lognostics</p>
         </div>
+    </div>
 
-        <div class="options grey2 group">
+    <div class="main grey group">
+        <div class="options grey2 group group-border">
             <form name="inputParams">
                 <div>
                     <img src="img/pencil2.jpg" class="left"/>
@@ -36,29 +38,47 @@
                 </div>
             </form>
         </div>
-    </div>
 
-    <div class="main grey group">
-        <table class="main-table">
+        <div class="group group-border margin-top7 padding5-10">
+            <div>
+                <img src="img/check.png" class="img-mini-s left">
+                <div class="right">
+                    <progress class="progress-bar progress-bar-width-short" id="result" ng-model="progress"
+                              value="{{progress}}"
+                              max="20"></progress>
+                </div>
+            </div>
+            <div>
+                <div class="right">
+                    <progress class="progress-bar progress-bar-width-short slim" id="progress"
+                              value="15"
+                              max="20"></progress>
+                </div>
+            </div>
+        </div>
 
-        </table>
+        <div class="group group-border margin-top7 padding5-10 grey3">
+            <button id="newword" class="btn left width40p">
+                <img src="img/newword.png">
+            </button>
+            <button id="btn-next" class="btn left width20p">
+                <img src="img/next.png">
+            </button>
+            <button id="familiarword" class="btn left width40p">
+                <img src="img/familiarword.png">
+            </button>
+        </div>
     </div>
 
     <div class="bottom-controller grey group">
-        <div class="left">
-            <img src="img/smile.png" class="img-mini left">
-            <div class="margin-top7 left">
-                <progress id="progress" ng-model="progress" value="{{progress}}" max="20"></progress>
+        <div>
+            <div id="status" class="yellow left">
+                <img src="img/start.png">
             </div>
-        </div>
-        <div class="right">
             <div class="margin-top7 left">
                 <input ng-model="score" id="score" type="text" disabled class="input-medium"/>
             </div>
-            <div id="status" class="yellow left">
-                <img src="{{data.next_action}}">
-            </div>
-            <button class="btn left btn-small" ng-click="close()">
+            <button class="btn right btn-small" ng-click="close()">
                 <img src="img/end.png">
             </button>
         </div>
