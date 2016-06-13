@@ -21,6 +21,45 @@
         audio.play();
     }
 
+    function playTrainingSounds() {
+        var sounds = [
+            "dsounds/latd01.wav",
+            "dsounds/latd02.wav",
+            "dsounds/latd03.wav",
+            "dsounds/latd04.wav",
+            "dsounds/latd05.wav",
+            "dsounds/latd06.wav",
+            "dsounds/latd07.wav",
+            "dsounds/latd08.wav",
+            "dsounds/latd09.wav",
+            "dsounds/latd10.wav"
+        ];
+
+        var playlist_index = 0;
+        var audio = new Audio();
+        audio.src = sounds[playlist_index];
+        audio.loop = false;
+        audio.play();
+
+        audio.addEventListener("ended", function () {
+            if(playlist_index <= sounds.length) {
+                switchTrack();
+            }
+        });
+
+        function switchTrack () {
+            setTimeout(function(){
+                playlist_index++;
+                audio.src = sounds[playlist_index];
+                audio.play();
+            }, 1500);
+
+        }
+    }
+
+
+
+
     myApp.controller('mainController', ['$scope', '$http',
         function ($scope, $http) {
             //initial state
@@ -69,25 +108,20 @@
 
             $scope.start = function () {
                 document.getElementById("startBtn").disabled = true;
-                var nrOfSeconds = $scope.nrOfSeconds;
-                var randomisationSequence = $scope.randomisationSequence;
                 var participantName = $scope.participantName;
 
-                if (participantName == null || participantName == "" ||
-                    nrOfSeconds == null || nrOfSeconds == "" || randomisationSequence == null || randomisationSequence == "") {
+                if (participantName == null || participantName == "") {
                     alert("Please Fill All Required Field");
                     return false;
                 }
 
                 var parameter = JSON.stringify({
                     name: participantName,
-                    nrOfSeconds: nrOfSeconds,
-                    randomisationSequence: randomisationSequence,
                     action: "START"
                 });
                 var req = {
                     method: 'POST',
-                    url: 'restService.php',
+                    url: 'restServiceD.php',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -95,30 +129,13 @@
                 };
                 var reqData = {next_action: "img/hourglass.png", data: ""};
                 makeRequestWithData(req, reqData);
-
-                setTimeout(function () {
-                    playChord();
-                    var startTestJSON = JSON.stringify({
-                        action: "START_TEST"
-                    });
-                    var reqStartTest = {
-                        method: 'POST',
-                        url: 'restService.php',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        data: startTestJSON
-                    };
-                    var reqData = {next_action: "img/next.png", data: ""};
-                    makeRequestWithData(reqStartTest, reqData);
-                    document.getElementById("btn-next").disabled = false;
-                }, nrOfSeconds * 1000);
+                playTrainingSounds();
             };
 
 
             $scope.process = function (picId) {
                 $scope.method = 'GET';
-                $scope.url = 'restService.php?pic-id=' + picId;
+                $scope.url = 'restServiceD.php?pic-id=' + picId;
                 $scope.code = null;
                 $scope.response = null;
 
@@ -139,7 +156,7 @@
 
             $scope.next = function (picId) {
                 $scope.method = 'GET';
-                $scope.url = 'restService.php?next=true';
+                $scope.url = 'restServiceD.php?next=true';
                 $scope.code = null;
                 $scope.response = null;
 
@@ -161,7 +178,7 @@
                 });
                 var req = {
                     method: 'POST',
-                    url: 'restService.php',
+                    url: 'restServiceD.php',
                     headers: {
                         'Content-Type': 'application/json'
                     },

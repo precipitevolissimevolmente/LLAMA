@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/app.css">
     <script src="js/angular-1.5.5/angular.js"></script>
     <script src="js/controllerD.js"></script>
-    <script src="js/countdown.js"></script>
 </head>
 <body ng-app="llamab" class="blue">
 
@@ -31,8 +30,7 @@
                     </div>
                 </div>
                 <div class="right">
-                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small"
-                            onclick="startTimer()">
+                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small">
                         <img src="img/start.png">
                     </button>
                 </div>
@@ -91,17 +89,4 @@
 </div>
 
 </body>
-<script>
-    function startTimer() {
-        var nrOfSeconds = document.getElementById("nrOfSeconds").value;
-        var randomisationSequence = document.getElementById("randomisationSequence").value;
-        var participantName = document.getElementById("participantName").value;
-
-        if (participantName == null || participantName == "" ||
-                nrOfSeconds == null || nrOfSeconds == "" || randomisationSequence == null || randomisationSequence == "") {
-            return false;
-        }
-        startTimerCanvas(nrOfSeconds);
-    }
-</script>
 </html>

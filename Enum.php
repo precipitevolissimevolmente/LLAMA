@@ -35,4 +35,5 @@ abstract class Resources
     const VOCABULARY_RANDOMIZED_VALUES = "VOCABULARY_RANDOMIZED_VALUES";
     const TEST_CASE = "TEST_CASE";
     const START_TIME = "START_TIME";
+    const SOUND_MAP="SOUND_MAP";
 }

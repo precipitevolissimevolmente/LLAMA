@@ -1,10 +1,8 @@
 <?php
 
-class Result
+class ResultD
 {
     var $name;
-    var $randomisationSequence;
-    var $nrOfSeconds;
     var $testResults = [];
     var $finalResult;
 
@@ -12,10 +10,8 @@ class Result
     {
         $json = json_decode($json, true);
 //        logg($json);
-        $result = new Result();
+        $result = new ResultD();
         $result->setName($json["name"]);
-        $result->setRandomisationSequence($json["randomisationSequence"]);
-        $result->setNrOfSeconds($json["nrOfSeconds"]);
         if(isset($json["finalResult"])) {
             $result->setFinalResult($json["finalResult"]);
         }
@@ -45,35 +41,11 @@ class Result
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getRandomisationSequence()
+    public function getTestResults()
     {
-        return $this->randomisationSequence;
-    }
-
-    /**
-     * @param mixed $randomisationSequence
-     */
-    public function setRandomisationSequence($randomisationSequence)
-    {
-        $this->randomisationSequence = $randomisationSequence;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNrOfSeconds()
-    {
-        return $this->nrOfSeconds;
-    }
-
-    /**
-     * @param mixed $nrOfSeconds
-     */
-    public function setNrOfSeconds($nrOfSeconds)
-    {
-        $this->nrOfSeconds = $nrOfSeconds;
+        return $this->testResults;
     }
 
     /**

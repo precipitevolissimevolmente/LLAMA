@@ -5,7 +5,7 @@ header("Content-Type:application/json");
 require_once('config.php');
 require('Enum.php');
 require('EmailService.php');
-include "Result.php";
+include "ResultD.php";
 include "TestResult.php";
 const END_TEST_SESSION = "END_TEST_SESSION";
 const GUESS = "GUESS";
@@ -18,29 +18,18 @@ if (!empty($_GET['word'])) {
 /**
  * @param $data
  */
-function initVocabulary($data)
+function init($data)
 {
-    $pictureKeyVsName = loadVocabulary();
-    if ($data['randomisationSequence'] != 2003) {
-        //randomise todo
-    }
-    //shuffle vocabulary order
-//    logg($pictureKeyVsName);
-    $randomizedNames = $pictureKeyVsName;
-    shuffle($randomizedNames);
-//    logg($randomizedNames);
-//    logg($pictureKeyVsName);
-//    logg(array_flip($pictureKeyVsName));
-    $_SESSION[Resources::VOCABULARY_RANDOMIZED_VALUES] = $randomizedNames;
-    $_SESSION[Resources::VOCABULARY_KEY_VALUE] = $pictureKeyVsName;
-    $_SESSION[Resources::VOCABULARY_VALUE_KEY] = array_flip($pictureKeyVsName);
+    $soundVsResponse = loadSounds();
+//    logg($soundVsResponse);
+    $_SESSION[Resources::SOUND_MAP] = $soundVsResponse;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if ($data['action'] == Action::START) {
-        initVocabulary($data);
+        init($data);
         $result = initResult($data);
         $_SESSION[Resources::RESULT] = json_encode($result);
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::LEARN_PHASE_STARTED;
@@ -170,9 +159,9 @@ function get_picture_name($id)
     return $vocabularyKeyValue[$id];
 }
 
-function loadVocabulary()
+function loadSounds()
 {
-    $str = file_get_contents('vocabulary.json');
+    $str = file_get_contents('sounds.json');
     return json_decode($str, true);
 }
 
@@ -201,10 +190,8 @@ function writeResultToFile()
  */
 function initResult($data)
 {
-    $result = new Result();
+    $result = new ResultD();
     $result->setName($data["name"]);
-    $result->setNrOfSeconds($data["nrOfSeconds"]);
-    $result->setRandomisationSequence($data["randomisationSequence"]);
     $result->setFinalResult(0);
     return $result;
 }
