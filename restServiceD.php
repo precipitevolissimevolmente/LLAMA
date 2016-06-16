@@ -10,26 +10,17 @@ include "TestResult.php";
 const END_TEST_SESSION = "END_TEST_SESSION";
 const GUESS = "GUESS";
 
-if (!empty($_GET['word'])) {
-    $hash_result = get_hash($_GET['word']);
-    deliver_response(200, $hash_result, "");
-}
-
-/**
- * @param $data
- */
-function init($data)
+function init()
 {
-    $soundVsResponse = loadSounds();
-//    logg($soundVsResponse);
-    $_SESSION[Resources::SOUND_MAP] = $soundVsResponse;
+    $_SESSION[Resources::SOUND_MAP] = loadSounds('sounds.json');
+    $_SESSION[Resources::SOUND_TEST_MAP] = loadSounds('soundsTestOrder.json');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if ($data['action'] == Action::START) {
-        init($data);
+        init();
         $result = initResult($data);
         $_SESSION[Resources::RESULT] = json_encode($result);
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::LEARN_PHASE_STARTED;
@@ -51,17 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-if (!empty($_GET['pic-id'])) {
+if (!empty($_GET['test-case-response'])) {
     if (!isset($_SESSION[Resources::PROGRAM_PHASE]) || $_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::NOT_STARTED) {
         logg(ProgramPhase::NOT_STARTED);
         deliver_response(200, "", ActionImage::START);
-        return;
-    }
-
-    if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::LEARN_PHASE_STARTED) {
-        $pic_name = get_picture_name($_GET['pic-id']);
-//        logg("GET name for " . $pic_name . "........");
-        deliver_response(200, $pic_name, ActionImage::TIMER);
         return;
     }
 
@@ -72,19 +56,20 @@ if (!empty($_GET['pic-id'])) {
 
     if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::TEST_PHASE_STARTED) {
         $testCase = $_SESSION[Resources::TEST_CASE];
-        $testCaseVsName = $_SESSION[Resources::VOCABULARY_RANDOMIZED_VALUES];
+        $testSoundMap = $_SESSION[Resources::SOUND_TEST_MAP];
+        $soundsTestList = array_keys($testSoundMap);
 
-        $pic_name = get_picture_name($_GET['pic-id']);
-        $actual_pic_name = $testCaseVsName[$testCase];
-        logg($pic_name);
-        logg($actual_pic_name);
+        $response = $_GET['test-case-response'];
+        $actualResponse = $testSoundMap[$soundsTestList[$testCase]];
+        logg($response);
+        logg($actualResponse);
         $elapsed = microtime(true) - $_SESSION[Resources::START_TIME];
 //        logg(number_format($elapsed, 4));
-        $result1 = Result::fromJSON($_SESSION[Resources::RESULT]);
-        $result1->addTestResult(new TestResult($testCase, $actual_pic_name, $pic_name, number_format($elapsed, 4)));
+        $result1 = ResultD::fromJSON($_SESSION[Resources::RESULT]);
+        $result1->addTestResult(new TestResult($testCase, $actualResponse, $response, number_format($elapsed, 4)));
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::TEST_PHASE;
         $_SESSION[Resources::TEST_CASE] = $_SESSION[Resources::TEST_CASE] + 1;
-        if ($pic_name == $actual_pic_name) {
+        if ($response == $actualResponse) {
             deliver_response_result(200, "", ActionImage::NEXT, CORRECT);
             $result1->setFinalResult($result1->getFinalResult() + 1);
         } else {
@@ -106,8 +91,8 @@ if (!empty($_GET['next'])) {
 
     if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::TEST_PHASE) {
         $testCase = $_SESSION[Resources::TEST_CASE];
-        $testCaseVsName = $_SESSION[Resources::VOCABULARY_RANDOMIZED_VALUES];
-        if ($testCase == count($testCaseVsName)) {
+        $soundsTestList =  array_keys($_SESSION[Resources::SOUND_TEST_MAP]);
+        if ($testCase == count($soundsTestList)) {
             deliver_response_result(200, "", ActionImage::CLOSE, END_TEST_SESSION);
             writeResultToFile();
             logg("End test session...");
@@ -116,9 +101,9 @@ if (!empty($_GET['next'])) {
 
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::TEST_PHASE_STARTED;
         $_SESSION[Resources::START_TIME] = microtime(true);
-        logg("Test for:" . $testCaseVsName[$testCase]);
-        $itemToGuess = $testCaseVsName[$testCase];
-        deliver_response_result(200, $itemToGuess, ActionImage::CHOSE, GUESS);
+        logg("Test for:" . $soundsTestList[$testCase]);
+        $soundToGuess = $soundsTestList[$testCase];
+        deliver_response_result(200, $soundToGuess, ActionImage::CHOSE, GUESS);
         return;
     }
 
@@ -148,20 +133,9 @@ function deliver_response_result($status, $data, $nextAction, $result)
     echo $json_response;
 }
 
-function get_hash($word)
+function loadSounds($fileName)
 {
-    return hash('sha256', $word);
-}
-
-function get_picture_name($id)
-{
-    $vocabularyKeyValue = $_SESSION[Resources::VOCABULARY_KEY_VALUE];
-    return $vocabularyKeyValue[$id];
-}
-
-function loadSounds()
-{
-    $str = file_get_contents('sounds.json');
+    $str = file_get_contents($fileName);
     return json_decode($str, true);
 }
 
@@ -175,7 +149,7 @@ function logg($data)
 
 function writeResultToFile()
 {
-    $result = Result::fromJSON($_SESSION[Resources::RESULT]);
+    $result = ResultD::fromJSON($_SESSION[Resources::RESULT]);
     $result->setFinalResult((($result->getFinalResult() * 100) / 20) . "%");
     $file_name = $result->getName() . "_" . (new \DateTime())->format('Y-m-d His') . ".json";
     $nameWithPath = "results/" . $file_name;

@@ -56,13 +56,13 @@
         </div>
 
         <div class="group group-border margin-top7 padding5-10 grey3">
-            <button id="newword" class="btn left width40p">
+            <button ng-click="process('new')" id="newword" class="btn left width40p" disabled="disabled">
                 <img src="img/newword.png">
             </button>
-            <button id="btn-next" class="btn left width20p">
+            <button ng-click="next()" id="btn-next" class="btn left width20p" disabled="disabled">
                 <img src="img/next.png">
             </button>
-            <button id="familiarword" class="btn left width40p">
+            <button ng-click="process('familiar')" id="familiarword" class="btn left width40p" disabled="disabled">
                 <img src="img/familiarword.png">
             </button>
         </div>

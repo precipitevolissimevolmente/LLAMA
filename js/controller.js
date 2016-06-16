@@ -135,7 +135,7 @@
                 });
             };
 
-            $scope.next = function (picId) {
+            $scope.next = function () {
                 $scope.method = 'GET';
                 $scope.url = 'restService.php?next=true';
                 $scope.code = null;
