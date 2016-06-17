@@ -36,5 +36,5 @@ abstract class Resources
     const TEST_CASE = "TEST_CASE";
     const START_TIME = "START_TIME";
     const SOUND_MAP="SOUND_MAP";
-    const SOUND_TEST_MAP="SOUND_TEST_MAP";
+    const SOUND_TEST_ORDER="SOUND_TEST_ORDER";
 }

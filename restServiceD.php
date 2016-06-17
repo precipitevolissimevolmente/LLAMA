@@ -13,7 +13,7 @@ const GUESS = "GUESS";
 function init()
 {
     $_SESSION[Resources::SOUND_MAP] = loadSounds('sounds.json');
-    $_SESSION[Resources::SOUND_TEST_MAP] = loadSounds('soundsTestOrder.json');
+    $_SESSION[Resources::SOUND_TEST_ORDER] = loadSounds('soundsTestOrder.json');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -56,11 +56,10 @@ if (!empty($_GET['test-case-response'])) {
 
     if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::TEST_PHASE_STARTED) {
         $testCase = $_SESSION[Resources::TEST_CASE];
-        $testSoundMap = $_SESSION[Resources::SOUND_TEST_MAP];
-        $soundsTestList = array_keys($testSoundMap);
+        $testSoundMap = $_SESSION[Resources::SOUND_MAP];
 
         $response = $_GET['test-case-response'];
-        $actualResponse = $testSoundMap[$soundsTestList[$testCase]];
+        $actualResponse = $testSoundMap[$_SESSION[Resources::SOUND_TEST_ORDER][$testCase]];
         logg($response);
         logg($actualResponse);
         $elapsed = microtime(true) - $_SESSION[Resources::START_TIME];
@@ -91,7 +90,7 @@ if (!empty($_GET['next'])) {
 
     if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::TEST_PHASE) {
         $testCase = $_SESSION[Resources::TEST_CASE];
-        $soundsTestList =  array_keys($_SESSION[Resources::SOUND_TEST_MAP]);
+        $soundsTestList =  $_SESSION[Resources::SOUND_TEST_ORDER];
         if ($testCase == count($soundsTestList)) {
             deliver_response_result(200, "", ActionImage::CLOSE, END_TEST_SESSION);
             writeResultToFile();

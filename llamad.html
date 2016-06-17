@@ -41,16 +41,19 @@
             <div>
                 <img src="img/check.png" class="img-mini-s left">
                 <div class="right">
-                    <progress class="progress-bar progress-bar-width-short" id="result" ng-model="progress"
-                              value="{{progress}}"
-                              max="20"></progress>
+                    <div class="progress progress-bar-width-short heightNormal">
+                        <div id="progress-result" class="progress-bar-div" role="progressbar">
+                            {{progressUI}}%
+                        </div>
+                    </div>
                 </div>
             </div>
             <div>
                 <div class="right">
-                    <progress class="progress-bar progress-bar-width-short slim" id="progress"
-                              value="15"
-                              max="20"></progress>
+                    <div class="progress progress-bar-width-short slim margin-top7">
+                        <div id="progress-items" class="progress-bar-div " role="progressbar">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

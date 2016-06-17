@@ -32,9 +32,8 @@
             const GUESS = 'GUESS';
 
             $scope.data = {next_action: "img/start.png", data: ""};
-            $scope.randomisationSequence = 2003;
-            $scope.nrOfSeconds = 120;
-            $scope.progress = 0;
+            setProgressResultBar(0);
+            setProgressItemsBar(0);
             $scope.score = "";
 
             $scope.start = function () {
@@ -68,10 +67,11 @@
                 myDataPromise.then(function (result) {
                     $scope.data = result.data;
                     if (result.data.result == CORRECT) {
-                        $scope.progress = $scope.progress + 1;
+                        setProgressResultBar($scope.progress + 2.5);
                         playDing();
                     }
                     if (result.data.result == WRONG) {
+                        setProgressResultBar($scope.progress - 2.5);
                         playChord();
                     }
                     disableResponseButtons();
@@ -92,12 +92,16 @@
                     $scope.data = result.data;
                     if (result.data.result == END_TEST_SESSION) {
                         playChord();
-                        $scope.score = (($scope.progress * 100) / 20) + " %";
+                        disableNextButton();
+                        $scope.score = ($scope.progress) + " %";
+                    } else {
+                        var sound = result.data.data;
+                        playSound("dsounds/" + sound);
+                        disableNextButton();
+                        enableResponseButtons();
+                        setProgressItemsBar($scope.progressItmes + 2.5);                        
                     }
-                    var sound = result.data.data;
-                    playSound("dsounds/" + sound);
-                    disableNextButton();
-                    enableResponseButtons()
+
                 });
             };
 
@@ -136,9 +140,11 @@
                 audio.src = sounds[playlist_index];
                 audio.loop = false;
                 audio.play();
+                setProgressItemsBar(2.5);
                 audio.addEventListener("ended", function () {
                     if (playlist_index < sounds.length - 1) {
                         switchTrack();
+                        setProgressItemsBar($scope.progressItmes + 2.5);
                     } else {
                         playChord();
                         var startTestJSON = JSON.stringify({action: "START_TEST"});
@@ -156,6 +162,21 @@
                         audio.play();
                     }, 1000);
                 }
+            }
+
+            function setProgressResultBar(progressResult) {
+                $scope.progress = progressResult;
+                if ($scope.progress > 0) {
+                    $scope.progressUI = $scope.progress;
+                } else {
+                    $scope.progressUI = 0;
+                }
+                document.getElementById("progress-result").style.width = progressResult + "%";
+            }
+
+            function setProgressItemsBar(progressItems) {
+                $scope.progressItmes = progressItems;
+                document.getElementById("progress-items").style.width = progressItems + "%";
             }
 
             function getData(req) {
