@@ -15,6 +15,7 @@ abstract class ActionImage
     const TIMER = "img/hourglass.png";
     const NEXT = "img/next.png";
     const CHOSE = "img/chose.png";
+    const LISTEN = "img/listen.png";
     const CLOSE = "img/end.png";
 }
 

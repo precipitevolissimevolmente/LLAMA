@@ -50,7 +50,7 @@
                     action: "START"
                 });
                 var req = buildPOSTRequest(parameter);
-                var reqData = {next_action: "img/hourglass.png", data: ""};
+                var reqData = {next_action: "img/listen.png", data: ""};
                 makeRequestWithData(req, reqData);
                 playTrainingSoundsAndStartTest();
             };
@@ -96,12 +96,19 @@
                         $scope.score = ($scope.progress) + " %";
                     } else {
                         var sound = result.data.data;
-                        playSound("dsounds/" + sound);
+                        var audioFile = new Audio();
+                        audioFile.src = "dsounds/" + sound;
+                        audioFile.loop = false;
+                        audioFile.play();
+                        audioFile.addEventListener("ended", function () {
+                            // $scope.data.next_action = "img/chose.png";
+                            document.getElementById("next-action").src="img/chose.png";
+                        });
                         disableNextButton();
                         enableResponseButtons();
-                        setProgressItemsBar($scope.progressItmes + 2.5);                        
-                    }
+                        setProgressItemsBar($scope.progressItmes + 2.5);
 
+                    }
                 });
             };
 

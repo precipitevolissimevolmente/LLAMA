@@ -1,0 +1,849 @@
+
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+sss
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+familiar
+familiar
+Test for:latd13.wav
+new
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd14.wav
+new
+new
+Test for:latd15.wav
+new
+new
+Test for:latd05.wav
+familiar
+familiar
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd16.wav
+new
+new
+Test for:latd09.wav
+familiar
+familiar
+Test for:latd17.wav
+new
+new
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd18.wav
+new
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+new
+new
+Test for:latd01.wav
+familiar
+familiar
+Test for:latd02.wav
+familiar
+familiar
+Test for:latd21.wav
+new
+new
+Test for:latd22.wav
+new
+new
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd23.wav
+new
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd10.wav
+new
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+new
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+jjk
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+familiar
+familiar
+Test for:latd13.wav
+new
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd14.wav
+new
+new
+Test for:latd15.wav
+new
+new
+Test for:latd05.wav
+familiar
+familiar
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd16.wav
+new
+new
+Test for:latd09.wav
+familiar
+familiar
+Test for:latd17.wav
+new
+new
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd18.wav
+new
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+new
+new
+Test for:latd01.wav
+familiar
+familiar
+Test for:latd02.wav
+familiar
+familiar
+Test for:latd21.wav
+new
+new
+Test for:latd22.wav
+new
+new
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd23.wav
+new
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+new
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+asa
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+new
+familiar
+Test for:latd13.wav
+new
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd14.wav
+new
+new
+Test for:latd15.wav
+new
+new
+Test for:latd05.wav
+new
+familiar
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+new
+familiar
+Test for:latd16.wav
+new
+new
+Test for:latd09.wav
+new
+familiar
+Test for:latd17.wav
+new
+new
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd18.wav
+familiar
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+new
+new
+Test for:latd01.wav
+familiar
+familiar
+Test for:latd02.wav
+familiar
+familiar
+Test for:latd21.wav
+new
+new
+Test for:latd22.wav
+familiar
+new
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+new
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd23.wav
+familiar
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd10.wav
+new
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+new
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+aaa
+TEST_PHASE
+Close....
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+aaaa
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+familiar
+familiar
+Test for:latd13.wav
+familiar
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd14.wav
+new
+new
+Test for:latd15.wav
+familiar
+new
+Test for:latd05.wav
+familiar
+familiar
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+new
+familiar
+Test for:latd16.wav
+familiar
+new
+Test for:latd09.wav
+new
+familiar
+Test for:latd17.wav
+familiar
+new
+Test for:latd10.wav
+new
+familiar
+Test for:latd07.wav
+new
+familiar
+Test for:latd18.wav
+new
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+jk
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+aa
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Close....
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+ssss
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+familiar
+familiar
+Test for:latd13.wav
+new
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd14.wav
+new
+new
+Test for:latd15.wav
+new
+new
+Test for:latd05.wav
+familiar
+familiar
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd16.wav
+new
+new
+Test for:latd09.wav
+familiar
+familiar
+Test for:latd17.wav
+new
+new
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd18.wav
+new
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+new
+new
+Test for:latd01.wav
+familiar
+familiar
+Test for:latd02.wav
+familiar
+familiar
+Test for:latd21.wav
+new
+new
+Test for:latd22.wav
+new
+new
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd23.wav
+new
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd10.wav
+new
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+new
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Close....
+Array
+(
+    [0] => latd11.wav
+    [1] => latd12.wav
+    [2] => latd03.wav
+    [3] => latd13.wav
+    [4] => latd08.wav
+    [5] => latd14.wav
+    [6] => latd15.wav
+    [7] => latd05.wav
+    [8] => latd04.wav
+    [9] => latd06.wav
+    [10] => latd16.wav
+    [11] => latd09.wav
+    [12] => latd17.wav
+    [13] => latd10.wav
+    [14] => latd07.wav
+    [15] => latd18.wav
+    [16] => latd19.wav
+    [17] => latd20.wav
+    [18] => latd01.wav
+    [19] => latd02.wav
+    [20] => latd21.wav
+    [21] => latd22.wav
+    [22] => latd04.wav
+    [23] => latd06.wav
+    [24] => latd07.wav
+    [25] => latd23.wav
+    [26] => latd08.wav
+    [27] => latd10.wav
+    [28] => latd24.wav
+    [29] => latd25.wav
+)
+
+sss
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+familiar
+familiar
+Test for:latd13.wav
+familiar
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd14.wav
+new
+new
+Test for:latd15.wav
+familiar
+new
+Test for:latd05.wav
+familiar
+familiar
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+new
+familiar
+Test for:latd16.wav
+familiar
+new
+Test for:latd09.wav
+familiar
+familiar
+Test for:latd17.wav
+new
+new
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd18.wav
+new
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+new
+new
+Test for:latd01.wav
+familiar
+familiar
+Test for:latd02.wav
+new
+familiar
+Test for:latd21.wav
+new
+new
+Test for:latd22.wav
+new
+new
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd07.wav
+new
+familiar
+Test for:latd23.wav
+familiar
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+new
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...

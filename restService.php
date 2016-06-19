@@ -2,7 +2,7 @@
 const WRONG = "WRONG";
 const CORRECT = "CORRECT";
 header("Content-Type:application/json");
-require_once('config.php');
+require_once('php/config/config.php');
 require('Enum.php');
 require('EmailService.php');
 include "Result.php";
@@ -178,7 +178,7 @@ function loadVocabulary()
 
 function logg($data)
 {
-    $file = fopen("logs.txt", "a");
+    $file = fopen("logs/logs.txt", "a");
     fwrite($file, "\n");
     fwrite($file, print_r($data, true));
     fclose($file);
@@ -193,7 +193,7 @@ function writeResultToFile()
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));
     fclose($myFile);
-    sendEmailWithAttachment($file_name, $nameWithPath);
+    sendEmailWithAttachment($file_name, $nameWithPath, "B");
 }
 
 /**

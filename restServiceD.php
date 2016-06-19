@@ -2,7 +2,7 @@
 const WRONG = "WRONG";
 const CORRECT = "CORRECT";
 header("Content-Type:application/json");
-require_once('config.php');
+require_once('php/config/configD.php');
 require('Enum.php');
 require('EmailService.php');
 include "ResultD.php";
@@ -69,9 +69,10 @@ if (!empty($_GET['test-case-response'])) {
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::TEST_PHASE;
         $_SESSION[Resources::TEST_CASE] = $_SESSION[Resources::TEST_CASE] + 1;
         if ($response == $actualResponse) {
+            $result1->setFinalResult($result1->getFinalResult() + 2.5);
             deliver_response_result(200, "", ActionImage::NEXT, CORRECT);
-            $result1->setFinalResult($result1->getFinalResult() + 1);
         } else {
+            $result1->setFinalResult($result1->getFinalResult() - 2.5);
             deliver_response_result(200, "", ActionImage::NEXT, WRONG);
         }
         $_SESSION[Resources::RESULT] = json_encode($result1);
@@ -90,10 +91,10 @@ if (!empty($_GET['next'])) {
 
     if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::TEST_PHASE) {
         $testCase = $_SESSION[Resources::TEST_CASE];
-        $soundsTestList =  $_SESSION[Resources::SOUND_TEST_ORDER];
+        $soundsTestList = $_SESSION[Resources::SOUND_TEST_ORDER];
         if ($testCase == count($soundsTestList)) {
             deliver_response_result(200, "", ActionImage::CLOSE, END_TEST_SESSION);
-            writeResultToFile();
+            writeResultToFileAndSendEmail();
             logg("End test session...");
             return;
         }
@@ -102,7 +103,7 @@ if (!empty($_GET['next'])) {
         $_SESSION[Resources::START_TIME] = microtime(true);
         logg("Test for:" . $soundsTestList[$testCase]);
         $soundToGuess = $soundsTestList[$testCase];
-        deliver_response_result(200, $soundToGuess, ActionImage::CHOSE, GUESS);
+        deliver_response_result(200, $soundToGuess, ActionImage::LISTEN, GUESS);
         return;
     }
 
@@ -140,22 +141,22 @@ function loadSounds($fileName)
 
 function logg($data)
 {
-    $file = fopen("logs.txt", "a");
+    $file = fopen("logs/logsD.txt", "a");
     fwrite($file, "\n");
     fwrite($file, print_r($data, true));
     fclose($file);
 }
 
-function writeResultToFile()
+function writeResultToFileAndSendEmail()
 {
     $result = ResultD::fromJSON($_SESSION[Resources::RESULT]);
-    $result->setFinalResult((($result->getFinalResult() * 100) / 20) . "%");
+    $result->setFinalResult($result->getFinalResult() . "%");
     $file_name = $result->getName() . "_" . (new \DateTime())->format('Y-m-d His') . ".json";
-    $nameWithPath = "results/" . $file_name;
+    $nameWithPath = "results/d/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));
     fclose($myFile);
-    sendEmailWithAttachment($file_name, $nameWithPath);
+    sendEmailWithAttachment($file_name, $nameWithPath, "D");
 }
 
 /**
