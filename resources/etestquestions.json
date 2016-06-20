@@ -1,0 +1,202 @@
+{
+  "LatEpata.wav": {
+    "v1": {
+      "text": "O&egrave;3&egrave;",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "3e9&egrave;",
+      "isCorrect": false
+    }
+  },
+  "LatEkama.wav": {
+    "v1": {
+      "text": "9&egrave;O&ecirc;",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "3&egrave;Oi",
+      "isCorrect": false
+    }
+  },
+  "LatEbita.wav": {
+    "v1": {
+      "text": "Oi3&egrave;",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "3iO&ucirc;",
+      "isCorrect": false
+    }
+  },
+  "LatEbubu.wav": {
+    "v1": {
+      "text": "3e3e",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "OuOu",
+      "isCorrect": true
+    }
+  },
+  "LatEgita.wav": {
+    "v1": {
+      "text": "9&igrave;3e",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "9i3&egrave;",
+      "isCorrect": true
+    }
+  },
+  "LatEmudi.wav": {
+    "v1": {
+      "text": "O&ucirc;3i",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "OuO&icirc;",
+      "isCorrect": false
+    }
+  },
+  "LatEkuta.wav": {
+    "v1": {
+      "text": "9&ugrave;3&egrave;",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "O&ucirc;3&egrave;",
+      "isCorrect": false
+    }
+  },
+  "LatEtadu.wav": {
+    "v1": {
+      "text": "3u9&egrave;",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "3&egrave;3u",
+      "isCorrect": true
+    }
+  },
+  "LatEdupi.wav": {
+    "v1": {
+      "text": "3uO&igrave;",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "O&igrave;3&ucirc;",
+      "isCorrect": false
+    }
+  },
+  "LatEpima.wav": {
+    "v1": {
+      "text": "3&igrave;3&icirc;",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "O&igrave;O&ecirc;",
+      "isCorrect": true
+    }
+  },
+  "LatEmaku.wav": {
+    "v1": {
+      "text": "3&ucirc;9&ugrave;",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "O&ecirc;9&ugrave;",
+      "isCorrect": true
+    }
+  },
+  "LatEkupa.wav": {
+    "v1": {
+      "text": "9&ugrave;O&egrave;",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "9&egrave;3&egrave;",
+      "isCorrect": false
+    }
+  },
+  "LatEtina.wav": {
+    "v1": {
+      "text": "3&igrave;3&ecirc;",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "3&ugrave;3&ecirc;",
+      "isCorrect": false
+    }
+  },
+  "LatEkadu.wav": {
+    "v1": {
+      "text": "9&egrave;3u",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "O&ecirc;3&igrave;",
+      "isCorrect": false
+    }
+  },
+  "LatEpanu.wav": {
+    "v1": {
+      "text": "O&ecirc;3&icirc;",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "O&egrave;3&ucirc;",
+      "isCorrect": true
+    }
+  },
+  "LatEbinu.wav": {
+    "v1": {
+      "text": "Oi3&ucirc;",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "O&egrave;3&ugrave;",
+      "isCorrect": false
+    }
+  },
+  "LatEtata.wav": {
+    "v1": {
+      "text": "Oe3&icirc;",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "3&egrave;3&egrave;",
+      "isCorrect": true
+    }
+  },
+  "LatEdudi.wav": {
+    "v1": {
+      "text": "O&ucirc;9e",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "3u3i",
+      "isCorrect": true
+    }
+  },
+  "LatEnudi.wav": {
+    "v1": {
+      "text": "9eO&icirc;",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "O&ucirc;3i",
+      "isCorrect": true
+    }
+  },
+  "LatEdinu.wav": {
+    "v1": {
+      "text": "9e9i",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "3i3&ucirc;",
+      "isCorrect": true
+    }
+  }
+}

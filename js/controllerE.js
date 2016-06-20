@@ -33,20 +33,22 @@
 
             $scope.data = {next_action: "img/start.png", data: ""};
             setProgressResultBar(0);
+            disableSoundButtons();
             $scope.score = "";
             $scope.nrOfSeconds = 120;
             $scope.left_spelling = "";
             $scope.right_spelling = "";
 
             $scope.start = function () {
-                disableStartButton();
                 var participantName = $scope.participantName;
                 var nrOfSeconds = $scope.nrOfSeconds;
 
-                if (participantName == null || participantName == "") {
+                if (participantName == null || participantName == "" || nrOfSeconds == null || nrOfSeconds == "") {
                     alert("Please Fill All Required Field");
                     return false;
                 }
+                disableStartButton();
+                enableSoundButtons();
 
                 var parameter = JSON.stringify({
                     name: participantName,
@@ -54,7 +56,7 @@
                     action: "START"
                 });
                 var req = buildPOSTRequest(parameter);
-                var reqData = {next_action: "img/listen.png", data: ""};
+                var reqData = {next_action: "img/hourglass.png", data: ""};
                 makeRequestWithData(req, reqData);
             };
 
@@ -198,6 +200,24 @@
                 };
             }
         }]);
+
+    function disableSoundButtons() {
+        var soundButtons = document.getElementsByClassName("sound-btn"); //returns NodeList
+        Array.from(soundButtons).forEach(disableButton);
+    }
+
+    function enableSoundButtons() {
+        var soundButtons = document.getElementsByClassName("sound-btn"); //returns NodeList
+        Array.from(soundButtons).forEach(enableButton);
+    }
+
+    function disableButton(button) {
+        button.disabled = true;
+    }
+
+    function enableButton(button) {
+        button.disabled = false;
+    }
 
     function disableStartButton() {
         document.getElementById("startBtn").disabled = true;
