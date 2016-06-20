@@ -41,6 +41,7 @@
             $scope.start = function () {
                 disableStartButton();
                 var participantName = $scope.participantName;
+                var nrOfSeconds = $scope.nrOfSeconds;
 
                 if (participantName == null || participantName == "") {
                     alert("Please Fill All Required Field");
@@ -49,6 +50,7 @@
 
                 var parameter = JSON.stringify({
                     name: participantName,
+                    nrOfSeconds: nrOfSeconds,
                     action: "START"
                 });
                 var req = buildPOSTRequest(parameter);
@@ -59,7 +61,7 @@
 
             $scope.process = function (response) {
                 $scope.method = 'GET';
-                $scope.url = 'restServiceD.php?test-case-response=' + response;
+                $scope.url = 'restServiceE.php?test-case-response=' + response;
                 $scope.code = null;
                 $scope.response = null;
 
@@ -83,7 +85,7 @@
 
             $scope.next = function () {
                 $scope.method = 'GET';
-                $scope.url = 'restServiceD.php?next=true';
+                $scope.url = 'restServiceE.php?next=true';
                 $scope.code = null;
                 $scope.response = null;
 
@@ -103,12 +105,30 @@
                         audioFile.play();
                         audioFile.addEventListener("ended", function () {
                             // $scope.data.next_action = "img/chose.png";
-                            document.getElementById("next-action").src="img/chose.png";
+                            document.getElementById("next-action").src = "img/chose.png";
                         });
                         disableNextButton();
                         enableResponseButtons();
 
                     }
+                });
+            };
+
+            $scope.getSound = function (index) {
+                $scope.method = 'GET';
+                $scope.url = 'restServiceE.php?soundIndex=' + index;
+                $scope.code = null;
+                $scope.response = null;
+
+                var req = {method: $scope.method, url: $scope.url};
+                var myDataPromise = getData(req);
+                myDataPromise.then(function (result) {
+                    $scope.data = result.data;
+                    var soundFileName = result.data.data;
+                    var audioFile = new Audio();
+                    audioFile.src = "resources/esounds/" + soundFileName;
+                    audioFile.loop = false;
+                    audioFile.play();
                 });
             };
 
@@ -118,7 +138,7 @@
                 });
                 var req = {
                     method: 'POST',
-                    url: 'restServiceD.php',
+                    url: 'restServiceE.php',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -137,7 +157,7 @@
                 }
                 document.getElementById("progress-result").style.width = progressResult + "%";
             }
-            
+
             function getData(req) {
                 // Angular $http() and then() both return promises themselves
                 return $http(req).then(function (result) {
@@ -170,7 +190,7 @@
             function buildPOSTRequest(reqData) {
                 return {
                     method: 'POST',
-                    url: 'restServiceD.php',
+                    url: 'restServiceE.php',
                     headers: {
                         'Content-Type': 'application/json'
                     },
