@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+ul {
+    list-style-type: none
+}
+
 .container {
     margin: 0 auto;
     padding: 0;
@@ -14,6 +18,10 @@
 
 .llamad {
     width: 385px;
+}
+
+.llamae {
+    width: 485px;
 }
 
 .header {
@@ -44,6 +52,10 @@
     padding: 5px 10px;
 }
 
+.padding10 {
+    padding: 10px;
+}
+
 .main {
     margin-top: 7px;
     padding: 5px 10px;
@@ -72,6 +84,45 @@
     margin-top: 5px;
 }
 
+#e-top-options-left {
+    width: 77%;
+    float: left;
+}
+
+#e-top-options-right {
+    width: 23%;
+    float: right;
+}
+
+.buttons-section {
+    float: left;
+    /*margin-right: 10px;*/
+}
+
+.buttons-section input {
+    font-family: Cambria, Georgia, serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+
+.sectionA {
+    width: 38%;
+}
+
+.sectionB {
+    width: 38%;
+}
+
+.sectionC {
+    width: 24%;
+}
+
+.e-main-controller {
+    width: 275px;
+}
+
 .bottom-controller {
     margin-top: 7px;
     padding: 10px;
@@ -88,7 +139,6 @@
 }
 
 #score {
-    margin-right: 15px;
     border: 1px inset;
     background-color: #c0c0c0;
 }
@@ -167,8 +217,32 @@
     padding: 4px;
 }
 
+.padding-top55 {
+    padding-top: 55px;
+}
+
+.padding-top45 {
+    padding-top: 45px;
+}
+
+.margin-top5 {
+    margin-top: 5px;
+}
+
 .margin-top7 {
     margin-top: 7px;
+}
+
+.margin-top10 {
+    margin-top: 10px;
+}
+
+.margin-right5 {
+    margin-right: 5px;
+}
+
+.margin-right15 {
+    margin-right: 15px;
 }
 
 .blue {
@@ -221,6 +295,10 @@
     height: 20px;
 }
 
+.img-mini-e {
+    height: 20px;
+}
+
 .img-mini {
     height: 20px;
     margin-top: 7px;
@@ -255,13 +333,17 @@
 }
 
 .btn {
-    margin-top: 2px;
-    height: 27px;
+    height: 25px;
     background-color: #f0f0f0;
 }
 
 .btn-small {
     width: 45px;
+}
+
+.btn-normal {
+    width: 52px;
+    height: 35px;
 }
 
 .btn-large {
@@ -278,6 +360,10 @@
 
 .width20p {
     width: 20%;
+}
+
+.btn-height-large {
+   height: 33px;
 }
 
 progress::-webkit-progress-value {

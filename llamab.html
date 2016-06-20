@@ -39,7 +39,7 @@
                         <input ng-model="nrOfSeconds" required id="nrOfSeconds" type="number"
                                class="input-small input-blue"/>
                     </div>
-                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small"
+                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small margin-top5"
                             onclick="startTimer()">
                         <img src="img/start.png">
                     </button>
@@ -159,12 +159,12 @@
         </div>
         <div class="right">
             <div class="margin-top7 left">
-                <input ng-model="score" id="score" type="text" disabled class="input-medium"/>
+                <input ng-model="score" id="score" type="text" disabled class="input-medium margin-right15"/>
             </div>
             <div id="status" class="yellow left">
                 <img src="{{data.next_action}}">
             </div>
-            <button class="btn left btn-small" ng-click="close()">
+            <button class="btn left btn-small margin-top5" ng-click="close()">
                 <img src="img/end.png">
             </button>
         </div>
