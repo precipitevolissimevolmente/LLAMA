@@ -39,7 +39,8 @@
                         <input ng-model="nrOfSeconds" required id="nrOfSeconds" type="number"
                                class="input-small input-blue"/>
                     </div>
-                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small margin-top5"
+                    <button ng-click="inputParams.$valid && start()" id="startBtn"
+                            class="btn left btn-small margin-top5"
                             onclick="startTimer()">
                         <img src="img/start.png">
                     </button>
@@ -154,15 +155,18 @@
         <div class="left">
             <img src="img/smile.png" class="img-mini left">
             <div class="margin-top7 left">
-                <progress id="progress" class="progress-bar progress-bar-width-normal" ng-model="progress" value="{{progress}}" max="20"></progress>
+                <progress id="progress" class="progress-bar progress-bar-width-normal" ng-model="progress"
+                          value="{{progress}}" max="20"></progress>
             </div>
         </div>
         <div class="right">
             <div class="margin-top7 left">
                 <input ng-model="score" id="score" type="text" disabled class="input-medium margin-right15"/>
             </div>
-            <div id="status" class="yellow left">
-                <img src="{{data.next_action}}">
+            <div id="status-section-mini" class="left">
+                <div id="status" class="yellow left">
+                    <img src="{{data.next_action}}">
+                </div>
             </div>
             <button class="btn left btn-small margin-top5" ng-click="close()">
                 <img src="img/end.png">

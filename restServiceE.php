@@ -13,8 +13,7 @@ const GUESS = "GUESS";
 function init()
 {
     $_SESSION[Resources::LLAMAE_TRAINING_SOUNDS] = loadSounds('resources/esounds.json');
-    logg($_SESSION[Resources::LLAMAE_TRAINING_SOUNDS]);
-//    $_SESSION[Resources::SOUND_TEST_ORDER] = loadSounds('soundsTestOrder.json');
+    $_SESSION[Resources::LLAMAE_TEST_CASES] = loadTestCases('resources/etestquestions.json');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -55,20 +54,21 @@ if (!empty($_GET['test-case-response'])) {
     }
 
     if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::TEST_PHASE_STARTED) {
-        $testCase = $_SESSION[Resources::TEST_CASE];
-        $testSoundMap = $_SESSION[Resources::SOUND_MAP];
+        $testCaseIndex = $_SESSION[Resources::TEST_CASE];
+        $testCasesMap = $_SESSION[Resources::LLAMAE_TEST_CASES];
+        $testCaseKey = array_keys($testCasesMap)[$testCaseIndex];
 
-        $response = $_GET['test-case-response'];
-        $actualResponse = $testSoundMap[$_SESSION[Resources::SOUND_TEST_ORDER][$testCase]];
-        logg($response);
-        logg($actualResponse);
+        $userResponse = $_GET['test-case-response']; //(v1 || v2)
+        $response = $testCasesMap[$testCaseKey][$userResponse]["isCorrect"];
         $elapsed = microtime(true) - $_SESSION[Resources::START_TIME];
 //        logg(number_format($elapsed, 4));
         $result1 = ResultE::fromJSON($_SESSION[Resources::RESULT]);
-        $result1->addTestResult(new TestResult($testCase, $actualResponse, $response, number_format($elapsed, 4)));
+        $isCorrect = $response == true ? CORRECT : WRONG;
+        logg($isCorrect);
+        $result1->addTestResult(TestResult::withAnswerEvaluation($testCaseIndex, $testCaseKey, null, $isCorrect, number_format($elapsed, 4)));
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::TEST_PHASE;
         $_SESSION[Resources::TEST_CASE] = $_SESSION[Resources::TEST_CASE] + 1;
-        if ($response == $actualResponse) {
+        if ($response == true) {
             $result1->setFinalResult($result1->getFinalResult() + 2.5);
             deliver_response_result(200, "", ActionImage::NEXT, CORRECT);
         } else {
@@ -90,9 +90,9 @@ if (!empty($_GET['next'])) {
     }
 
     if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::TEST_PHASE) {
-        $testCase = $_SESSION[Resources::TEST_CASE];
-        $soundsTestList = $_SESSION[Resources::SOUND_TEST_ORDER];
-        if ($testCase == count($soundsTestList)) {
+        $testCaseIndex = $_SESSION[Resources::TEST_CASE];
+        $testCases = array_keys($_SESSION[Resources::LLAMAE_TEST_CASES]);
+        if ($testCaseIndex == count($testCases)) {
             deliver_response_result(200, "", ActionImage::CLOSE, END_TEST_SESSION);
             writeResultToFileAndSendEmail();
             logg("End test session...");
@@ -101,9 +101,12 @@ if (!empty($_GET['next'])) {
 
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::TEST_PHASE_STARTED;
         $_SESSION[Resources::START_TIME] = microtime(true);
-        logg("Test for:" . $soundsTestList[$testCase]);
-        $soundToGuess = $soundsTestList[$testCase];
-        deliver_response_result(200, $soundToGuess, ActionImage::LISTEN, GUESS);
+        logg("Test for:" . $testCases[$testCaseIndex]);
+        $testCaseDTO["soundFileName"] = $testCases[$testCaseIndex];
+        $responseOptions = $_SESSION[Resources::LLAMAE_TEST_CASES][$testCases[$testCaseIndex]];
+        $testCaseDTO["v1"] = $responseOptions["v1"]["text"];
+        $testCaseDTO["v2"] = $responseOptions["v2"]["text"];
+        deliver_response_result(200, $testCaseDTO, ActionImage::LISTEN, GUESS);
         return;
     }
 
@@ -167,6 +170,20 @@ function loadSounds($fileName)
     return json_decode($str, true);
 }
 
+function loadTestCases($fileName)
+{
+    $str = file_get_contents($fileName);
+    $test_map = json_decode($str, true);
+//    $testCases = Array();
+//    foreach ($test_map as $key => $value) {
+////                logg($value["questionNumber"]);
+////        $result->addTestResult(new TestResult($value["questionNumber"], $value["question"], $value["answer"], $value["answerTimeSeconds"]));
+//        $testCaseResponse = new ETestCaseResponse($value["v1"]["text"], $value["v1"]["isCorrect"]);
+//        $testCases[$key] = new ETestCase($testCaseResponse, $testCaseResponse);
+//    }
+    return $test_map;
+}
+
 function logg($data)
 {
     $file = fopen("logs/logsE.txt", "a");
@@ -180,11 +197,11 @@ function writeResultToFileAndSendEmail()
     $result = ResultE::fromJSON($_SESSION[Resources::RESULT]);
     $result->setFinalResult($result->getFinalResult() . "%");
     $file_name = $result->getName() . "_" . (new \DateTime())->format('Y-m-d His') . ".json";
-    $nameWithPath = "results/d/" . $file_name;
+    $nameWithPath = "results/e/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));
     fclose($myFile);
-    sendEmailWithAttachment($file_name, $nameWithPath, "D");
+    sendEmailWithAttachment($file_name, $nameWithPath, "E");
 }
 
 /**
@@ -195,7 +212,7 @@ function initResult($data)
     $result = new ResultE();
     $result->setName($data["name"]);
     $result->setNrOfSeconds($data["nrOfSeconds"]);
-    $result->setFinalResult(0);
+    $result->setFinalResult(10);
     return $result;
 }
 

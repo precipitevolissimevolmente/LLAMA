@@ -30,7 +30,8 @@
                     </div>
                 </div>
                 <div class="right">
-                    <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn left btn-small margin-top5">
+                    <button ng-click="inputParams.$valid && start()" id="startBtn"
+                            class="btn left btn-small margin-top5">
                         <img src="img/start.png">
                     </button>
                 </div>
@@ -73,8 +74,10 @@
 
     <div class="bottom-controller grey group">
         <div>
-            <div id="status" class="yellow left">
-                <img id="next-action" src="{{data.next_action}}">
+            <div id="status-section-mini" class="left">
+                <div id="status" class="yellow left">
+                    <img id="next-action" src="{{data.next_action}}">
+                </div>
             </div>
             <div class="margin-top7 left">
                 <input ng-model="score" id="score" type="text" disabled class="input-medium"/>

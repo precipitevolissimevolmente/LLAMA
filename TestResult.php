@@ -5,6 +5,7 @@ class TestResult
     var $questionNumber;
     var $question;
     var $answer;
+    var $isCorrect;
     var $answerTimeSeconds;
 
     /**
@@ -20,6 +21,12 @@ class TestResult
         $this->question = $question;
         $this->answer = $answer;
         $this->answerTimeSeconds = $answerTimeSeconds;
+    }
+
+    public static function withAnswerEvaluation($questionNumber, $question, $answer, $isCorrect, $answerTimeSeconds) {
+        $instance = new self($questionNumber, $question, $answer, $answerTimeSeconds);
+        $instance->setIsCorrect($isCorrect);
+        return $instance;
     }
 
     /**
@@ -84,5 +91,13 @@ class TestResult
     public function setAnswerTimeSeconds($answerTimeSeconds)
     {
         $this->answerTimeSeconds = $answerTimeSeconds;
+    }
+
+    /**
+     * @param mixed $isCorrect
+     */
+    public function setIsCorrect($isCorrect)
+    {
+        $this->isCorrect = $isCorrect;
     }
 }

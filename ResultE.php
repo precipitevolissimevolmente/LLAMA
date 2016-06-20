@@ -22,7 +22,7 @@ class ResultE
         if(isset($json["testResults"])) {
             foreach ($json["testResults"] as $value) {
 //                logg($value["questionNumber"]);
-                $result->addTestResult(new TestResult($value["questionNumber"], $value["question"], $value["answer"], $value["answerTimeSeconds"]));
+                $result->addTestResult(TestResult::withAnswerEvaluation($value["questionNumber"], $value["question"], $value["answer"], $value["isCorrect"], $value["answerTimeSeconds"]));
             }
         }
         return $result;

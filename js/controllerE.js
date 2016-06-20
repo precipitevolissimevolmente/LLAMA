@@ -23,8 +23,8 @@
         playSound('sounds/DING.WAV');
     }
 
-    myApp.controller('mainController', ['$scope', '$http',
-        function ($scope, $http) {
+    myApp.controller('mainController', ['$scope', '$http', '$sce',
+        function ($scope, $http, $sce) {
             //initial state
             const CORRECT = 'CORRECT';
             const WRONG = 'WRONG';
@@ -36,8 +36,8 @@
             disableSoundButtons();
             $scope.score = "";
             $scope.nrOfSeconds = 120;
-            $scope.left_spelling = "";
-            $scope.right_spelling = "";
+            setLeftSpelling("");
+            setRightSpelling("");
 
             $scope.start = function () {
                 var participantName = $scope.participantName;
@@ -58,6 +58,24 @@
                 var req = buildPOSTRequest(parameter);
                 var reqData = {next_action: "img/hourglass.png", data: ""};
                 makeRequestWithData(req, reqData);
+                setTimeout(function () {
+                    playChord();
+                    var startTestJSON = JSON.stringify({
+                        action: "START_TEST"
+                    });
+                    var reqStartTest = {
+                        method: 'POST',
+                        url: 'restService.php',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data: startTestJSON
+                    };
+                    var reqData = {next_action: "img/next.png", data: ""};
+                    makeRequestWithData(reqStartTest, reqData);
+                    enableNextButton();
+                    disableSoundButtons();
+                }, nrOfSeconds * 1000);
             };
 
 
@@ -69,17 +87,17 @@
 
                 var req = {method: $scope.method, url: $scope.url};
                 var myDataPromise = getData(req);
+                disableResponseButtons();
                 myDataPromise.then(function (result) {
                     $scope.data = result.data;
                     if (result.data.result == CORRECT) {
-                        setProgressResultBar($scope.progress + 2.5);
+                        setProgressResultBar($scope.progress + 5);
                         playDing();
                     }
                     if (result.data.result == WRONG) {
-                        setProgressResultBar($scope.progress - 2.5);
+                        setProgressResultBar($scope.progress - 5);
                         playChord();
                     }
-                    disableResponseButtons();
                     enableNextButton()
                 });
             };
@@ -93,25 +111,24 @@
 
                 var req = {method: $scope.method, url: $scope.url};
                 var myDataPromise = getData(req);
+                disableNextButton();
                 myDataPromise.then(function (result) {
                     $scope.data = result.data;
                     if (result.data.result == END_TEST_SESSION) {
                         playChord();
-                        disableNextButton();
                         $scope.score = ($scope.progress) + " %";
                     } else {
-                        var sound = result.data.data;
+                        var testCase = result.data.data;
                         var audioFile = new Audio();
-                        audioFile.src = "dsounds/" + sound;
+                        audioFile.src = "resources/esounds/" + testCase.soundFileName;
                         audioFile.loop = false;
                         audioFile.play();
                         audioFile.addEventListener("ended", function () {
-                            // $scope.data.next_action = "img/chose.png";
                             document.getElementById("next-action").src = "img/chose.png";
+                            enableResponseButtons();
                         });
-                        disableNextButton();
-                        enableResponseButtons();
-
+                        setLeftSpelling(testCase.v1);
+                        setRightSpelling(testCase.v2);
                     }
                 });
             };
@@ -149,6 +166,14 @@
                 makeRequest(req);
                 window.close();
             };
+
+            function setLeftSpelling(value) {
+                $scope.left_spelling = $sce.trustAsHtml(value);
+            }
+
+            function setRightSpelling(value) {
+                $scope.right_spelling = $sce.trustAsHtml(value);
+            }
 
             function setProgressResultBar(progressResult) {
                 $scope.progress = progressResult;
@@ -232,12 +257,12 @@
     }
 
     function disableResponseButtons() {
-        document.getElementById("newword").disabled = true;
-        document.getElementById("familiarword").disabled = true;
+        document.getElementById("left-spelling").disabled = true;
+        document.getElementById("right-spelling").disabled = true;
     }
 
     function enableResponseButtons() {
-        document.getElementById("newword").disabled = false;
-        document.getElementById("familiarword").disabled = false;
+        document.getElementById("left-spelling").disabled = false;
+        document.getElementById("right-spelling").disabled = false;
     }
 })(window.angular);

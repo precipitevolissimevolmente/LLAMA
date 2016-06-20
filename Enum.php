@@ -38,5 +38,7 @@ abstract class Resources
     const START_TIME = "START_TIME";
     const SOUND_MAP="SOUND_MAP";
     const SOUND_TEST_ORDER="SOUND_TEST_ORDER";
+    
     const LLAMAE_TRAINING_SOUNDS="LLAMAE_TRAINING_SOUNDS";
+    const LLAMAE_TEST_CASES="LLAMAE_TEST_CASES";
 }

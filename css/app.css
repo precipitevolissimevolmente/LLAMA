@@ -96,10 +96,17 @@ ul {
 
 .buttons-section {
     float: left;
-    /*margin-right: 10px;*/
 }
 
 .buttons-section input {
+    font-family: Cambria, Georgia, serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+
+.font20 {
     font-family: Cambria, Georgia, serif;
     font-size: 20px;
     font-weight: bold;
@@ -128,8 +135,15 @@ ul {
     padding: 10px;
 }
 
+#status-section {
+    width: 60px;
+}
+
+#status-section-mini {
+    width: 50px;
+}
+
 #status {
-    margin-right: 20px;
     border: 1px inset;
     height: 33px;
 }
