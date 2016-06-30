@@ -24,6 +24,10 @@ ul {
     width: 485px;
 }
 
+.llamaf {
+    width: 595px;
+}
+
 .header {
     margin-top: 10px;
     padding: 0;
@@ -50,6 +54,10 @@ ul {
 
 .padding5-10 {
     padding: 5px 10px;
+}
+
+.padding7 {
+    padding: 7px;
 }
 
 .padding10 {
@@ -80,10 +88,6 @@ ul {
     margin-left: 5%;
 }
 
-#timer {
-    margin-top: 5px;
-}
-
 #e-top-options-left {
     width: 77%;
     float: left;
@@ -92,6 +96,37 @@ ul {
 #e-top-options-right {
     width: 23%;
     float: right;
+}
+
+#f-top-options-left {
+    width: 85%;
+    float: left;
+    background-color: #f0f0f0;
+}
+
+#f-top-options-right {
+    width: 10%;
+    float: right;
+}
+
+#buttons-section-f {
+    width: 360px;
+    height: 70px;
+}
+
+#buttons-section-f ul {
+    margin-top: 3px;
+}
+
+#buttons-section-f ul li input {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#picture-section-f {
+    width: 200px;
+    height: 200px;
+    border: 1px inset;
 }
 
 .buttons-section {
@@ -206,10 +241,19 @@ ul {
     height: 10px;
 }
 
+#progress-result-f {
+    width: 350px;
+}
+
+#progress-width-f {
+    width: 300px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
 .footer {
     margin-top: 7px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 1px 10px;
     font-size: 13px;
 }
 
@@ -217,7 +261,11 @@ ul {
     border: 1px outset;
 }
 
-.author {
+.group-border-inset {
+    border: 1px inset;
+}
+
+.footer p {
     font-weight: bold;
 }
 
@@ -225,6 +273,10 @@ ul {
     content: "";
     display: table;
     clear: both;
+}
+
+.height5 {
+    height: 5px;
 }
 
 .padding4 {
@@ -249,6 +301,10 @@ ul {
 
 .margin-top10 {
     margin-top: 10px;
+}
+
+.margin-top15 {
+    margin-top: 15px;
 }
 
 .margin-right5 {
@@ -309,6 +365,10 @@ ul {
     height: 20px;
 }
 
+.img-mini-f {
+    height: 18px;
+}
+
 .img-mini-e {
     height: 20px;
 }
@@ -351,6 +411,11 @@ ul {
     background-color: #f0f0f0;
 }
 
+.btn-mini {
+    width: 25px;
+    height: 25px;
+}
+
 .btn-small {
     width: 45px;
 }
@@ -368,16 +433,20 @@ ul {
     height: 20px;
 }
 
-.width40p {
-    width: 40%;
-}
-
 .width20p {
     width: 20%;
 }
 
+.width40p {
+    width: 40%;
+}
+
+.width100p {
+    width: 100%;
+}
+
 .btn-height-large {
-   height: 33px;
+    height: 33px;
 }
 
 progress::-webkit-progress-value {

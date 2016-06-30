@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LLAMA F</title>
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/angular-1.5.5/angular.js"></script>
+    <script src="js/controllerF.js"></script>
+    <script src="js/countdown.js"></script>
+</head>
+<body ng-app="llamab" class="blue">
+
+<div ng-controller="mainController" class="container llamaf">
+    <div class="header">
+        <div class="top-header grey group">
+            <p class="left title">Llama_F</p>
+            <sup class="left">v2.0</sup>
+            <p class="right company">_lognostics</p>
+        </div>
+    </div>
+
+    <div class="main grey group">
+        <div class="options group margin-top7">
+            <div id="f-top-options-left" class="padding4">
+                <form name="inputParams">
+                    <div class="left padding4">
+                        <img src="img/pencilv2.png" class="left img-mini-e"/>
+                        <div class="left">
+                            <input ng-model="participantName" required id="participantName" type="text"
+                                   placeholder="Name"
+                                   class="input-large input-blue"/>
+                        </div>
+                    </div>
+                    <div class="right padding4">
+                        <img src="img/timer.png" class="left img-mini-e margin-right5"/>
+                        <div class="left">
+                            <input ng-model="nrOfSeconds" required id="nrOfSeconds" type="number"
+                                   class="input-small input-blue margin-right5"/>
+                        </div>
+                        <button ng-click="inputParams.$valid && start()" id="startBtn" class="btn right btn-small"
+                                onclick="startTimer()">
+                            <img src="img/start.png">
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="f-top-options-right">
+                <canvas id="timer" width="50" height="50" class="right"></canvas>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="left">
+                <div id="buttons-section-f" class="group group-border">
+                    <ul>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                        <li><input type="button" ng-click="getSound('0')"
+                                   class="btn left btn-mini "/></li>
+                    </ul>
+                </div>
+
+                <div class="group f-main-controller">
+                    <button ng-click="process('v1')" id="btn-sentence-a"
+                            class="btn left width100p btn-height-large margin-top5"
+                            disabled="disabled">
+                        <div class="font20" ng-bind-html="left_spelling"></div>
+                    </button>
+                    <button ng-click="process('v2')" id="btn-sentence-b"
+                            class="btn left width100p btn-height-large margin-top5"
+                            disabled="disabled">
+                        <div class="font20" ng-bind-html="right_spelling"></div>
+                    </button>
+                    <button ng-click="next()" id="btn-next" class="btn right width20p margin-top15"
+                            disabled="disabled">
+                        <img src="img/next.png">
+                    </button>
+                </div>
+            </div>
+            <div id="picture-section-f" class="right">
+                <img id="llamaf-picture" src="{{data.picture}}">
+            </div>
+        </div>
+
+        <div class="group group-border-inset margin-top15 height5"></div>
+
+        <div class="group">
+            <div id="status-section" class="left margin-top10">
+                <div id="status" class="yellow left">
+                    <img id="next-action" src="{{data.next_action}}">
+                </div>
+            </div>
+            <div id="progress-result-f" class="left group-border-inset margin-top10 padding7">
+                <img src="img/newword.png" class="img-mini-f left">
+                <div id="progress-width-f" class="left">
+                    <div class="progress slim">
+                        <div id="progress-result" class="progress-bar-div " role="progressbar">
+                        </div>
+                    </div>
+                </div>
+                <img src="img/familiarword.png" class="img-mini-f right">
+            </div>
+            <div class="right margin-top15">
+                <div class="left">
+                    <input ng-model="score" id="score" type="text" disabled class="input-medium margin-right5"/>
+                </div>
+                <button class="btn right btn-small" ng-click="close()">
+                    <img src="img/end.png">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer grey group">
+        <p class="left author"> Paul Meara </p>
+        <p class="right">&copy;2005 University of Wales Swansea</p>
+    </footer>
+</div>
+
+</body>
+<script>
+    function startTimer() {
+        var nrOfSeconds = document.getElementById("nrOfSeconds").value;
+        var participantName = document.getElementById("participantName").value;
+
+        if (participantName == null || participantName == "" ||
+                nrOfSeconds == null || nrOfSeconds == "") {
+            return false;
+        }
+        startTimerCanvas(nrOfSeconds);
+    }
+</script>
+</html>
