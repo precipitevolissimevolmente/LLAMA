@@ -65,7 +65,7 @@
                     });
                     var reqStartTest = {
                         method: 'POST',
-                        url: 'restService.php',
+                        url: 'restServiceE.php',
                         headers: {
                             'Content-Type': 'application/json'
                         },
