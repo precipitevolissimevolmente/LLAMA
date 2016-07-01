@@ -98,7 +98,7 @@
                         setProgressResultBar($scope.progress - 5);
                         playChord();
                     }
-                    enableNextButton()
+                    enableNextButton();
                 });
             };
 
@@ -118,6 +118,7 @@
                         playChord();
                         $scope.score = ($scope.progress) + " %";
                     } else {
+                        enableResponseButtons();
                         var testCase = result.data.data;
                         var audioFile = new Audio();
                         audioFile.src = "resources/esounds/" + testCase.soundFileName;
@@ -125,7 +126,6 @@
                         audioFile.play();
                         audioFile.addEventListener("ended", function () {
                             document.getElementById("next-action").src = "img/chose.png";
-                            enableResponseButtons();
                         });
                         setLeftSpelling(testCase.v1);
                         setRightSpelling(testCase.v2);

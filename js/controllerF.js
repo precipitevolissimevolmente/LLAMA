@@ -133,9 +133,9 @@
                 });
             };
 
-            $scope.getSound = function (index) {
+            $scope.getPicture = function (index) {
                 $scope.method = 'GET';
-                $scope.url = 'restServiceE.php?soundIndex=' + index;
+                $scope.url = 'restServiceE.php?pictureIndex=' + index;
                 $scope.code = null;
                 $scope.response = null;
 
@@ -143,11 +143,10 @@
                 var myDataPromise = getData(req);
                 myDataPromise.then(function (result) {
                     $scope.data = result.data;
-                    var soundFileName = result.data.data;
-                    var audioFile = new Audio();
-                    audioFile.src = "resources/esounds/" + soundFileName;
-                    audioFile.loop = false;
-                    audioFile.play();
+                    var pictureName = result.data.data.pictureName;
+                    $scope.picture = "resources/fpictures/" + pictureName;
+                    var sentence = result.data.data.sentence;
+                    setSentenceV1(sentence);
                 });
             };
 
@@ -167,12 +166,12 @@
                 window.close();
             };
 
-            function setLeftSpelling(value) {
-                $scope.left_spelling = $sce.trustAsHtml(value);
+            function setSentenceV1(value) {
+                $scope.sentenceV1 = value;
             }
 
-            function setRightSpelling(value) {
-                $scope.right_spelling = $sce.trustAsHtml(value);
+            function setSentenceV2(value) {
+                $scope.sentenceV2 = value;
             }
 
             function setProgressResultBar(progressResult) {
@@ -257,12 +256,12 @@
     }
 
     function disableResponseButtons() {
-        document.getElementById("left-spelling").disabled = true;
-        document.getElementById("right-spelling").disabled = true;
+        document.getElementById("btn-sentence-v1").disabled = true;
+        document.getElementById("btn-sentence-v2").disabled = true;
     }
 
     function enableResponseButtons() {
-        document.getElementById("left-spelling").disabled = false;
-        document.getElementById("right-spelling").disabled = false;
+        document.getElementById("btn-sentence-v1").disabled = false;
+        document.getElementById("btn-sentence-v2").disabled = false;
     }
 })(window.angular);

@@ -12,7 +12,7 @@ const GUESS = "GUESS";
 
 function init()
 {
-    $_SESSION[Resources::LLAMAE_TRAINING_SOUNDS] = loadSounds('resources/esounds.json');
+    $_SESSION[Resources::LLAMAF_TRAINING_INFO] = loadFromJSON('resources/fTraining.json');
     $_SESSION[Resources::LLAMAE_TEST_CASES] = loadTestCases('resources/etestquestions.json');
 }
 
@@ -113,7 +113,7 @@ if (!empty($_GET['next'])) {
     deliver_response(200, "", ActionImage::CLOSE);
 }
 
-if (isset($_GET['soundIndex'])) {
+if (isset($_GET['pictureIndex'])) {
 
     if (!isset($_SESSION[Resources::PROGRAM_PHASE]) || $_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::NOT_STARTED) {
         logg(ProgramPhase::NOT_STARTED);
@@ -122,8 +122,8 @@ if (isset($_GET['soundIndex'])) {
     }
 
     if ($_SESSION[Resources::PROGRAM_PHASE] == ProgramPhase::LEARN_PHASE_STARTED) {
-        $soundFileName = getSoundFileName($_GET['soundIndex']);
-        deliver_response(200, $soundFileName, ActionImage::TIMER);
+        $pictureAndSentence = getPictureAndSentence($_GET['pictureIndex']);
+        deliver_response(200, $pictureAndSentence, ActionImage::TIMER);
         return;
     }
 
@@ -136,9 +136,9 @@ if (isset($_GET['soundIndex'])) {
 }
 
 
-function getSoundFileName($index)
+function getPictureAndSentence($index)
 {
-    return $_SESSION[Resources::LLAMAE_TRAINING_SOUNDS][$index];
+    return $_SESSION[Resources::LLAMAF_TRAINING_INFO][$index];
 }
 
 function deliver_response($status, $data, $nextImgAction)
@@ -164,7 +164,7 @@ function deliver_response_result($status, $data, $nextAction, $result)
     echo $json_response;
 }
 
-function loadSounds($fileName)
+function loadFromJSON($fileName)
 {
     $str = file_get_contents($fileName);
     return json_decode($str, true);

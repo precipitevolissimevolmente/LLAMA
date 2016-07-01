@@ -1,0 +1,202 @@
+{
+  "bmt01.bmp": {
+    "v1": {
+      "text": "eket-arap-sa",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "eket-arap",
+      "isCorrect": false
+    }
+  },
+  "bmt02.bmp": {
+    "v1": {
+      "text": "ipod-ilad-za",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "ipod-ilad",
+      "isCorrect": false
+    }
+  },
+  "bmt03.bmp": {
+    "v1": {
+      "text": "ilad-eked",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "eked-ilad",
+      "isCorrect": true
+    }
+  },
+  "bmt04.bmp": {
+    "v1": {
+      "text": "atak-arap-sa",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "arap-atak-sa",
+      "isCorrect": false
+    }
+  },
+  "bmt05.bmp": {
+    "v1": {
+      "text": "ipod-arap",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "ipot-arap",
+      "isCorrect": true
+    }
+  },
+  "bmt06.bmp": {
+    "v1": {
+      "text": "atag-ilad",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "ilad-atag",
+      "isCorrect": false
+    }
+  },
+  "bmt07.bmp": {
+    "v1": {
+      "text": "unak atak-arap-sa",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "atak-arap-sa unak",
+      "isCorrect": false
+    }
+  },
+  "bmt08.bmp": {
+    "v1": {
+      "text": "ipot-arap umush-ek",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "umush-ek ipot-arap",
+      "isCorrect": true
+    }
+  },
+  "bmt09.bmp": {
+    "v1": {
+      "text": "unak-ek ipot-arap",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "unak ipot-arap",
+      "isCorrect": false
+    }
+  },
+  "bmt10.bmp": {
+    "v1": {
+      "text": "inut-ek eket-arap",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "eket-ek inut-arap",
+      "isCorrect": false
+    }
+  },
+  "bmt11.bmp": {
+    "v1": {
+      "text": "unak-em eked-ilad",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "unak-ek eked-ilad",
+      "isCorrect": false
+    }
+  },
+  "bmt12.bmp": {
+    "v1": {
+      "text": "umush-em ipod-ilad",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "umush-ek ipod-ilak",
+      "isCorrect": false
+    }
+  },
+  "bmt13.bmp": {
+    "v1": {
+      "text": "unak-sa ipot-arap-sa",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "unak ipot-arap-sa",
+      "isCorrect": true
+    }
+  },
+  "bmt14.bmp": {
+    "v1": {
+      "text": "umush ipot-arap-sa",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "umush-ek ipot-arap-sa",
+      "isCorrect": false
+    }
+  },
+  "bmt15.bmp": {
+    "v1": {
+      "text": "ipod-orad-za",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "ipod-orad",
+      "isCorrect": false
+    }
+  },
+  "bmt16.bmp": {
+    "v1": {
+      "text": "atag-orad-sa",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "atag-orad-za",
+      "isCorrect": true
+    }
+  },
+  "bmt17.bmp": {
+    "v1": {
+      "text": "orad-eked-za",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "eked-orad-za",
+      "isCorrect": true
+    }
+  },
+  "bmt18.bmp": {
+    "v1": {
+      "text": "umush-ek atag-orad",
+      "isCorrect": true
+    },
+    "v2": {
+      "text": "umush atag-orad",
+      "isCorrect": false
+    }
+  },
+  "bmt19.bmp": {
+    "v1": {
+      "text": "unak-ek atag-orad",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "unak-em atag-orad",
+      "isCorrect": true
+    }
+  },
+  "bmt20.bmp": {
+    "v1": {
+      "text": "em ipod-orad",
+      "isCorrect": false
+    },
+    "v2": {
+      "text": "ipod-orad",
+      "isCorrect": true
+    }
+  }
+}

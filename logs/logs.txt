@@ -1,0 +1,409 @@
+
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+wwwww
+TEST_PHASE
+Test for:IMIX
+CAUAC
+IMIX
+Test for:AHAU
+CAUAC
+AHAU
+Test for:EB
+CAUAC
+EB
+Test for:LAMAT
+CAUAC
+LAMAT
+Test for:KAN
+CAUAC
+KAN
+Test for:MULUC
+CAUAC
+MULUC
+Test for:MANIK
+CAUAC
+MANIK
+Test for:BEN
+CAUAC
+BEN
+Test for:AKBAL
+CAUAC
+AKBAL
+Test for:OC
+CAUAC
+OC
+Test for:CABAN
+CAUAC
+CABAN
+Test for:MEN
+AHAU
+MEN
+Test for:CIMI
+AHAU
+CIMI
+Test for:IX
+AHAU
+IX
+Test for:CHUEN
+CHUEN
+CHUEN
+Test for:CIB
+BEN
+CIB
+Test for:CHICCHAN
+BEN
+CHICCHAN
+Test for:CAUAC
+BEN
+CAUAC
+Test for:IK
+BEN
+IK
+Test for:ETZ-NAB
+BEN
+ETZ-NAB
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Close....
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+NOT_STARTED
+Close....
+ssss
+Close....
+eee
+TEST_PHASE
+Test for:CAUAC
+CHICCHAN
+CAUAC
+Test for:IK
+ETZ-NAB
+IK
+Test for:KAN
+ETZ-NAB
+KAN
+Test for:IMIX
+ETZ-NAB
+IMIX
+Test for:EB
+ETZ-NAB
+EB
+ssss
+Close....
+ssss
+Close....
+ssss
+ssss
+TEST_PHASE
+Test for:LAMAT
+KAN
+LAMAT
+Test for:BEN
+BEN
+BEN
+Test for:CABAN
+CABAN
+CABAN
+Test for:IMIX
+CAUAC
+IMIX
+Test for:CIMI
+CIMI
+CIMI
+Test for:MULUC
+AKBAL
+MULUC
+Test for:CAUAC
+KAN
+CAUAC
+Test for:MEN
+CAUAC
+MEN
+Test for:CHICCHAN
+CHICCHAN
+CHICCHAN
+Test for:IK
+IK
+IK
+Test for:IX
+IX
+IX
+Test for:AHAU
+AKBAL
+AHAU
+Test for:MANIK
+AKBAL
+MANIK
+Test for:AKBAL
+AKBAL
+AKBAL
+Test for:ETZ-NAB
+ETZ-NAB
+ETZ-NAB
+Test for:KAN
+KAN
+KAN
+Test for:EB
+EB
+EB
+Test for:OC
+OC
+OC
+Test for:CHUEN
+CHUEN
+CHUEN
+Test for:CIB
+CIB
+CIB
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+ssss
+sss
+s
+TEST_PHASE
+Test for:IX
+IMIX
+IX
+Test for:IK
+IMIX
+IK
+Test for:MANIK
+CAUAC
+MANIK
+Test for:LAMAT
+CHICCHAN
+LAMAT
+Test for:CABAN
+ETZ-NAB
+CABAN
+Test for:OC
+ETZ-NAB
+OC
+Test for:KAN
+CIB
+KAN
+Test for:EB
+KAN
+EB
+Test for:CHICCHAN
+BEN
+CHICCHAN
+Test for:CIMI
+KAN
+CIMI
+Test for:CHUEN
+KAN
+CHUEN
+Test for:AHAU
+KAN
+AHAU
+Test for:BEN
+KAN
+BEN
+Test for:CAUAC
+KAN
+CAUAC
+Test for:ETZ-NAB
+KAN
+ETZ-NAB
+Test for:AKBAL
+KAN
+AKBAL
+Test for:MEN
+KAN
+MEN
+Test for:MULUC
+KAN
+MULUC
+Test for:IMIX
+KAN
+IMIX
+Test for:CIB
+KAN
+CIB
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+ssss
+aaaa
+TEST_PHASE
+Test for:CAUAC
+CAUAC
+CAUAC
+Test for:KAN
+CHICCHAN
+KAN
+Test for:MANIK
+KAN
+MANIK
+Test for:CABAN
+CABAN
+CABAN
+Test for:BEN
+BEN
+BEN
+Test for:LAMAT
+KAN
+LAMAT
+Test for:CHICCHAN
+ETZ-NAB
+CHICCHAN
+Test for:OC
+OC
+OC
+Test for:IX
+KAN
+IX
+Test for:AKBAL
+KAN
+AKBAL
+Test for:IK
+KAN
+IK
+Test for:MULUC
+KAN
+MULUC
+Test for:MEN
+KAN
+MEN
+Test for:ETZ-NAB
+KAN
+ETZ-NAB
+Test for:AHAU
+KAN
+AHAU
+Test for:CIMI
+KAN
+CIMI
+Test for:CIB
+KAN
+CIB
+Test for:EB
+KAN
+EB
+Test for:IMIX
+KAN
+IMIX
+Test for:CHUEN
+KAN
+CHUEN
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Close....
+qqqq
+aaaa
+TEST_PHASE
+Test for:IMIX
+KAN
+IMIX
+Test for:MULUC
+KAN
+MULUC
+Test for:IX
+CAUAC
+IX
+Test for:MANIK
+CHICCHAN
+MANIK
+Test for:KAN
+ETZ-NAB
+KAN
+Test for:AKBAL
+KAN
+AKBAL
+Test for:BEN
+KAN
+BEN
+Test for:OC
+CIB
+OC
+Test for:CABAN
+CIB
+CABAN
+Test for:AHAU
+CIB
+AHAU
+Test for:CHUEN
+CIB
+CHUEN
+Test for:CHICCHAN
+aaa
+TEST_PHASE
+Test for:IK
+BEN
+IK
+Test for:CIMI
+BEN
+CIMI
+Test for:CIB
+BEN
+CIB
+Test for:KAN
+BEN
+KAN
+Test for:AHAU
+BEN
+AHAU
+Test for:AKBAL
+BEN
+AKBAL
+Test for:LAMAT
+BEN
+LAMAT
+Test for:CHICCHAN
+ETZ-NAB
+CHICCHAN
+Test for:EB
+EB
+EB
+Test for:OC
+OC
+OC
+Test for:CHUEN
+CHUEN
+CHUEN
+Test for:ETZ-NAB
+ETZ-NAB
+ETZ-NAB
+Test for:CABAN
+CABAN
+CABAN
+Test for:MEN
+MEN
+MEN
+Test for:MULUC
+KAN
+MULUC
+Test for:IX
+KAN
+IX
+Test for:MANIK
+KAN
+MANIK
+Test for:BEN
+BEN
+BEN
+Test for:CAUAC
+CAUAC
+CAUAC
+Test for:IMIX
+MANIK
+IMIX
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+TEST_PHASE
+TEST_PHASE
+TEST_PHASE
+TEST_PHASE

@@ -120,19 +120,21 @@
             </div>
             <div class="left e-main-controller">
                 <div class="group margin-top7 padding10 blue">
-                    <button ng-click="process('v1')" id="left-spelling" class="btn left width40p btn-height-large"
-                            disabled="disabled">
-                        <div class="font20" ng-bind-html="left_spelling"></div>
-                    </button>
-                    <button ng-click="next()" id="btn-next" class="btn left width20p btn-height-large"
-                            disabled="disabled">
-                        <img src="img/next.png">
-                    </button>
-                    <button ng-click="process('v2')" id="right-spelling"
-                            class="btn left width40p btn-height-large"
-                            disabled="disabled">
-                        <div class="font20" ng-bind-html="right_spelling"></div>
-                    </button>
+                    <div class="grey btn-height-large">
+                        <button ng-click="process('v1')" id="left-spelling" class="btn left width40p btn-height-large"
+                                disabled="disabled">
+                            <div class="font20" ng-bind-html="left_spelling"></div>
+                        </button>
+                        <button ng-click="next()" id="btn-next" class="btn left width20p btn-height-large"
+                                disabled="disabled">
+                            <img src="img/next.png">
+                        </button>
+                        <button ng-click="process('v2')" id="right-spelling"
+                                class="btn left width40p btn-height-large"
+                                disabled="disabled">
+                            <div class="font20" ng-bind-html="right_spelling"></div>
+                        </button>
+                    </div>
                 </div>
 
                 <div>

@@ -28,13 +28,20 @@
             const WRONG = 'WRONG';
             const END_TEST_SESSION = 'END_TEST_SESSION';
             const GUESS = 'GUESS';
-            document.getElementById("next").disabled = true;
+
+            const NOT_STARTED = "NOT_STARTED";
+            const LEARN_PHASE_STARTED = "LEARN_PHASE_STARTED";
+            const TEST_PHASE = "TEST_PHASE";
+            const TEST_PHASE_STARTED = "TEST_PHASE_STARTED";
+
+            disableNextBtn();
+            disablePictureButtons();
             $scope.data = {next_action: "img/start.png", data: ""};
-            // $scope.participantName = "Napoleon";
             $scope.randomisationSequence = 2003;
             $scope.nrOfSeconds = 120;
             $scope.progress = 0;
             $scope.score = "";
+            $scope.PROGRAM_PHASE = NOT_STARTED;
 
             function makeRequestWithData(req, reqData) {
                 $http(req).success(function (data, status) {
@@ -66,7 +73,8 @@
             };
 
             $scope.start = function () {
-                document.getElementById("startBtn").disabled = true;
+                disableStartBtn();
+                enablePictureButtons();
                 var nrOfSeconds = $scope.nrOfSeconds;
                 var randomisationSequence = $scope.randomisationSequence;
                 var participantName = $scope.participantName;
@@ -74,8 +82,11 @@
                 if (participantName == null || participantName == "" ||
                     nrOfSeconds == null || nrOfSeconds == "" || randomisationSequence == null || randomisationSequence == "") {
                     alert("Please Fill All Required Field");
+                    enableStartBtn();
+                    disablePictureButtons();
                     return false;
                 }
+                $scope.PROGRAM_PHASE = LEARN_PHASE_STARTED;
 
                 var parameter = JSON.stringify({
                     name: participantName,
@@ -109,12 +120,17 @@
                     };
                     var reqData = {next_action: "img/next.png", data: ""};
                     makeRequestWithData(reqStartTest, reqData);
-                    document.getElementById("next").disabled = false;
+                    $scope.PROGRAM_PHASE = TEST_PHASE;
+                    disablePictureButtons();
+                    enableNextBtn();
                 }, nrOfSeconds * 1000);
             };
 
 
             $scope.process = function (picId) {
+                if ($scope.PROGRAM_PHASE == TEST_PHASE) {
+                    disablePictureButtons();
+                }
                 $scope.method = 'GET';
                 $scope.url = 'restService.php?pic-id=' + picId;
                 $scope.code = null;
@@ -126,16 +142,18 @@
                     $scope.data = result.data;
                     if (result.data.result == CORRECT) {
                         $scope.progress = $scope.progress + 1;
+                        enableNextBtn();
                         playDing();
                     }
                     if (result.data.result == WRONG) {
+                        enableNextBtn();
                         playChord();
                     }
-                    document.getElementById("next").disabled = false;
                 });
             };
 
             $scope.next = function () {
+                disableNextBtn();
                 $scope.method = 'GET';
                 $scope.url = 'restService.php?next=true';
                 $scope.code = null;
@@ -145,11 +163,12 @@
                 var myDataPromise = getData(req);
                 myDataPromise.then(function (result) {
                     $scope.data = result.data;
+                    enablePictureButtons();
                     if (result.data.result == END_TEST_SESSION) {
-                        playChord();
                         $scope.score = (($scope.progress * 100) / 20) + " %";
+                        disablePictureButtons();
+                        playChord();
                     }
-                    document.getElementById("next").disabled = true;
                 });
             };
 
@@ -169,5 +188,38 @@
                 window.close();
             };
 
+            function enableStartBtn() {
+                document.getElementById("startBtn").disabled = false;
+            }
+
+            function disableStartBtn() {
+                document.getElementById("startBtn").disabled = true;
+            }
+
+            function enableNextBtn() {
+                document.getElementById("next").disabled = false;
+            }
+
+            function disableNextBtn() {
+                document.getElementById("next").disabled = true;
+            }
+
+            function disableButton(button) {
+                button.disabled = true;
+            }
+
+            function enableButton(button) {
+                button.disabled = false;
+            }
+
+            function enablePictureButtons() {
+                var soundButtons = document.getElementsByClassName("pictureB"); //returns NodeList
+                Array.from(soundButtons).forEach(enableButton);
+            }
+
+            function disablePictureButtons() {
+                var soundButtons = document.getElementsByClassName("pictureB"); //returns NodeList
+                Array.from(soundButtons).forEach(disableButton);
+            }
         }]);
 })(window.angular);

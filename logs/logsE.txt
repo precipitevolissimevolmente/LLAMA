@@ -1,0 +1,133 @@
+
+aaaa
+qqq
+Test for:LatEpata.wav
+CORRECT
+Test for:LatEkama.wav
+CORRECT
+Test for:LatEbita.wav
+CORRECT
+Test for:LatEbubu.wav
+WRONG
+Test for:LatEgita.wav
+CORRECT
+Test for:LatEmudi.wav
+WRONG
+Test for:LatEkuta.wav
+WRONG
+Test for:LatEtadu.wav
+CORRECT
+Test for:LatEdupi.wav
+WRONG
+Test for:LatEpima.wav
+WRONG
+Test for:LatEmaku.wav
+WRONG
+Test for:LatEkupa.wav
+WRONG
+Test for:LatEtina.wav
+WRONG
+Test for:LatEkadu.wav
+CORRECT
+Test for:LatEpanu.wav
+CORRECT
+Test for:LatEbinu.wav
+WRONG
+Test for:LatEtata.wav
+WRONG
+Test for:LatEdudi.wav
+WRONG
+Test for:LatEnudi.wav
+WRONG
+Test for:LatEdinu.wav
+WRONG
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Close....
+Close....
+aaa
+Test for:LatEpata.wav
+WRONG
+Test for:LatEkama.wav
+CORRECT
+Test for:LatEbita.wav
+CORRECT
+Test for:LatEbubu.wav
+CORRECT
+Test for:LatEgita.wav
+WRONG
+Test for:LatEmudi.wav
+CORRECT
+Test for:LatEkuta.wav
+CORRECT
+Test for:LatEtadu.wav
+WRONG
+Test for:LatEdupi.wav
+WRONG
+Test for:LatEpima.wav
+WRONG
+Test for:LatEmaku.wav
+WRONG
+Test for:LatEkupa.wav
+CORRECT
+Test for:LatEtina.wav
+CORRECT
+Test for:LatEkadu.wav
+WRONG
+Test for:LatEpanu.wav
+WRONG
+Test for:LatEbinu.wav
+WRONG
+ssss
+Test for:LatEpata.wav
+CORRECT
+Test for:LatEkama.wav
+CORRECT
+Test for:LatEbita.wav
+CORRECT
+Test for:LatEbubu.wav
+WRONG
+aaa
+Test for:LatEpata.wav
+CORRECT
+Test for:LatEkama.wav
+CORRECT
+Test for:LatEbita.wav
+CORRECT
+Test for:LatEbubu.wav
+WRONG
+Test for:LatEgita.wav
+CORRECT
+Test for:LatEmudi.wav
+CORRECT
+Test for:LatEkuta.wav
+CORRECT
+Test for:LatEtadu.wav
+WRONG
+Test for:LatEdupi.wav
+CORRECT
+Test for:LatEpima.wav
+WRONG
+Test for:LatEmaku.wav
+WRONG
+Test for:LatEkupa.wav
+CORRECT
+Test for:LatEtina.wav
+WRONG
+Test for:LatEkadu.wav
+CORRECT
+Test for:LatEpanu.wav
+WRONG
+Test for:LatEbinu.wav
+WRONG
+Test for:LatEtata.wav
+WRONG
+Test for:LatEdudi.wav
+CORRECT
+Test for:LatEnudi.wav
+CORRECT
+Test for:LatEdinu.wav
+CORRECT
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Close....

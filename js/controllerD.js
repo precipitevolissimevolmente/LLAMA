@@ -81,6 +81,7 @@
 
 
             $scope.next = function () {
+                disableNextButton();
                 $scope.method = 'GET';
                 $scope.url = 'restServiceD.php?next=true';
                 $scope.code = null;
@@ -92,7 +93,6 @@
                     $scope.data = result.data;
                     if (result.data.result == END_TEST_SESSION) {
                         playChord();
-                        disableNextButton();
                         $scope.score = ($scope.progress) + " %";
                     } else {
                         var sound = result.data.data;
@@ -104,7 +104,6 @@
                             // $scope.data.next_action = "img/chose.png";
                             document.getElementById("next-action").src="img/chose.png";
                         });
-                        disableNextButton();
                         enableResponseButtons();
                         setProgressItemsBar($scope.progressItmes + 2.5);
 

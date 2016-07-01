@@ -1,0 +1,384 @@
+
+qwe
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+new
+familiar
+Test for:latd13.wav
+new
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd14.wav
+new
+new
+Test for:latd15.wav
+new
+new
+Test for:latd05.wav
+new
+familiar
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+new
+familiar
+Test for:latd16.wav
+new
+new
+Test for:latd09.wav
+new
+familiar
+Test for:latd17.wav
+new
+new
+Test for:latd10.wav
+new
+familiar
+Test for:latd07.wav
+new
+familiar
+Test for:latd18.wav
+new
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+new
+new
+Test for:latd01.wav
+new
+familiar
+Test for:latd02.wav
+new
+familiar
+Test for:latd21.wav
+new
+new
+Test for:latd22.wav
+new
+new
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+new
+familiar
+Test for:latd07.wav
+new
+familiar
+Test for:latd23.wav
+new
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd10.wav
+new
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+new
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+ssss
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+new
+familiar
+Test for:latd13.wav
+new
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd14.wav
+new
+new
+Test for:latd15.wav
+new
+new
+Test for:latd05.wav
+familiar
+familiar
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd16.wav
+new
+new
+Test for:latd09.wav
+familiar
+familiar
+Test for:latd17.wav
+new
+new
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd07.wav
+new
+familiar
+Test for:latd18.wav
+familiar
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+familiar
+new
+Test for:latd01.wav
+new
+familiar
+Test for:latd02.wav
+familiar
+familiar
+Test for:latd21.wav
+new
+new
+Test for:latd22.wav
+familiar
+new
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd07.wav
+new
+familiar
+Test for:latd23.wav
+familiar
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+familiar
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+ssss
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+new
+new
+Test for:latd03.wav
+new
+familiar
+Test for:latd13.wav
+new
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd14.wav
+familiar
+new
+Test for:latd15.wav
+familiar
+new
+Test for:latd05.wav
+familiar
+familiar
+Test for:latd04.wav
+familiar
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd16.wav
+familiar
+new
+Test for:latd09.wav
+familiar
+familiar
+Test for:latd17.wav
+familiar
+new
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd18.wav
+new
+new
+Test for:latd19.wav
+familiar
+new
+Test for:latd20.wav
+familiar
+new
+Test for:latd01.wav
+new
+familiar
+Test for:latd02.wav
+familiar
+familiar
+Test for:latd21.wav
+new
+new
+Test for:latd22.wav
+new
+new
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd07.wav
+new
+familiar
+Test for:latd23.wav
+new
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+new
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+sss
+TEST_PHASE
+Test for:latd11.wav
+new
+new
+Test for:latd12.wav
+familiar
+new
+Test for:latd03.wav
+new
+familiar
+Test for:latd13.wav
+familiar
+new
+Test for:latd08.wav
+familiar
+familiar
+Test for:latd14.wav
+familiar
+new
+Test for:latd15.wav
+new
+new
+Test for:latd05.wav
+familiar
+familiar
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+new
+familiar
+Test for:latd16.wav
+familiar
+new
+Test for:latd09.wav
+new
+familiar
+Test for:latd17.wav
+familiar
+new
+Test for:latd10.wav
+new
+familiar
+Test for:latd07.wav
+familiar
+familiar
+Test for:latd18.wav
+familiar
+new
+Test for:latd19.wav
+new
+new
+Test for:latd20.wav
+familiar
+new
+Test for:latd01.wav
+new
+familiar
+Test for:latd02.wav
+familiar
+familiar
+Test for:latd21.wav
+familiar
+new
+Test for:latd22.wav
+familiar
+new
+Test for:latd04.wav
+new
+familiar
+Test for:latd06.wav
+familiar
+familiar
+Test for:latd07.wav
+new
+familiar
+Test for:latd23.wav
+familiar
+new
+Test for:latd08.wav
+new
+familiar
+Test for:latd10.wav
+familiar
+familiar
+Test for:latd24.wav
+new
+new
+Test for:latd25.wav
+new
+new
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Close....
