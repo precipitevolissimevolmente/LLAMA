@@ -147,6 +147,7 @@ ul {
     font-weight: bold;
     margin-right: 3px;
     margin-bottom: 3px;
+    color: #000000;
 }
 
 .sectionA {
@@ -463,7 +464,11 @@ input[type=image]:disabled {
     filter: alpha(opacity=70); /* For IE8 and earlier */
 }
 
-button:disabled {
+input[type=button]:disabled {
     opacity: 0.6;
     filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+button:disabled {
+    background-color: rgba(240,240,240,0.6);
 }

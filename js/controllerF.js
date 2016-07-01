@@ -26,6 +26,7 @@
     myApp.controller('mainController', ['$scope', '$http', '$sce',
         function ($scope, $http, $sce) {
             //initial state
+            const REST_SERVICE_URL = 'restServiceF.php';
             const CORRECT = 'CORRECT';
             const WRONG = 'WRONG';
             const END_TEST_SESSION = 'END_TEST_SESSION';
@@ -33,11 +34,13 @@
 
             $scope.data = {next_action: "img/start.png", data: ""};
             setProgressResultBar(0);
-            disableSoundButtons();
+            disableNextButton();
+            disableLearnButtons();
             $scope.score = "";
-            $scope.nrOfSeconds = 120;
-            setLeftSpelling("");
-            setRightSpelling("");
+            $scope.nrOfSeconds = 300;
+            $scope.picture="";
+            setSentenceV1("");
+            setSentenceV2("");
 
             $scope.start = function () {
                 var participantName = $scope.participantName;
@@ -48,7 +51,7 @@
                     return false;
                 }
                 disableStartButton();
-                enableSoundButtons();
+                enableLearnButtons();
 
                 var parameter = JSON.stringify({
                     name: participantName,
@@ -65,7 +68,7 @@
                     });
                     var reqStartTest = {
                         method: 'POST',
-                        url: 'restService.php',
+                        url: REST_SERVICE_URL,
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -74,14 +77,13 @@
                     var reqData = {next_action: "img/next.png", data: ""};
                     makeRequestWithData(reqStartTest, reqData);
                     enableNextButton();
-                    disableSoundButtons();
                 }, nrOfSeconds * 1000);
             };
 
 
             $scope.process = function (response) {
                 $scope.method = 'GET';
-                $scope.url = 'restServiceE.php?test-case-response=' + response;
+                $scope.url = REST_SERVICE_URL+'?test-case-response=' + response;
                 $scope.code = null;
                 $scope.response = null;
 
@@ -105,7 +107,7 @@
 
             $scope.next = function () {
                 $scope.method = 'GET';
-                $scope.url = 'restServiceE.php?next=true';
+                $scope.url = REST_SERVICE_URL+'.php?next=true';
                 $scope.code = null;
                 $scope.response = null;
 
@@ -127,15 +129,15 @@
                             document.getElementById("next-action").src = "img/chose.png";
                             enableResponseButtons();
                         });
-                        setLeftSpelling(testCase.v1);
-                        setRightSpelling(testCase.v2);
+                        setSentenceV1(testCase.v1);
+                        setSentenceV2(testCase.v2);
                     }
                 });
             };
 
             $scope.getPicture = function (index) {
                 $scope.method = 'GET';
-                $scope.url = 'restServiceE.php?pictureIndex=' + index;
+                $scope.url = REST_SERVICE_URL+'?pictureIndex=' + index;
                 $scope.code = null;
                 $scope.response = null;
 
@@ -156,7 +158,7 @@
                 });
                 var req = {
                     method: 'POST',
-                    url: 'restServiceE.php',
+                    url: REST_SERVICE_URL,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -214,9 +216,10 @@
             }
 
             function buildPOSTRequest(reqData) {
+
                 return {
                     method: 'POST',
-                    url: 'restServiceE.php',
+                    url: REST_SERVICE_URL,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -225,22 +228,22 @@
             }
         }]);
 
-    function disableSoundButtons() {
-        var soundButtons = document.getElementsByClassName("sound-btn"); //returns NodeList
-        Array.from(soundButtons).forEach(disableButton);
-    }
-
-    function enableSoundButtons() {
-        var soundButtons = document.getElementsByClassName("sound-btn"); //returns NodeList
-        Array.from(soundButtons).forEach(enableButton);
-    }
-
     function disableButton(button) {
         button.disabled = true;
     }
 
     function enableButton(button) {
         button.disabled = false;
+    }
+
+    function disableLearnButtons() {
+        var soundButtons = document.getElementsByClassName("learnBtn"); //returns NodeList
+        Array.from(soundButtons).forEach(disableButton);
+    }
+
+    function enableLearnButtons() {
+        var soundButtons = document.getElementsByClassName("learnBtn"); //returns NodeList
+        Array.from(soundButtons).forEach(enableButton);
     }
 
     function disableStartButton() {

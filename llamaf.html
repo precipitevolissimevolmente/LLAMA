@@ -54,45 +54,45 @@
                 <div id="buttons-section-f" class="group group-border">
                     <ul>
                         <li><input type="button" ng-click="getPicture('0')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('1')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('2')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('3')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('4')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('5')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('6')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('7')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('8')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('9')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('10')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('11')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('12')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('13')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('14')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('15')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('16')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('17')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('18')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                         <li><input type="button" ng-click="getPicture('19')"
-                                   class="btn left btn-mini "/></li>
+                                   class="btn left btn-mini learnBtn"/></li>
                     </ul>
                 </div>
 
@@ -100,12 +100,12 @@
                     <button ng-click="process('v1')" id="btn-sentence-v1"
                             class="btn left width100p btn-height-large margin-top5"
                             disabled="disabled">
-                        <div class="font20" ng-bind-html="sentenceV1"></div>
+                        <div class="font20"> {{sentenceV1}}</div>
                     </button>
                     <button ng-click="process('v2')" id="btn-sentence-v2"
                             class="btn left width100p btn-height-large margin-top5"
                             disabled="disabled">
-                        <div class="font20" ng-bind-html="sentenceV2"></div>
+                        <div class="font20"> {{sentenceV2}}</div>
                     </button>
                     <button ng-click="next()" id="btn-next" class="btn right width20p margin-top15"
                             disabled="disabled">
@@ -114,7 +114,7 @@
                 </div>
             </div>
             <div id="picture-section-f" class="right">
-                <img id="llamaf-picture" src="{{picture}}">
+                <img id="llamaf-picture" class="width100p" src="{{picture}}">
             </div>
         </div>
 
