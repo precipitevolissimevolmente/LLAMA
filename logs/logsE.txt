@@ -1,133 +1,126 @@
 
-aaaa
-qqq
-Test for:LatEpata.wav
+eee
+TEST_PHASE
+www
+TEST_PHASE
+aaa
+TEST_PHASE
+Test for:bmt01.bmp
 CORRECT
-Test for:LatEkama.wav
+Close....
+aaa
+TEST_PHASE
+Test for:bmt01.bmp
+WRONG
+Test for:bmt02.bmp
 CORRECT
-Test for:LatEbita.wav
+Test for:bmt03.bmp
 CORRECT
-Test for:LatEbubu.wav
+Test for:bmt04.bmp
 WRONG
-Test for:LatEgita.wav
+Test for:bmt05.bmp
+WRONG
+Test for:bmt06.bmp
+WRONG
+Test for:bmt07.bmp
 CORRECT
-Test for:LatEmudi.wav
-WRONG
-Test for:LatEkuta.wav
-WRONG
-Test for:LatEtadu.wav
+Test for:bmt08.bmp
 CORRECT
-Test for:LatEdupi.wav
-WRONG
-Test for:LatEpima.wav
-WRONG
-Test for:LatEmaku.wav
-WRONG
-Test for:LatEkupa.wav
-WRONG
-Test for:LatEtina.wav
-WRONG
-Test for:LatEkadu.wav
+Test for:bmt09.bmp
 CORRECT
-Test for:LatEpanu.wav
+Test for:bmt10.bmp
+WRONG
+Test for:bmt11.bmp
 CORRECT
-Test for:LatEbinu.wav
+Test for:bmt12.bmp
+12
+TEST_PHASE
+Test for:bmt01.bmp
+CORRECT
+Test for:bmt02.bmp
+CORRECT
+Test for:bmt03.bmp
+CORRECT
+Test for:bmt04.bmp
 WRONG
-Test for:LatEtata.wav
+Test for:bmt05.bmp
 WRONG
-Test for:LatEdudi.wav
+Test for:bmt06.bmp
+CORRECT
+Test for:bmt07.bmp
+CORRECT
+Test for:bmt08.bmp
 WRONG
-Test for:LatEnudi.wav
+Test for:bmt09.bmp
 WRONG
-Test for:LatEdinu.wav
+Test for:bmt10.bmp
+CORRECT
+Test for:bmt11.bmp
+CORRECT
+Test for:bmt12.bmp
+CORRECT
+Test for:bmt13.bmp
+WRONG
+Test for:bmt14.bmp
+WRONG
+Test for:bmt15.bmp
+CORRECT
+Test for:bmt16.bmp
+WRONG
+Test for:bmt17.bmp
+CORRECT
+Test for:bmt18.bmp
+CORRECT
+Test for:bmt19.bmp
+CORRECT
+Test for:bmt20.bmp
 WRONG
 Could not send mail! Please check your PHP mail configuration.
 End test session...
 Close....
-Close....
-aaa
-Test for:LatEpata.wav
-WRONG
-Test for:LatEkama.wav
+ss
+TEST_PHASE
+qwer
+TEST_PHASE
+Test for:bmt01.bmp
 CORRECT
-Test for:LatEbita.wav
+Test for:bmt02.bmp
 CORRECT
-Test for:LatEbubu.wav
+Test for:bmt03.bmp
 CORRECT
-Test for:LatEgita.wav
-WRONG
-Test for:LatEmudi.wav
+Test for:bmt04.bmp
 CORRECT
-Test for:LatEkuta.wav
+Test for:bmt05.bmp
 CORRECT
-Test for:LatEtadu.wav
-WRONG
-Test for:LatEdupi.wav
-WRONG
-Test for:LatEpima.wav
-WRONG
-Test for:LatEmaku.wav
-WRONG
-Test for:LatEkupa.wav
+Test for:bmt06.bmp
 CORRECT
-Test for:LatEtina.wav
+Test for:bmt07.bmp
 CORRECT
-Test for:LatEkadu.wav
-WRONG
-Test for:LatEpanu.wav
-WRONG
-Test for:LatEbinu.wav
-WRONG
-ssss
-Test for:LatEpata.wav
+Test for:bmt08.bmp
 CORRECT
-Test for:LatEkama.wav
+Test for:bmt09.bmp
 CORRECT
-Test for:LatEbita.wav
+Test for:bmt10.bmp
 CORRECT
-Test for:LatEbubu.wav
-WRONG
-aaa
-Test for:LatEpata.wav
+Test for:bmt11.bmp
 CORRECT
-Test for:LatEkama.wav
+Test for:bmt12.bmp
 CORRECT
-Test for:LatEbita.wav
+Test for:bmt13.bmp
 CORRECT
-Test for:LatEbubu.wav
-WRONG
-Test for:LatEgita.wav
+Test for:bmt14.bmp
 CORRECT
-Test for:LatEmudi.wav
+Test for:bmt15.bmp
 CORRECT
-Test for:LatEkuta.wav
+Test for:bmt16.bmp
 CORRECT
-Test for:LatEtadu.wav
-WRONG
-Test for:LatEdupi.wav
+Test for:bmt17.bmp
 CORRECT
-Test for:LatEpima.wav
-WRONG
-Test for:LatEmaku.wav
-WRONG
-Test for:LatEkupa.wav
+Test for:bmt18.bmp
 CORRECT
-Test for:LatEtina.wav
-WRONG
-Test for:LatEkadu.wav
+Test for:bmt19.bmp
 CORRECT
-Test for:LatEpanu.wav
-WRONG
-Test for:LatEbinu.wav
-WRONG
-Test for:LatEtata.wav
-WRONG
-Test for:LatEdudi.wav
-CORRECT
-Test for:LatEnudi.wav
-CORRECT
-Test for:LatEdinu.wav
+Test for:bmt20.bmp
 CORRECT
 Could not send mail! Please check your PHP mail configuration.
 End test session...
-Close....

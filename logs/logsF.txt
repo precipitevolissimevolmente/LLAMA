@@ -1,0 +1,90 @@
+
+aaaa
+TEST_PHASE
+Test for:bmt01.bmp
+CORRECT
+Test for:bmt02.bmp
+WRONG
+Test for:bmt03.bmp
+WRONG
+Test for:bmt04.bmp
+CORRECT
+Test for:bmt05.bmp
+CORRECT
+Test for:bmt06.bmp
+CORRECT
+Test for:bmt07.bmp
+WRONG
+Test for:bmt08.bmp
+WRONG
+Test for:bmt09.bmp
+CORRECT
+Test for:bmt10.bmp
+WRONG
+Test for:bmt11.bmp
+WRONG
+Test for:bmt12.bmp
+WRONG
+Test for:bmt13.bmp
+CORRECT
+Test for:bmt14.bmp
+CORRECT
+Test for:bmt15.bmp
+WRONG
+Test for:bmt16.bmp
+WRONG
+Test for:bmt17.bmp
+CORRECT
+Test for:bmt18.bmp
+CORRECT
+Test for:bmt19.bmp
+CORRECT
+Test for:bmt20.bmp
+CORRECT
+Could not send mail! Please check your PHP mail configuration.
+End test session...
+Close....
+sss
+TEST_PHASE
+Test for:bmt01.bmp
+CORRECT
+Test for:bmt02.bmp
+WRONG
+Test for:bmt03.bmp
+WRONG
+Test for:bmt04.bmp
+CORRECT
+Test for:bmt05.bmp
+CORRECT
+Test for:bmt06.bmp
+CORRECT
+Test for:bmt07.bmp
+WRONG
+Test for:bmt08.bmp
+WRONG
+Test for:bmt09.bmp
+WRONG
+Test for:bmt10.bmp
+CORRECT
+Test for:bmt11.bmp
+WRONG
+Test for:bmt12.bmp
+CORRECT
+Test for:bmt13.bmp
+CORRECT
+Test for:bmt14.bmp
+CORRECT
+Test for:bmt15.bmp
+WRONG
+Test for:bmt16.bmp
+WRONG
+Test for:bmt17.bmp
+CORRECT
+Test for:bmt18.bmp
+CORRECT
+Test for:bmt19.bmp
+WRONG
+Test for:bmt20.bmp
+CORRECT
+Could not send mail! Please check your PHP mail configuration.
+End test session...

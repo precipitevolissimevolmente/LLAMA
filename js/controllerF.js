@@ -38,7 +38,7 @@
             disableLearnButtons();
             $scope.score = "";
             $scope.nrOfSeconds = 300;
-            $scope.picture="";
+            setPicture("1px.png");
             setSentenceV1("");
             setSentenceV2("");
 
@@ -76,7 +76,10 @@
                     };
                     var reqData = {next_action: "img/next.png", data: ""};
                     makeRequestWithData(reqStartTest, reqData);
+                    setSentenceV1("");
+                    setPicture("1px.png");
                     enableNextButton();
+                    disableLearnButtons();
                 }, nrOfSeconds * 1000);
             };
 
@@ -100,20 +103,22 @@
                         setProgressResultBar($scope.progress - 5);
                         playChord();
                     }
+                    setPicture("1px.png");
+                    setSentenceV1("");
+                    setSentenceV2("");
                     enableNextButton()
                 });
             };
 
-
             $scope.next = function () {
+                disableNextButton();
                 $scope.method = 'GET';
-                $scope.url = REST_SERVICE_URL+'.php?next=true';
+                $scope.url = REST_SERVICE_URL+'?next=true';
                 $scope.code = null;
                 $scope.response = null;
 
                 var req = {method: $scope.method, url: $scope.url};
                 var myDataPromise = getData(req);
-                disableNextButton();
                 myDataPromise.then(function (result) {
                     $scope.data = result.data;
                     if (result.data.result == END_TEST_SESSION) {
@@ -121,16 +126,11 @@
                         $scope.score = ($scope.progress) + " %";
                     } else {
                         var testCase = result.data.data;
-                        var audioFile = new Audio();
-                        audioFile.src = "resources/esounds/" + testCase.soundFileName;
-                        audioFile.loop = false;
-                        audioFile.play();
-                        audioFile.addEventListener("ended", function () {
-                            document.getElementById("next-action").src = "img/chose.png";
-                            enableResponseButtons();
-                        });
+                        var pictureName = testCase.pictureName;
+                        setPicture(pictureName);
                         setSentenceV1(testCase.v1);
                         setSentenceV2(testCase.v2);
+                        enableResponseButtons();
                     }
                 });
             };
@@ -146,7 +146,7 @@
                 myDataPromise.then(function (result) {
                     $scope.data = result.data;
                     var pictureName = result.data.data.pictureName;
-                    $scope.picture = "resources/fpictures/" + pictureName;
+                    setPicture(pictureName);
                     var sentence = result.data.data.sentence;
                     setSentenceV1(sentence);
                 });
@@ -167,6 +167,10 @@
                 makeRequest(req);
                 window.close();
             };
+
+            function setPicture(pictureName) {
+                $scope.picture = "resources/fpictures/" + pictureName;
+            }
 
             function setSentenceV1(value) {
                 $scope.sentenceV1 = value;
