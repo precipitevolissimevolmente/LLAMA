@@ -134,7 +134,7 @@
                     playChord();
                     result.finalResult = ((result.finalResult * 100) / 20) + "%";
                     $scope.score = result.finalResult;
-                    var req = buildPOSTRequest(result);
+                    var req = buildPOSTRequest(window.btoa(JSON.stringify(result)));
                     makeRequest(req);
                     return;
                 }
