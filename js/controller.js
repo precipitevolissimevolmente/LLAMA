@@ -25,9 +25,6 @@
             const TEST_PHASE = "TEST_PHASE";
             const TEST_PHASE_STARTED = "TEST_PHASE_STARTED";
 
-            var ding = new Audio('sounds/DING.WAV');
-            var chord = new Audio('sounds/CHORD.WAV');
-
             var result = {}; //Obj.
             var vocabulary; // MAP<PictureId,PictureName>
             var testCases; // Array
@@ -103,7 +100,7 @@
 
                     var answer = vocabulary[picId];
                     var isCorrect = false;
-                    if (vocabulary[picId] == testCases[testCase - 1]) {
+                    if (vocabulary[picId] === testCases[testCase - 1]) {
                         playDing();
                         isCorrect = true;
                         $scope.progress = $scope.progress + 1;
@@ -174,11 +171,11 @@
             }
 
             function playChord() {
-                chord.play();
+                new Audio('sounds/CHORD.WAV').play();
             }
 
             function playDing() {
-                ding.play();
+                new Audio('sounds/DING.WAV').play();
             }
 
             function makeRequest(req) {
