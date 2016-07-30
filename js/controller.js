@@ -11,46 +11,174 @@
         $httpProvider.defaults.useXDomain = true;
     }]);
 
-    function playChord() {
-        var audio = new Audio('sounds/CHORD.WAV');
-        audio.play();
-    }
-
-    function playDing() {
-        var audio = new Audio('sounds/DING.WAV');
-        audio.play();
-    }
-
     myApp.controller('mainController', ['$scope', '$http',
         function ($scope, $http) {
             //initial state
-            const CORRECT = 'CORRECT';
-            const WRONG = 'WRONG';
-            const END_TEST_SESSION = 'END_TEST_SESSION';
-            const GUESS = 'GUESS';
+            const REST_SERVICE_URL = 'restService.php';
+            const START_IMG_PATH = "img/start.png";
+            const NEXT_IMG_PATH = "img/next.png";
+            const CHOSE_IMG_PATH = "img/chose.png";
+            const END_IMG_PATH = "img/end.png";
 
             const NOT_STARTED = "NOT_STARTED";
-            const LEARN_PHASE_STARTED = "LEARN_PHASE_STARTED";
+            const LEARN_PHASE = "LEARN_PHASE";
             const TEST_PHASE = "TEST_PHASE";
             const TEST_PHASE_STARTED = "TEST_PHASE_STARTED";
 
+            var ding = new Audio('sounds/DING.WAV');
+            var chord = new Audio('sounds/CHORD.WAV');
+
+            var result = {}; //Obj.
+            var vocabulary; // MAP<PictureId,PictureName>
+            var testCases; // Array
+            var testCase = 0; // Integer
+
+            var startTime;
+
             disableNextBtn();
             disablePictureButtons();
-            $scope.data = {next_action: "img/start.png", data: ""};
+            setPictureName("");
+            setNextActionIMG(START_IMG_PATH);
             $scope.randomisationSequence = 2003;
             $scope.nrOfSeconds = 120;
             $scope.progress = 0;
             $scope.score = "";
             $scope.PROGRAM_PHASE = NOT_STARTED;
 
-            function makeRequestWithData(req, reqData) {
-                $http(req).success(function (data, status) {
-                    $scope.status = status;
-                    $scope.data = reqData;
-                }).error(function (data, status) {
-                    $scope.data = data || "Request failed";
-                    $scope.status = status;
+            $scope.startTest = function () {
+                disableStartBtn();
+                var nrOfSeconds = $scope.nrOfSeconds;
+                var randomisationSequence = $scope.randomisationSequence;
+                var participantName = $scope.participantName;
+
+                if (participantName == null || participantName == "" ||
+                    nrOfSeconds == null || nrOfSeconds == "" || randomisationSequence == null || randomisationSequence == "") {
+                    alert("Please Fill All Required Field");
+                    enableStartBtn();
+                    return false;
+                }
+                initResult(participantName, randomisationSequence, nrOfSeconds);
+
+                var parameter = {
+                    data: {
+                        name: participantName,
+                        nrOfSeconds: nrOfSeconds,
+                        randomisationSequence: randomisationSequence,
+                        action: "START"
+                    }
+                };
+
+                var req = buildGETRequest(parameter);
+                var myDataPromise = getData(req);
+                myDataPromise.then(function (result) {
+                    $scope.PROGRAM_PHASE = LEARN_PHASE;
+                    enablePictureButtons();
+                    var data = JSON.parse(window.atob(result.data.data));
+                    vocabulary = data.vocabulary;
+                    testCases = data.testCases;
                 });
+
+                setTimeout(function () {
+                    disablePictureButtons();
+                    $scope.PROGRAM_PHASE = TEST_PHASE;
+                    setPictureName("");
+                    setNextActionIMG(NEXT_IMG_PATH);
+                    $scope.$apply();
+                    playChord();
+                    enableNextBtn();
+                }, nrOfSeconds * 1000);
+            };
+
+            $scope.process = function (picId) {
+                if ($scope.PROGRAM_PHASE == LEARN_PHASE) {
+                    $scope.pictureName = vocabulary[picId];
+                }
+                if ($scope.PROGRAM_PHASE == TEST_PHASE_STARTED) {
+                    disablePictureButtons();
+                    $scope.PROGRAM_PHASE = TEST_PHASE;
+                    var end = new Date().getTime();
+                    var time = end - startTime;
+                    setPictureName("");
+                    setNextActionIMG(NEXT_IMG_PATH);
+
+                    var answer = vocabulary[picId];
+                    var isCorrect = false;
+                    if (vocabulary[picId] == testCases[testCase - 1]) {
+                        playDing();
+                        isCorrect = true;
+                        $scope.progress = $scope.progress + 1;
+                        result.finalResult++;
+                    } else {
+                        playChord();
+                        isCorrect = false;
+                    }
+
+                    var testCaseResult = {
+                        questionNumber: testCase - 1,
+                        question: testCases[testCase - 1],
+                        answer: answer,
+                        isCorrect: isCorrect,
+                        answerTimeSeconds: time / 1000
+                    };
+                    result.testResults.push(testCaseResult);
+                    enableNextBtn();
+                }
+            };
+
+            $scope.next = function () {
+                disableNextBtn();
+                if (testCase === testCases.length) {
+                    disablePictureButtons();
+                    setPictureName("");
+                    setNextActionIMG(END_IMG_PATH);
+                    playChord();
+                    result.finalResult = ((result.finalResult * 100) / 20) + "%";
+                    $scope.score = result.finalResult;
+                    var req = buildPOSTRequest(result);
+                    makeRequest(req);
+                    return;
+                }
+                $scope.PROGRAM_PHASE = TEST_PHASE_STARTED;
+                setPictureName(testCases[testCase]);
+                setNextActionIMG(CHOSE_IMG_PATH);
+                enablePictureButtons();
+                testCase++;
+                startTime = new Date().getTime();
+            };
+
+            $scope.close = function () {
+                window.close();
+            };
+
+            function initResult(participantName, randomisationSequence, nrOfSeconds) {
+                result.name = participantName;
+                result.randomisationSequence = randomisationSequence;
+                result.nrOfSeconds = nrOfSeconds;
+                result.testResults = [];
+                result.finalResult = "";
+            }
+
+            function buildGETRequest(parameters) {
+                return {method: 'GET', url: REST_SERVICE_URL, params: parameters};
+            }
+
+            function buildPOSTRequest(reqData) {
+                return {
+                    method: 'POST',
+                    url: REST_SERVICE_URL,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: reqData
+                };
+            }
+
+            function playChord() {
+                chord.play();
+            }
+
+            function playDing() {
+                ding.play();
             }
 
             function makeRequest(req) {
@@ -72,121 +200,13 @@
                 });
             };
 
-            $scope.start = function () {
-                disableStartBtn();
-                enablePictureButtons();
-                var nrOfSeconds = $scope.nrOfSeconds;
-                var randomisationSequence = $scope.randomisationSequence;
-                var participantName = $scope.participantName;
+            function setNextActionIMG(imgPath) {
+                $scope.next_action = imgPath;
+            }
 
-                if (participantName == null || participantName == "" ||
-                    nrOfSeconds == null || nrOfSeconds == "" || randomisationSequence == null || randomisationSequence == "") {
-                    alert("Please Fill All Required Field");
-                    enableStartBtn();
-                    disablePictureButtons();
-                    return false;
-                }
-                $scope.PROGRAM_PHASE = LEARN_PHASE_STARTED;
-
-                var parameter = JSON.stringify({
-                    name: participantName,
-                    nrOfSeconds: nrOfSeconds,
-                    randomisationSequence: randomisationSequence,
-                    action: "START"
-                });
-                var req = {
-                    method: 'POST',
-                    url: 'restService.php',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: parameter
-                };
-                var reqData = {next_action: "img/hourglass.png", data: ""};
-                makeRequestWithData(req, reqData);
-
-                setTimeout(function () {
-                    playChord();
-                    var startTestJSON = JSON.stringify({
-                        action: "START_TEST"
-                    });
-                    var reqStartTest = {
-                        method: 'POST',
-                        url: 'restService.php',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        data: startTestJSON
-                    };
-                    var reqData = {next_action: "img/next.png", data: ""};
-                    makeRequestWithData(reqStartTest, reqData);
-                    $scope.PROGRAM_PHASE = TEST_PHASE;
-                    disablePictureButtons();
-                    enableNextBtn();
-                }, nrOfSeconds * 1000);
-            };
-
-
-            $scope.process = function (picId) {
-                if ($scope.PROGRAM_PHASE == TEST_PHASE) {
-                    disablePictureButtons();
-                }
-                $scope.method = 'GET';
-                $scope.url = 'restService.php?pic-id=' + picId;
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    if (result.data.result == CORRECT) {
-                        $scope.progress = $scope.progress + 1;
-                        enableNextBtn();
-                        playDing();
-                    }
-                    if (result.data.result == WRONG) {
-                        enableNextBtn();
-                        playChord();
-                    }
-                });
-            };
-
-            $scope.next = function () {
-                disableNextBtn();
-                $scope.method = 'GET';
-                $scope.url = 'restService.php?next=true';
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    enablePictureButtons();
-                    if (result.data.result == END_TEST_SESSION) {
-                        $scope.score = (($scope.progress * 100) / 20) + " %";
-                        disablePictureButtons();
-                        playChord();
-                    }
-                });
-            };
-
-            $scope.close = function () {
-                var parameter = JSON.stringify({
-                    action: "CLOSE"
-                });
-                var req = {
-                    method: 'POST',
-                    url: 'restService.php',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: parameter
-                };
-                makeRequest(req);
-                window.close();
-            };
+            function setPictureName(name) {
+                $scope.pictureName = name;
+            }
 
             function enableStartBtn() {
                 document.getElementById("startBtn").disabled = false;
