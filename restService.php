@@ -40,10 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = file_get_contents('php://input');
-    logg($data);
     $data = json_decode(base64_decode($data), true);
     writeResultToFile($data);
-    logg($data);
     return;
 }
 
