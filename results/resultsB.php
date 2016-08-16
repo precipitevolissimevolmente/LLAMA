@@ -9,22 +9,35 @@ require('../php/util.php');
 $output = fopen('php://output', 'w');
 
 $q_default_order = loadJSON('../resources/bDefaultOrder.json');
+$columns = array('', '');
 $i = 0;
-$columns = array('Name', 'nrOfSeconds');
+
 foreach ($q_default_order as $question) {
     $i++;
     array_push($columns, $i);
+    addEmptyCelLs($columns, 2);
 }
 array_push($columns, 'Total');
-// output the column headings
+// output the column headings for first row
 fputcsv($output, $columns);
 
-$questions = array('', '');
+
+$questions = array('Question >', '');
 foreach ($q_default_order as $question) {
     array_push($questions, $question);
+    addEmptyCelLs($questions, 2);
 }
-// output the questions
+// output questions rows
 fputcsv($output, $questions);
+
+$thirdRowColumns = array('Name', 'Nr. of seconds to learn');
+for($i = 0; $i<  sizeof($q_default_order); $i++) {
+    array_push($thirdRowColumns, "Is correct");
+    array_push($thirdRowColumns, "Answer");
+    array_push($thirdRowColumns, "Reaction time (s)");
+}
+// output rows
+fputcsv($output, $thirdRowColumns);
 
 $dir = 'b';
 $files = array_filter(scandir($dir), function ($item) {
@@ -42,6 +55,8 @@ foreach ($files as $file) {
     foreach ($testResults as $testCaseResult) {
         $isCorrect = $testCaseResult['question'] == $testCaseResult['answer'] ? 1 : 0;
         array_push($result_cols, $isCorrect);
+        array_push($result_cols, $testCaseResult['answer']);
+        array_push($result_cols, $testCaseResult['answerTimeSeconds']);
     }
     array_push($result_cols, $result['finalResult']);
     fputcsv($output, $result_cols);
