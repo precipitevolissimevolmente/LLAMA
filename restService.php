@@ -55,17 +55,6 @@ function deliver_response_base64($status, $data)
     echo $json_response;
 }
 
-function deliver_response($status, $data, $nextImgAction)
-{
-    header("HTTP/1.1 $status");
-    $response['status'] = $status;
-    $response['data'] = $data;
-    $response['next_action'] = $nextImgAction;
-
-    $json_response = json_encode($response);
-    echo $json_response;
-}
-
 function get_hash($word)
 {
     return hash('sha256', $word);

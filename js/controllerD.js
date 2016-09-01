@@ -11,22 +11,27 @@
         $httpProvider.defaults.useXDomain = true;
     }]);
 
-    function playSound(soundFile) {
-        new Audio(soundFile).play();
+    function playSound(soundId) {
+        return createjs.Sound.play(soundId);
     }
 
     function playChord() {
-        playSound('sounds/CHORD.WAV');
+        playSound('CHORD');
     }
 
     function playDing() {
-        playSound('sounds/DING.WAV');
+        playSound('DING');
     }
 
     myApp.controller('mainController', ['$scope', '$http',
         function ($scope, $http) {
             //initial state
             const REST_SERVICE_URL = 'restServiceD.php';
+            const START_IMG_PATH = "img/start.png";
+            const NEXT_IMG_PATH = "img/next.png";
+            const CHOSE_IMG_PATH = "img/chose.png";
+            const LISTEN_IMG_PATH = "img/listen.png";
+            const END_IMG_PATH = "img/end.png";
 
             const LOADING = "LOADING";
             const NOT_STARTED = "NOT_STARTED";
@@ -39,15 +44,18 @@
             const END_TEST_SESSION = 'END_TEST_SESSION';
             const GUESS = 'GUESS';
 
+
             $scope.PROGRAM_PHASE = NOT_STARTED;
-
+            setNextActionIMG(START_IMG_PATH);
+            var result = {}; //Obj.
             var soundMap; // MAP<PictureId,PictureName>
-            var testOrder; // Array
+            var testCases; // Array
+            var startTime;
 
-            $scope.data = {next_action: "img/start.png", data: ""};
             setProgressResultBar(0);
             setProgressItemsBar(0);
             $scope.score = "";
+            var testCase = 0; // Integer
 
             $scope.loadTest = function () {
                 $scope.PROGRAM_PHASE = LOADING;
@@ -62,9 +70,9 @@
                 myDataPromise.then(function (result) {
                     var data = JSON.parse(window.atob(result.data.data));
                     soundMap = data.soundMap;
-                    testOrder = data.testOrder;
+                    testCases = data.testOrder;
 
-                    // Load the sounds
+                    // Load sounds
                     var queue = new createjs.LoadQueue();
                     createjs.Sound.alternateExtensions = ["wav"];
                     queue.installPlugin(createjs.Sound);
@@ -73,13 +81,13 @@
                     for (var key in soundMap) {
                         sounds.push({id: key, src: "dsounds/" + key});
                     }
+                    sounds.push({id: "CHORD", src: "sounds/CHORD.WAV"});
+                    sounds.push({id: "DING", src: "sounds/DING.WAV"});
 
                     queue.addEventListener("fileload", handleFileLoad);
                     queue.addEventListener("complete", handleComplete);
                     queue.loadManifest(sounds);
                 });
-
-
             };
 
             $scope.start = function () {
@@ -90,153 +98,106 @@
                     alert("Please Fill All Required Field");
                     return false;
                 }
+                initResult(participantName);
+                setNextActionIMG(LISTEN_IMG_PATH);
 
                 playTrainingSoundsAndStartTestB();
             };
 
-            function handleFileLoad(event) {
-                // Update the UI
-                document.getElementById('dots').innerHTML += '.';
-            }
-
-            function handleComplete(event) {
-                //hide loading div
-                document.getElementById('loading').style.display = 'none';
-            }
-
             function playTrainingSoundsAndStartTestB() {
-                var filtered = [];
+                var trainingSounds = [];
                 for (var key in soundMap) {
                     if (soundMap[key] === 'familiar') {
-                        filtered.push(soundMap[key])
+                        trainingSounds.push(key)
                     }
                 }
 
-                var instance = createjs.Sound.play(filtered[0]);
+                var playlist_index = 0;
+                var instance = playSound(trainingSounds[playlist_index]);
                 instance.on("complete", handleCompleteS);
-
+                setProgressItemsBar(2.5);
                 function handleCompleteS(event) {
+                    if (playlist_index < trainingSounds.length - 1) {
+                        playNext();
+                    } else {
+                        playChord();
+                        $scope.PROGRAM_PHASE = TEST_PHASE;
+                        enableNextButton();
+                        setNextActionIMG(NEXT_IMG_PATH);
+                        $scope.$apply();
+                    }
+                }
 
-                    createjs.Sound.play("latd02.wav");
+                function playNext() {
+                    setTimeout(function () {
+                        playlist_index++;
+                        var instance = playSound(trainingSounds[playlist_index]);
+                        instance.on("complete", handleCompleteS);
+                        setProgressItemsBar($scope.progressItmes + 2.5);
+                    }, 1000);
                 }
             }
 
             $scope.process = function (response) {
-                $scope.method = 'GET';
-                $scope.url = 'restServiceD.php?test-case-response=' + response;
-                $scope.code = null;
-                $scope.response = null;
+                disableResponseButtons();
+                enableNextButton();
 
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    if (result.data.result == CORRECT) {
-                        setProgressResultBar($scope.progress + 2.5);
-                        playDing();
-                    }
-                    if (result.data.result == WRONG) {
-                        setProgressResultBar($scope.progress - 2.5);
-                        playChord();
-                    }
-                    disableResponseButtons();
-                    enableNextButton()
-                });
+                $scope.PROGRAM_PHASE = TEST_PHASE;
+                var time = new Date().getTime() - startTime;
+                setNextActionIMG(NEXT_IMG_PATH);
+                setProgressItemsBar($scope.progressItmes + 2.5);
+
+                var isCorrect = false;
+                if (response === soundMap[testCases[testCase - 1]]) {
+                    playDing();
+                    isCorrect = true;
+                    setProgressResultBar($scope.progress + 2.5);
+                    result.finalResult++;
+                } else {
+                    playChord();
+                    isCorrect = false;
+                    setProgressResultBar($scope.progress - 2.5);
+                }
+
+                var testCaseResult = {
+                    questionNumber: testCase - 1,
+                    question: testCases[testCase - 1],
+                    answer: response,
+                    isCorrect: isCorrect,
+                    answerTimeSeconds: time / 1000
+                };
+                result.testResults.push(testCaseResult);
             };
-
 
             $scope.next = function () {
                 disableNextButton();
-                $scope.method = 'GET';
-                $scope.url = 'restServiceD.php?next=true';
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    if (result.data.result == END_TEST_SESSION) {
-                        playChord();
-                        $scope.score = ($scope.progress) + " %";
-                    } else {
-                        var sound = result.data.data;
-                        var audioFile = new Audio();
-                        audioFile.src = "dsounds/" + sound;
-                        audioFile.loop = false;
-                        audioFile.play();
-                        audioFile.addEventListener("ended", function () {
-                            // $scope.data.next_action = "img/chose.png";
-                            document.getElementById("next-action").src = "img/chose.png";
-                        });
-                        enableResponseButtons();
-                        setProgressItemsBar($scope.progressItmes + 2.5);
-
-                    }
+                setNextActionIMG(LISTEN_IMG_PATH);
+                if (testCase === testCases.length) {
+                    setNextActionIMG(END_IMG_PATH);
+                    playChord();
+                    result.finalResult = result.finalResult + "%";
+                    $scope.score = result.finalResult;
+                    var req = buildPOSTRequest(window.btoa(JSON.stringify(result)));
+                    makeRequest(req);
+                    return;
+                }
+                $scope.PROGRAM_PHASE = TEST_PHASE_STARTED;
+                var instance = playSound(testCases[testCase]);
+                instance.on("complete", function () {
+                    setNextActionIMG(CHOSE_IMG_PATH);
+                    $scope.$apply();
                 });
+                testCase++;
+                startTime = new Date().getTime();
+                enableResponseButtons();
             };
 
             $scope.close = function () {
-                var parameter = JSON.stringify({
-                    action: "CLOSE"
-                });
-                var req = {
-                    method: 'POST',
-                    url: 'restServiceD.php',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: parameter
-                };
-                makeRequest(req);
                 window.close();
             };
 
             function buildGETRequest(parameters) {
                 return {method: 'GET', url: REST_SERVICE_URL, params: parameters};
-            }
-
-            function playTrainingSoundsAndStartTest() {
-                var sounds = [
-                    "dsounds/latd01.wav",
-                    "dsounds/latd02.wav",
-                    "dsounds/latd03.wav",
-                    "dsounds/latd04.wav",
-                    "dsounds/latd05.wav",
-                    "dsounds/latd06.wav",
-                    "dsounds/latd07.wav",
-                    "dsounds/latd08.wav",
-                    "dsounds/latd09.wav",
-                    "dsounds/latd10.wav"
-                ];
-
-                var playlist_index = 0;
-                var audio = new Audio();
-                audio.src = sounds[playlist_index];
-                audio.loop = false;
-                audio.play();
-                setProgressItemsBar(2.5);
-                audio.addEventListener("ended", function () {
-                    if (playlist_index < sounds.length - 1) {
-                        switchTrack();
-                        setProgressItemsBar($scope.progressItmes + 2.5);
-                    } else {
-                        playChord();
-                        var startTestJSON = JSON.stringify({action: "START_TEST"});
-                        var reqStartTest = buildPOSTRequest(startTestJSON);
-                        var reqData = {next_action: "img/next.png", data: ""};
-                        makeRequestWithData(reqStartTest, reqData);
-                        enableNextButton();
-                    }
-                });
-
-                function switchTrack() {
-                    setTimeout(function () {
-                        playlist_index++;
-                        audio.src = sounds[playlist_index];
-                        audio.play();
-                    }, 1000);
-                }
             }
 
             function setProgressResultBar(progressResult) {
@@ -292,6 +253,27 @@
                     },
                     data: reqData
                 };
+            }
+
+            function initResult(participantName) {
+                result.name = participantName;
+                result.testResults = [];
+                result.finalResult = "";
+            }
+
+
+            function handleFileLoad(event) {
+                // Update the UI
+                document.getElementById('dots').innerHTML += '.';
+            }
+
+            function handleComplete(event) {
+                //hide loading div
+                document.getElementById('loading').style.display = 'none';
+            }
+
+            function setNextActionIMG(imgPath) {
+                $scope.next_action = imgPath;
             }
         }]);
 
