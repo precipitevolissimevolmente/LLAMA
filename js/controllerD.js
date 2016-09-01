@@ -26,15 +26,61 @@
     myApp.controller('mainController', ['$scope', '$http',
         function ($scope, $http) {
             //initial state
+            const REST_SERVICE_URL = 'restServiceD.php';
+
+            const LOADING = "LOADING";
+            const NOT_STARTED = "NOT_STARTED";
+            const LEARN_PHASE = "LEARN_PHASE";
+            const TEST_PHASE = "TEST_PHASE";
+            const TEST_PHASE_STARTED = "TEST_PHASE_STARTED";
+
             const CORRECT = 'CORRECT';
             const WRONG = 'WRONG';
             const END_TEST_SESSION = 'END_TEST_SESSION';
             const GUESS = 'GUESS';
 
+            $scope.PROGRAM_PHASE = NOT_STARTED;
+
+            var soundMap; // MAP<PictureId,PictureName>
+            var testOrder; // Array
+
             $scope.data = {next_action: "img/start.png", data: ""};
             setProgressResultBar(0);
             setProgressItemsBar(0);
             $scope.score = "";
+
+            $scope.loadTest = function () {
+                $scope.PROGRAM_PHASE = LOADING;
+
+                var parameter = {
+                    data: {action: "START"}
+                };
+
+                var req = buildGETRequest(parameter);
+                var myDataPromise = getData(req);
+
+                myDataPromise.then(function (result) {
+                    var data = JSON.parse(window.atob(result.data.data));
+                    soundMap = data.soundMap;
+                    testOrder = data.testOrder;
+
+                    // Load the sounds
+                    var queue = new createjs.LoadQueue();
+                    createjs.Sound.alternateExtensions = ["wav"];
+                    queue.installPlugin(createjs.Sound);
+
+                    var sounds = []; //List of songs, id vs sound path; ex: [{id: "latd01.wav", src: "dsounds/latd01.wav"},..]
+                    for (var key in soundMap) {
+                        sounds.push({id: key, src: "dsounds/" + key});
+                    }
+
+                    queue.addEventListener("fileload", handleFileLoad);
+                    queue.addEventListener("complete", handleComplete);
+                    queue.loadManifest(sounds);
+                });
+
+
+            };
 
             $scope.start = function () {
                 disableStartButton();
@@ -45,16 +91,35 @@
                     return false;
                 }
 
-                var parameter = JSON.stringify({
-                    name: participantName,
-                    action: "START"
-                });
-                var req = buildPOSTRequest(parameter);
-                var reqData = {next_action: "img/listen.png", data: ""};
-                makeRequestWithData(req, reqData);
-                playTrainingSoundsAndStartTest();
+                playTrainingSoundsAndStartTestB();
             };
 
+            function handleFileLoad(event) {
+                // Update the UI
+                document.getElementById('dots').innerHTML += '.';
+            }
+
+            function handleComplete(event) {
+                //hide loading div
+                document.getElementById('loading').style.display = 'none';
+            }
+
+            function playTrainingSoundsAndStartTestB() {
+                var filtered = [];
+                for (var key in soundMap) {
+                    if (soundMap[key] === 'familiar') {
+                        filtered.push(soundMap[key])
+                    }
+                }
+
+                var instance = createjs.Sound.play(filtered[0]);
+                instance.on("complete", handleCompleteS);
+
+                function handleCompleteS(event) {
+
+                    createjs.Sound.play("latd02.wav");
+                }
+            }
 
             $scope.process = function (response) {
                 $scope.method = 'GET';
@@ -102,7 +167,7 @@
                         audioFile.play();
                         audioFile.addEventListener("ended", function () {
                             // $scope.data.next_action = "img/chose.png";
-                            document.getElementById("next-action").src="img/chose.png";
+                            document.getElementById("next-action").src = "img/chose.png";
                         });
                         enableResponseButtons();
                         setProgressItemsBar($scope.progressItmes + 2.5);
@@ -126,6 +191,10 @@
                 makeRequest(req);
                 window.close();
             };
+
+            function buildGETRequest(parameters) {
+                return {method: 'GET', url: REST_SERVICE_URL, params: parameters};
+            }
 
             function playTrainingSoundsAndStartTest() {
                 var sounds = [

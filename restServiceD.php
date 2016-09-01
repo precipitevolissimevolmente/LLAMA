@@ -10,6 +10,14 @@ include "TestResult.php";
 const END_TEST_SESSION = "END_TEST_SESSION";
 const GUESS = "GUESS";
 
+function getSoundMap() {
+    return loadSounds('sounds.json');
+}
+
+function getSoundTestOrder() {
+    return loadSounds('soundsTestOrder.json');
+}
+
 function init()
 {
     $_SESSION[Resources::SOUND_MAP] = loadSounds('sounds.json');
@@ -108,6 +116,32 @@ if (!empty($_GET['next'])) {
     }
 
     deliver_response(200, "", ActionImage::CLOSE);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $data = json_decode($_GET['data'], true);
+
+    if ($data['action'] == Action::START) {
+
+        $soundsMap = getSoundMap();
+        $testOrder = getSoundTestOrder();
+        $response['soundMap'] = $soundsMap;
+        $response['testOrder'] = $testOrder;
+        $encoded = json_encode($response);
+
+        deliver_response_base64(200, $encoded);
+        return;
+    }
+}
+
+function deliver_response_base64($status, $data)
+{
+    header("HTTP/1.1 $status");
+    $response['status'] = $status;
+    $response['data'] = base64_encode($data);
+
+    $json_response = json_encode($response);
+    echo $json_response;
 }
 
 function deliver_response($status, $data, $nextImgAction)
