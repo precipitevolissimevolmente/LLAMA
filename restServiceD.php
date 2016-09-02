@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $data = json_decode($_GET['data'], true);
 
     if ($data['action'] == Action::START) {
-
         $soundsMap = getSoundMap();
         $testOrder = getSoundTestOrder();
         $response['soundMap'] = $soundsMap;
@@ -67,7 +66,8 @@ function logg($data)
 
 function writeResultToFile($result)
 {
-    $file_name = $result['name'] . "_" . (new \DateTime())->format('Y-m-d His') . ".json";
+    $file_name = $result['name'] . "_" . gmdate("Y-m-d H.i.s") . ".json";
+    logg($file_name);
     $nameWithPath = "results/d/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));

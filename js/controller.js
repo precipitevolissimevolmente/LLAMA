@@ -152,6 +152,7 @@
                 result.randomisationSequence = randomisationSequence;
                 result.nrOfSeconds = nrOfSeconds;
                 result.testResults = [];
+                result.startDateTime = getUTCDateNow();
                 result.finalResult = "";
             }
 

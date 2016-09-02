@@ -1,0 +1,149 @@
+{
+  "name": "qq",
+  "randomisationSequence": 2003,
+  "nrOfSeconds": 2,
+  "testResults": [
+    {
+      "questionNumber": 0,
+      "question": "OC",
+      "answer": "OC",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.567
+    },
+    {
+      "questionNumber": 1,
+      "question": "CABAN",
+      "answer": "CABAN",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.552
+    },
+    {
+      "questionNumber": 2,
+      "question": "LAMAT",
+      "answer": "LAMAT",
+      "isCorrect": true,
+      "answerTimeSeconds": 12.552
+    },
+    {
+      "questionNumber": 3,
+      "question": "MULUC",
+      "answer": "MULUC",
+      "isCorrect": true,
+      "answerTimeSeconds": 4.912
+    },
+    {
+      "questionNumber": 4,
+      "question": "EB",
+      "answer": "EB",
+      "isCorrect": true,
+      "answerTimeSeconds": 2.328
+    },
+    {
+      "questionNumber": 5,
+      "question": "CIB",
+      "answer": "CIB",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.392
+    },
+    {
+      "questionNumber": 6,
+      "question": "AHAU",
+      "answer": "BEN",
+      "isCorrect": false,
+      "answerTimeSeconds": 4.465
+    },
+    {
+      "questionNumber": 7,
+      "question": "AKBAL",
+      "answer": "BEN",
+      "isCorrect": false,
+      "answerTimeSeconds": 2.585
+    },
+    {
+      "questionNumber": 8,
+      "question": "MEN",
+      "answer": "MEN",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.192
+    },
+    {
+      "questionNumber": 9,
+      "question": "BEN",
+      "answer": "BEN",
+      "isCorrect": true,
+      "answerTimeSeconds": 2.073
+    },
+    {
+      "questionNumber": 10,
+      "question": "KAN",
+      "answer": "CAUAC",
+      "isCorrect": false,
+      "answerTimeSeconds": 1.48
+    },
+    {
+      "questionNumber": 11,
+      "question": "CAUAC",
+      "answer": "CAUAC",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.248
+    },
+    {
+      "questionNumber": 12,
+      "question": "CIMI",
+      "answer": "IK",
+      "isCorrect": false,
+      "answerTimeSeconds": 1.992
+    },
+    {
+      "questionNumber": 13,
+      "question": "CHICCHAN",
+      "answer": "CHICCHAN",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.912
+    },
+    {
+      "questionNumber": 14,
+      "question": "MANIK",
+      "answer": "ETZ-NAB",
+      "isCorrect": false,
+      "answerTimeSeconds": 0.976
+    },
+    {
+      "questionNumber": 15,
+      "question": "IMIX",
+      "answer": "ETZ-NAB",
+      "isCorrect": false,
+      "answerTimeSeconds": 0.72
+    },
+    {
+      "questionNumber": 16,
+      "question": "IK",
+      "answer": "ETZ-NAB",
+      "isCorrect": false,
+      "answerTimeSeconds": 0.527
+    },
+    {
+      "questionNumber": 17,
+      "question": "CHUEN",
+      "answer": "ETZ-NAB",
+      "isCorrect": false,
+      "answerTimeSeconds": 0.441
+    },
+    {
+      "questionNumber": 18,
+      "question": "IX",
+      "answer": "ETZ-NAB",
+      "isCorrect": false,
+      "answerTimeSeconds": 0.424
+    },
+    {
+      "questionNumber": 19,
+      "question": "ETZ-NAB",
+      "answer": "ETZ-NAB",
+      "isCorrect": true,
+      "answerTimeSeconds": 0.462
+    }
+  ],
+  "startDateTime": "2016-8-2 9:8:47",
+  "finalResult": "55%"
+}

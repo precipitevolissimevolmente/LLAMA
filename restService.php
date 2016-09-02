@@ -76,7 +76,7 @@ function logg($data)
 
 function writeResultToFile($result)
 {
-    $file_name = $result['name'] . "_" . (new \DateTime())->format('Y-m-d His') . ".json";
+    $file_name = $result['name'] . "_" . gmdate("Y-m-d H.i.s") . ".json";
     $nameWithPath = "results/b/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));

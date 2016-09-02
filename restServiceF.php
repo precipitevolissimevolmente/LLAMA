@@ -192,7 +192,7 @@ function writeResultToFileAndSendEmail()
 {
     $result = ResultE::fromJSON($_SESSION[Resources::RESULT]);
     $result->setFinalResult($result->getFinalResult() . "%");
-    $file_name = $result->getName() . "_" . (new \DateTime())->format('Y-m-d His') . ".json";
+    $file_name = $result->getName() . "_" . gmdate("Y-m-d H.i.s") . ".json";
     $nameWithPath = "results/f/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));

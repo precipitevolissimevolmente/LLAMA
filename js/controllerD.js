@@ -224,16 +224,6 @@
                 });
             }
 
-            function makeRequestWithData(req, reqData) {
-                $http(req).success(function (data, status) {
-                    $scope.status = status;
-                    $scope.data = reqData;
-                }).error(function (data, status) {
-                    $scope.data = data || "Request failed";
-                    $scope.status = status;
-                });
-            }
-
             function makeRequest(req) {
                 $http(req).success(function (data, status) {
                     $scope.status = status;
@@ -247,7 +237,7 @@
             function buildPOSTRequest(reqData) {
                 return {
                     method: 'POST',
-                    url: 'restServiceD.php',
+                    url: REST_SERVICE_URL,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -258,6 +248,7 @@
             function initResult(participantName) {
                 result.name = participantName;
                 result.testResults = [];
+                result.startDateTime = getUTCDateNow();
                 result.finalResult = "";
             }
 
