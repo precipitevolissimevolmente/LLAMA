@@ -1,0 +1,148 @@
+{
+  "name": "aaa",
+  "randomisationSequence": 2003,
+  "nrOfSeconds": 5,
+  "testResults": [
+    {
+      "questionNumber": 0,
+      "question": "CIMI",
+      "answer": "MULUC",
+      "isCorrect": false,
+      "answerTimeSeconds": 5.292
+    },
+    {
+      "questionNumber": 1,
+      "question": "BEN",
+      "answer": "BEN",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.374
+    },
+    {
+      "questionNumber": 2,
+      "question": "CHUEN",
+      "answer": "CHUEN",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.203
+    },
+    {
+      "questionNumber": 3,
+      "question": "IK",
+      "answer": "IK",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.421
+    },
+    {
+      "questionNumber": 4,
+      "question": "ETZ-NAB",
+      "answer": "ETZ-NAB",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.359
+    },
+    {
+      "questionNumber": 5,
+      "question": "OC",
+      "answer": "OC",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.682
+    },
+    {
+      "questionNumber": 6,
+      "question": "CIB",
+      "answer": "CIB",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.997
+    },
+    {
+      "questionNumber": 7,
+      "question": "IX",
+      "answer": "IX",
+      "isCorrect": true,
+      "answerTimeSeconds": 3.751
+    },
+    {
+      "questionNumber": 8,
+      "question": "MULUC",
+      "answer": "CIMI",
+      "isCorrect": false,
+      "answerTimeSeconds": 8.548
+    },
+    {
+      "questionNumber": 9,
+      "question": "MEN",
+      "answer": "MEN",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.49
+    },
+    {
+      "questionNumber": 10,
+      "question": "KAN",
+      "answer": "CAUAC",
+      "isCorrect": false,
+      "answerTimeSeconds": 1.434
+    },
+    {
+      "questionNumber": 11,
+      "question": "IMIX",
+      "answer": "IMIX",
+      "isCorrect": true,
+      "answerTimeSeconds": 2.521
+    },
+    {
+      "questionNumber": 12,
+      "question": "AKBAL",
+      "answer": "AHAU",
+      "isCorrect": false,
+      "answerTimeSeconds": 1.626
+    },
+    {
+      "questionNumber": 13,
+      "question": "MANIK",
+      "answer": "KAN",
+      "isCorrect": false,
+      "answerTimeSeconds": 11.177
+    },
+    {
+      "questionNumber": 14,
+      "question": "EB",
+      "answer": "EB",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.732
+    },
+    {
+      "questionNumber": 15,
+      "question": "CAUAC",
+      "answer": "CAUAC",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.32
+    },
+    {
+      "questionNumber": 16,
+      "question": "AHAU",
+      "answer": "AKBAL",
+      "isCorrect": false,
+      "answerTimeSeconds": 2.729
+    },
+    {
+      "questionNumber": 17,
+      "question": "CHICCHAN",
+      "answer": "CHICCHAN",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.43
+    },
+    {
+      "questionNumber": 18,
+      "question": "LAMAT",
+      "answer": "MULUC",
+      "isCorrect": false,
+      "answerTimeSeconds": 2.643
+    },
+    {
+      "questionNumber": 19,
+      "question": "CABAN",
+      "answer": "CABAN",
+      "isCorrect": true,
+      "answerTimeSeconds": 1.361
+    }
+  ],
+  "finalResult": "65%"
+}

@@ -115,7 +115,7 @@
                 var playlist_index = 0;
                 var instance = playSound(trainingSounds[playlist_index]);
                 instance.on("complete", handleCompleteS);
-                setProgressItemsBar(2.5);
+                setProgressItemsBar(2);
                 function handleCompleteS(event) {
                     if (playlist_index < trainingSounds.length - 1) {
                         playNext();
@@ -133,7 +133,7 @@
                         playlist_index++;
                         var instance = playSound(trainingSounds[playlist_index]);
                         instance.on("complete", handleCompleteS);
-                        setProgressItemsBar($scope.progressItmes + 2.5);
+                        setProgressItemsBar($scope.progressItmes + 2);
                     }, 1000);
                 }
             }
@@ -145,7 +145,6 @@
                 $scope.PROGRAM_PHASE = TEST_PHASE;
                 var time = new Date().getTime() - startTime;
                 setNextActionIMG(NEXT_IMG_PATH);
-                setProgressItemsBar($scope.progressItmes + 2.5);
 
                 var isCorrect = false;
                 if (response === soundMap[testCases[testCase - 1]]) {
@@ -175,13 +174,14 @@
                 if (testCase === testCases.length) {
                     setNextActionIMG(END_IMG_PATH);
                     playChord();
-                    result.finalResult = result.finalResult + "%";
+                    result.finalResult = $scope.progress + "%";
                     $scope.score = result.finalResult;
                     var req = buildPOSTRequest(window.btoa(JSON.stringify(result)));
                     makeRequest(req);
                     return;
                 }
                 $scope.PROGRAM_PHASE = TEST_PHASE_STARTED;
+                setProgressItemsBar($scope.progressItmes + 2);
                 var instance = playSound(testCases[testCase]);
                 instance.on("complete", function () {
                     setNextActionIMG(CHOSE_IMG_PATH);
