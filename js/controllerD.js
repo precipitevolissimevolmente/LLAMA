@@ -115,7 +115,7 @@
                 var playlist_index = 0;
                 var instance = playSound(trainingSounds[playlist_index]);
                 instance.on("complete", handleCompleteS);
-                setProgressItemsBar(2);
+                setProgressItemsBar(2.5);
                 function handleCompleteS(event) {
                     if (playlist_index < trainingSounds.length - 1) {
                         playNext();
@@ -133,7 +133,7 @@
                         playlist_index++;
                         var instance = playSound(trainingSounds[playlist_index]);
                         instance.on("complete", handleCompleteS);
-                        setProgressItemsBar($scope.progressItmes + 2);
+                        setProgressItemsBar($scope.progressItmes + 2.5);
                     }, 1000);
                 }
             }
@@ -174,14 +174,14 @@
                 if (testCase === testCases.length) {
                     setNextActionIMG(END_IMG_PATH);
                     playChord();
-                    result.finalResult = $scope.progress + "%";
+                    result.finalResult =  parseFloat($scope.progress / 75 * 100).toFixed(2) + "%";
                     $scope.score = result.finalResult;
                     var req = buildPOSTRequest(window.btoa(JSON.stringify(result)));
                     makeRequest(req);
                     return;
                 }
                 $scope.PROGRAM_PHASE = TEST_PHASE_STARTED;
-                setProgressItemsBar($scope.progressItmes + 2);
+                setProgressItemsBar($scope.progressItmes + 2.5);
                 var instance = playSound(testCases[testCase]);
                 instance.on("complete", function () {
                     setNextActionIMG(CHOSE_IMG_PATH);
@@ -203,11 +203,11 @@
             function setProgressResultBar(progressResult) {
                 $scope.progress = progressResult;
                 if ($scope.progress > 0) {
-                    $scope.progressUI = $scope.progress;
+                    $scope.progressUI = parseFloat($scope.progress / 75 * 100).toFixed(2);
                 } else {
                     $scope.progressUI = 0;
                 }
-                document.getElementById("progress-result").style.width = progressResult + "%";
+                document.getElementById("progress-result").style.width = (progressResult / 75 * 100) + "%";
             }
 
             function setProgressItemsBar(progressItems) {
