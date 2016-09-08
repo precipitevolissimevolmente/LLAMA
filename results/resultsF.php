@@ -1,21 +1,21 @@
 <?php
 // output headers so that the file is downloaded rather than displayed
 header('Content-Type: text/csv; charset=utf-8');
-header('Content-Disposition: attachment; filename=LLAMA_B_RESULTS.csv');
+header('Content-Disposition: attachment; filename=LLAMA_F_RESULTS.csv');
 
 require('../php/util.php');
 
 // create a file pointer connected to the output stream
 $output = fopen('php://output', 'w');
 
-$q_default_order = loadJSON('../resources/bDefaultOrder.json');
+$q_default_order = loadJSON('../resources/fTestQuestionsOrder.json');
 $columns = array('', '');
 $i = 0;
 
 foreach ($q_default_order as $question) {
     $i++;
     array_push($columns, $i);
-    addEmptyCelLs($columns, 2);
+    addEmptyCelLs($columns, 3);
 }
 array_push($columns, 'Total');
 array_push($columns, 'Start Date Time');
@@ -26,7 +26,7 @@ fputcsv($output, $columns);
 $questions = array('Question >', '');
 foreach ($q_default_order as $question) {
     array_push($questions, $question);
-    addEmptyCelLs($questions, 2);
+    addEmptyCelLs($questions, 3);
 }
 // output questions rows
 fputcsv($output, $questions);
@@ -34,15 +34,16 @@ fputcsv($output, $questions);
 $thirdRowColumns = array('Name', 'Nr. of seconds to learn');
 for($i = 0; $i<  sizeof($q_default_order); $i++) {
     array_push($thirdRowColumns, "Is correct");
+    array_push($thirdRowColumns, "Expected");
     array_push($thirdRowColumns, "Answer");
     array_push($thirdRowColumns, "Reaction time (s)");
 }
 // output rows
 fputcsv($output, $thirdRowColumns);
 
-$dir = 'b';
+$dir = 'f';
 $files = array_filter(scandir($dir), function ($item) {
-    return is_file('b/' . $item);
+    return is_file('f/' . $item);
 });
 usort($files, 'strnatcasecmp');
 
@@ -56,6 +57,7 @@ foreach ($files as $file) {
     foreach ($testResults as $testCaseResult) {
         $isCorrect = $testCaseResult['question'] == $testCaseResult['answer'] ? 1 : 0;
         array_push($result_cols, $isCorrect);
+        array_push($result_cols, $testCaseResult['question']);
         array_push($result_cols, $testCaseResult['answer']);
         array_push($result_cols, $testCaseResult['answerTimeSeconds']);
     }

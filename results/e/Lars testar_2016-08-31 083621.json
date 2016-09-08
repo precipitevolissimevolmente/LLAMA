@@ -1,0 +1,148 @@
+{
+  "name": "Lars testar",
+  "randomisationSequence": null,
+  "nrOfSeconds": 120,
+  "testResults": [
+    {
+      "questionNumber": 0,
+      "question": "LatEpata.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "18.4923"
+    },
+    {
+      "questionNumber": 1,
+      "question": "LatEkama.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "13.4843"
+    },
+    {
+      "questionNumber": 2,
+      "question": "LatEbita.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "12.2023"
+    },
+    {
+      "questionNumber": 3,
+      "question": "LatEbubu.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "18.5496"
+    },
+    {
+      "questionNumber": 4,
+      "question": "LatEgita.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "17.7974"
+    },
+    {
+      "questionNumber": 5,
+      "question": "LatEmudi.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "10.5279"
+    },
+    {
+      "questionNumber": 6,
+      "question": "LatEkuta.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "5.6548"
+    },
+    {
+      "questionNumber": 7,
+      "question": "LatEtadu.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "6.2066"
+    },
+    {
+      "questionNumber": 8,
+      "question": "LatEdupi.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "8.4449"
+    },
+    {
+      "questionNumber": 9,
+      "question": "LatEpima.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "4.8276"
+    },
+    {
+      "questionNumber": 10,
+      "question": "LatEmaku.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "2.3971"
+    },
+    {
+      "questionNumber": 11,
+      "question": "LatEkupa.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "2.5650"
+    },
+    {
+      "questionNumber": 12,
+      "question": "LatEtina.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "2.5121"
+    },
+    {
+      "questionNumber": 13,
+      "question": "LatEkadu.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "4.5575"
+    },
+    {
+      "questionNumber": 14,
+      "question": "LatEpanu.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "8.0849"
+    },
+    {
+      "questionNumber": 15,
+      "question": "LatEbinu.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "4.1290"
+    },
+    {
+      "questionNumber": 16,
+      "question": "LatEtata.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "3.5587"
+    },
+    {
+      "questionNumber": 17,
+      "question": "LatEdudi.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "2.8564"
+    },
+    {
+      "questionNumber": 18,
+      "question": "LatEnudi.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "5.4401"
+    },
+    {
+      "questionNumber": 19,
+      "question": "LatEdinu.wav",
+      "answer": null,
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "3.4422"
+    }
+  ],
+  "finalResult": "60%"
+}

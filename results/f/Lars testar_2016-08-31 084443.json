@@ -1,0 +1,148 @@
+{
+  "name": "Lars testar",
+  "randomisationSequence": null,
+  "nrOfSeconds": 300,
+  "testResults": [
+    {
+      "questionNumber": 0,
+      "question": "eket-arap-sa",
+      "answer": "eket-arap-sa",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "2.4515"
+    },
+    {
+      "questionNumber": 1,
+      "question": "ipod-ilad-za",
+      "answer": "ipod-ilad-za",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "1.3045"
+    },
+    {
+      "questionNumber": 2,
+      "question": "eked-ilad",
+      "answer": "eked-ilad",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "4.1064"
+    },
+    {
+      "questionNumber": 3,
+      "question": "atak-arap-sa",
+      "answer": "atak-arap-sa",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "3.7122"
+    },
+    {
+      "questionNumber": 4,
+      "question": "ipot-arap",
+      "answer": "ipot-arap",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "7.4902"
+    },
+    {
+      "questionNumber": 5,
+      "question": "atag-ilad",
+      "answer": "atag-ilad",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "5.6454"
+    },
+    {
+      "questionNumber": 6,
+      "question": "unak atak-arap-sa",
+      "answer": "unak atak-arap-sa",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "5.9020"
+    },
+    {
+      "questionNumber": 7,
+      "question": "umush-ek ipot-arap",
+      "answer": "umush-ek ipot-arap",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "5.6677"
+    },
+    {
+      "questionNumber": 8,
+      "question": "unak-ek ipot-arap",
+      "answer": "unak-ek ipot-arap",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "7.6003"
+    },
+    {
+      "questionNumber": 9,
+      "question": "inut-ek eket-arap",
+      "answer": "inut-ek eket-arap",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "13.7899"
+    },
+    {
+      "questionNumber": 10,
+      "question": "unak-em eked-ilad",
+      "answer": "unak-em eked-ilad",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "8.6607"
+    },
+    {
+      "questionNumber": 11,
+      "question": "umush-em ipod-ilad",
+      "answer": "umush-em ipod-ilad",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "7.0508"
+    },
+    {
+      "questionNumber": 12,
+      "question": "unak ipot-arap-sa",
+      "answer": "unak ipot-arap-sa",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "10.5041"
+    },
+    {
+      "questionNumber": 13,
+      "question": "umush ipot-arap-sa",
+      "answer": "umush ipot-arap-sa",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "7.8170"
+    },
+    {
+      "questionNumber": 14,
+      "question": "ipod-orad-za",
+      "answer": "ipod-orad-za",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "6.7581"
+    },
+    {
+      "questionNumber": 15,
+      "question": "atag-orad-za",
+      "answer": "atag-orad-za",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "5.5434"
+    },
+    {
+      "questionNumber": 16,
+      "question": "eked-orad-za",
+      "answer": "eked-orad-za",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "6.9261"
+    },
+    {
+      "questionNumber": 17,
+      "question": "umush-ek atag-orad",
+      "answer": "umush atag-orad",
+      "isCorrect": "WRONG",
+      "answerTimeSeconds": "13.5211"
+    },
+    {
+      "questionNumber": 18,
+      "question": "unak-em atag-orad",
+      "answer": "unak-em atag-orad",
+      "isCorrect": "CORRECT",
+      "answerTimeSeconds": "6.7493"
+    },
+    {
+      "questionNumber": 19,
+      "question": "ipod-orad",
+      "answer": "em ipod-orad",
+      "isCorrect": "WRONG",
+      "answerTimeSeconds": "2.9472"
+    }
+  ],
+  "finalResult": "50%"
+}
