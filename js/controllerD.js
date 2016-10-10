@@ -174,7 +174,11 @@
                 if (testCase === testCases.length) {
                     setNextActionIMG(END_IMG_PATH);
                     playChord();
-                    result.finalResult =  parseFloat($scope.progress / 75 * 100).toFixed(2) + "%";
+                    if ($scope.progress > 0) {
+                        result.finalResult = parseFloat($scope.progress / 75 * 100).toFixed(0) + "%";
+                    } else {
+                        result.finalResult = "0%";
+                    }
                     $scope.score = result.finalResult;
                     var req = buildPOSTRequest(window.btoa(JSON.stringify(result)));
                     makeRequest(req);
@@ -203,7 +207,7 @@
             function setProgressResultBar(progressResult) {
                 $scope.progress = progressResult;
                 if ($scope.progress > 0) {
-                    $scope.progressUI = parseFloat($scope.progress / 75 * 100).toFixed(2);
+                    $scope.progressUI = parseFloat($scope.progress / 75 * 100).toFixed(0);
                 } else {
                     $scope.progressUI = 0;
                 }
