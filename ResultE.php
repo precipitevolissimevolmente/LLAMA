@@ -6,6 +6,7 @@ class ResultE
     var $randomisationSequence;
     var $nrOfSeconds;
     var $testResults = [];
+    var $startDateTime;
     var $finalResult;
 
     public static function fromJSON($json)
@@ -16,6 +17,7 @@ class ResultE
         $result->setName($json["name"]);
         $result->setRandomisationSequence($json["randomisationSequence"]);
         $result->setNrOfSeconds($json["nrOfSeconds"]);
+        $result->setStartDateTime($json["startDateTime"]);
         if(isset($json["finalResult"])) {
             $result->setFinalResult($json["finalResult"]);
         }
@@ -95,6 +97,14 @@ class ResultE
     public function addTestResult($testResult)
     {
         array_push($this->testResults, $testResult);
+    }
+
+    /**
+     * @param mixed $startDateTime
+     */
+    public function setStartDateTime($startDateTime)
+    {
+        $this->startDateTime = $startDateTime;
     }
 
 }

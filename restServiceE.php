@@ -69,10 +69,9 @@ if (!empty($_GET['test-case-response'])) {
         $_SESSION[Resources::PROGRAM_PHASE] = ProgramPhase::TEST_PHASE;
         $_SESSION[Resources::TEST_CASE] = $_SESSION[Resources::TEST_CASE] + 1;
         if ($response == true) {
-            $result1->setFinalResult($result1->getFinalResult() + 2.5);
+            $result1->setFinalResult($result1->getFinalResult() + 1);
             deliver_response_result(200, "", ActionImage::NEXT, CORRECT);
         } else {
-            $result1->setFinalResult($result1->getFinalResult() - 2.5);
             deliver_response_result(200, "", ActionImage::NEXT, WRONG);
         }
         $_SESSION[Resources::RESULT] = json_encode($result1);
@@ -195,7 +194,13 @@ function logg($data)
 function writeResultToFileAndSendEmail()
 {
     $result = ResultE::fromJSON($_SESSION[Resources::RESULT]);
-    $result->setFinalResult($result->getFinalResult() . "%");
+    $finalResult = $result->getFinalResult();
+    if (($finalResult - 10) > 0) {
+        $finalResult = 10 * $finalResult - 100;
+        $result->setFinalResult($finalResult . "%");
+    } else {
+        $result->setFinalResult("0%");
+    }
     $file_name = $result->getName() . "_" . gmdate("Y-m-d H.i.s") . ".json";
     $nameWithPath = "results/e/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
@@ -205,14 +210,15 @@ function writeResultToFileAndSendEmail()
 }
 
 /**
- * @return Result
+ * @return ResultE
  */
 function initResult($data)
 {
     $result = new ResultE();
     $result->setName($data["name"]);
     $result->setNrOfSeconds($data["nrOfSeconds"]);
-    $result->setFinalResult(10);
+    $result->setFinalResult(0);
+    $result->setStartDateTime(gmdate("Y-m-d H:i:s"));
     return $result;
 }
 
