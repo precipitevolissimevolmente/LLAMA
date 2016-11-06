@@ -11,25 +11,45 @@
         $httpProvider.defaults.useXDomain = true;
     }]);
 
-    function playSound(soundFile) {
-        new Audio(soundFile).play();
+    function playSound(soundId) {
+        return createjs.Sound.play(soundId);
     }
 
     function playChord() {
-        playSound('sounds/CHORD.WAV');
+        playSound('CHORD');
     }
 
     function playDing() {
-        playSound('sounds/DING.WAV');
+        playSound('DING');
     }
 
     myApp.controller('mainController', ['$scope', '$http', '$sce',
         function ($scope, $http, $sce) {
+            const START_IMG_PATH = "img/start.png";
+            const NEXT_IMG_PATH = "img/next.png";
+            const CHOSE_IMG_PATH = "img/chose.png";
+            const LISTEN_IMG_PATH = "img/listen.png";
+            const END_IMG_PATH = "img/end.png";
+
             //initial state
+            const REST_SERVICE_URL = 'restServiceE.php';
             const CORRECT = 'CORRECT';
             const WRONG = 'WRONG';
             const END_TEST_SESSION = 'END_TEST_SESSION';
             const GUESS = 'GUESS';
+
+            const LOADING = "LOADING";
+            const NOT_STARTED = "NOT_STARTED";
+            const LEARN_PHASE = "LEARN_PHASE";
+            const TEST_PHASE = "TEST_PHASE";
+            const TEST_PHASE_STARTED = "TEST_PHASE_STARTED";
+
+            var result = {}; //Obj.
+            var trainingSounds; // ["latE01.wav", ...]
+            var testQuestionsOrder; // ["LatEpata.wav", ...]
+            var testQuestions; // {"LatEpata.wav": {v1, v2}
+            var testCase = 0; // Integer
+            var startTime;
 
             $scope.data = {next_action: "img/start.png", data: ""};
             setProgressResultBar(0);
@@ -39,6 +59,45 @@
             setLeftSpelling("");
             setRightSpelling("");
 
+            $scope.loadTest = function () {
+                // $scope.PROGRAM_PHASE = LOADING;
+
+                var parameter = {
+                    data: {action: "START"}
+                };
+
+                var req = buildGETRequest(parameter);
+                var myDataPromise = getData(req);
+
+                myDataPromise.then(function (result) {
+                    var data = JSON.parse(window.atob(result.data.data));
+                    trainingSounds = data.trainingSounds;
+                    testQuestionsOrder = data.testQuestionsOrder;
+                    testQuestions = data.testQuestions;
+
+                    // Load sounds
+                    var queue = new createjs.LoadQueue();
+                    createjs.Sound.alternateExtensions = ["wav"];
+                    queue.installPlugin(createjs.Sound);
+
+                    var sounds = []; //List of songs, id vs sound path; ex: [{id: "latd01.wav", src: "dsounds/latd01.wav"},..]
+                    trainingSounds.forEach(function (sound) {
+                        sounds.push({id: sound, src: "resources/esounds/" + sound});
+                    });
+
+                    testQuestionsOrder.forEach(function (sound) {
+                        sounds.push({id: sound, src: "resources/esounds/" + sound});
+                    });
+
+                    sounds.push({id: "CHORD", src: "sounds/CHORD.WAV"});
+                    sounds.push({id: "DING", src: "sounds/DING.WAV"});
+
+                    queue.addEventListener("fileload", handleFileLoad);
+                    queue.addEventListener("complete", handleComplete);
+                    queue.loadManifest(sounds);
+                });
+            };
+
             $scope.start = function () {
                 var participantName = $scope.participantName;
                 var nrOfSeconds = $scope.nrOfSeconds;
@@ -47,32 +106,12 @@
                     alert("Please Fill All Required Field");
                     return false;
                 }
+                initResult(participantName, nrOfSeconds);
                 disableStartButton();
                 enableSoundButtons();
 
-                var parameter = JSON.stringify({
-                    name: participantName,
-                    nrOfSeconds: nrOfSeconds,
-                    action: "START"
-                });
-                var req = buildPOSTRequest(parameter);
-                var reqData = {next_action: "img/hourglass.png", data: ""};
-                makeRequestWithData(req, reqData);
                 setTimeout(function () {
                     playChord();
-                    var startTestJSON = JSON.stringify({
-                        action: "START_TEST"
-                    });
-                    var reqStartTest = {
-                        method: 'POST',
-                        url: 'restServiceE.php',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        data: startTestJSON
-                    };
-                    var reqData = {next_action: "img/next.png", data: ""};
-                    makeRequestWithData(reqStartTest, reqData);
                     enableNextButton();
                     disableSoundButtons();
                 }, nrOfSeconds * 1000);
@@ -80,92 +119,81 @@
 
 
             $scope.process = function (response) {
-                $scope.method = 'GET';
-                $scope.url = 'restServiceE.php?test-case-response=' + response;
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
                 disableResponseButtons();
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    if (result.data.result == CORRECT) {
-                        setProgressResultBar($scope.progress + 5);
-                        playDing();
-                    }
-                    if (result.data.result == WRONG) {
-                        setProgressResultBar($scope.progress - 5);
-                        playChord();
-                    }
-                    enableNextButton();
-                });
+                enableNextButton();
+
+                var userResponseTime = new Date().getTime() - startTime;
+                var testSound = testQuestionsOrder[testCase - 1];
+
+                var userResponse = testQuestions[testSound][response];
+                $scope.PROGRAM_PHASE = TEST_PHASE;
+                setNextActionIMG(NEXT_IMG_PATH);
+
+                var isCorrect = false;
+                if (userResponse["isCorrect"] == true) {
+                    isCorrect = true;
+                    setProgressResultBar($scope.progress + 5);
+                    result.finalResult++;
+                    playDing();
+                } else {
+                    setProgressResultBar($scope.progress - 5);
+                    playChord();
+                }
+
+                var testCaseResult = {
+                    questionNumber: testCase - 1,
+                    question: testQuestionsOrder[testCase - 1],
+                    answer: response,
+                    isCorrect: isCorrect,
+                    answerTimeSeconds: userResponseTime / 1000
+                };
+                result.testResults.push(testCaseResult);
             };
 
 
             $scope.next = function () {
-                $scope.method = 'GET';
-                $scope.url = 'restServiceE.php?next=true';
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
                 disableNextButton();
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    if (result.data.result == END_TEST_SESSION) {
-                        playChord();
-                        $scope.score = ($scope.progress) + " %";
+                setNextActionIMG(LISTEN_IMG_PATH);
+                if (testCase === testQuestionsOrder.length) {
+                    setNextActionIMG(END_IMG_PATH);
+                    playChord();
+
+                    if ((result.finalResult - 10) > 0) {
+                        result.finalResult = parseFloat(10 * result.finalResult - 100).toFixed(0) + "%";
                     } else {
-                        enableResponseButtons();
-                        var testCase = result.data.data;
-                        var audioFile = new Audio();
-                        audioFile.src = "resources/esounds/" + testCase.soundFileName;
-                        audioFile.loop = false;
-                        audioFile.play();
-                        audioFile.addEventListener("ended", function () {
-                            document.getElementById("next-action").src = "img/chose.png";
-                        });
-                        setLeftSpelling(testCase.v1);
-                        setRightSpelling(testCase.v2);
+                        result.finalResult = "0%";
                     }
+                    $scope.score = result.finalResult;
+                    var req = buildPOSTRequest(window.btoa(JSON.stringify(result)));
+                    makeRequest(req);
+                    return;
+                }
+                $scope.PROGRAM_PHASE = TEST_PHASE_STARTED;
+                const qSound = testQuestionsOrder[testCase];
+                var instance = playSound(qSound);
+                instance.on("complete", function () {
+                    setNextActionIMG(CHOSE_IMG_PATH);
+                    $scope.$apply();
                 });
+                setLeftSpelling(testQuestions[qSound].v1.text);
+                setRightSpelling(testQuestions[qSound].v2.text);
+                testCase++;
+                startTime = new Date().getTime();
+                enableResponseButtons();
             };
 
             $scope.getSound = function (index) {
-                $scope.method = 'GET';
-                $scope.url = 'restServiceE.php?soundIndex=' + index;
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    var soundFileName = result.data.data;
-                    var audioFile = new Audio();
-                    audioFile.src = "resources/esounds/" + soundFileName;
-                    audioFile.loop = false;
-                    audioFile.play();
-                });
+                var soundFileName = trainingSounds[index];
+                playSound(soundFileName);
             };
 
             $scope.close = function () {
-                var parameter = JSON.stringify({
-                    action: "CLOSE"
-                });
-                var req = {
-                    method: 'POST',
-                    url: 'restServiceE.php',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: parameter
-                };
-                makeRequest(req);
                 window.close();
             };
+
+            function buildGETRequest(parameters) {
+                return {method: 'GET', url: REST_SERVICE_URL, params: parameters};
+            }
 
             function setLeftSpelling(value) {
                 $scope.left_spelling = $sce.trustAsHtml(value);
@@ -194,16 +222,6 @@
                 });
             }
 
-            function makeRequestWithData(req, reqData) {
-                $http(req).success(function (data, status) {
-                    $scope.status = status;
-                    $scope.data = reqData;
-                }).error(function (data, status) {
-                    $scope.data = data || "Request failed";
-                    $scope.status = status;
-                });
-            }
-
             function makeRequest(req) {
                 $http(req).success(function (data, status) {
                     $scope.status = status;
@@ -224,6 +242,29 @@
                     data: reqData
                 };
             }
+
+            function initResult(participantName, nrOfSeconds) {
+                result.name = participantName;
+                result.nrOfSeconds = nrOfSeconds;
+                result.testResults = [];
+                result.startDateTime = getUTCDateNow();
+                result.finalResult = "";
+            }
+
+            function handleFileLoad(event) {
+                // Update the UI
+                document.getElementById('dots').innerHTML += '.';
+            }
+
+            function setNextActionIMG(imgPath) {
+                $scope.next_action = imgPath;
+            }
+
+            function handleComplete(event) {
+                //hide loading div
+                document.getElementById('loading').style.display = 'none';
+            }
+
         }]);
 
     function disableSoundButtons() {

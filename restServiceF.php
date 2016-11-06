@@ -2,7 +2,7 @@
 const WRONG = "WRONG";
 const CORRECT = "CORRECT";
 header("Content-Type:application/json");
-require_once('php/config/configE.php');
+require_once('php/config/configF.php');
 require('Enum.php');
 require('EmailService.php');
 include "ResultE.php";

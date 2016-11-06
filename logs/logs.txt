@@ -1,0 +1,8 @@
+
+Array
+(
+    [name] => aa
+    [nrOfSeconds] => 120
+    [randomisationSequence] => 2003
+    [action] => START
+)

@@ -7,10 +7,17 @@
     <script src="js/angular-1.5.5/angular.js"></script>
     <script src="js/controllerE.js"></script>
     <script src="js/countdown.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/preloadjs-0.4.1.min.js"></script>
+    <script src="js/soundjs-0.5.2.min.js"></script>
 </head>
 <body ng-app="llamab" class="blue">
 
 <div ng-controller="mainController" class="container llamae">
+    <div id="loading" ng-init="loadTest()">
+        Loading test...<br/> Please wait.
+        <p id="dots"> </p>
+    </div>
     <div class="header">
         <div class="top-header grey group">
             <p class="left title">Llama_E</p>
@@ -115,7 +122,7 @@
         <div class="group">
             <div id="status-section" class="left padding-top45">
                 <div id="status" class="yellow left">
-                    <img id="next-action" src="{{data.next_action}}">
+                    <img id="next-action" ng-src="{{next_action}}">
                 </div>
             </div>
             <div class="left e-main-controller">

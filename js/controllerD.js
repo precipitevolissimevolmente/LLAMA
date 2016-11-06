@@ -154,7 +154,6 @@
                     result.finalResult++;
                 } else {
                     playChord();
-                    isCorrect = false;
                     setProgressResultBar($scope.progress - 2.5);
                 }
 

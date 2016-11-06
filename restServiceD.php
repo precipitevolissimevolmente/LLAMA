@@ -12,12 +12,6 @@ function getSoundTestOrder() {
     return loadSounds('soundsTestOrder.json');
 }
 
-function init()
-{
-    $_SESSION[Resources::SOUND_MAP] = loadSounds('sounds.json');
-    $_SESSION[Resources::SOUND_TEST_ORDER] = loadSounds('soundsTestOrder.json');
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = file_get_contents('php://input');
     $data = json_decode(base64_decode($data), true);
