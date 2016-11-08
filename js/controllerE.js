@@ -60,7 +60,7 @@
             setRightSpelling("");
 
             $scope.loadTest = function () {
-                // $scope.PROGRAM_PHASE = LOADING;
+                setNextActionIMG(START_IMG_PATH);
 
                 var parameter = {
                     data: {action: "START"}
