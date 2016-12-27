@@ -11,20 +11,26 @@
         $httpProvider.defaults.useXDomain = true;
     }]);
 
-    function playSound(soundFile) {
-        new Audio(soundFile).play();
+    function playSound(soundId) {
+        return createjs.Sound.play(soundId);
     }
 
     function playChord() {
-        playSound('sounds/CHORD.WAV');
+        playSound('CHORD');
     }
 
     function playDing() {
-        playSound('sounds/DING.WAV');
+        playSound('DING');
     }
 
     myApp.controller('mainController', ['$scope', '$http', '$sce',
         function ($scope, $http, $sce) {
+            const START_IMG_PATH = "img/start.png";
+            const TIMER_IMG_PATH = "img/hourglass.png";
+            const NEXT_IMG_PATH = "img/next.png";
+            const CHOSE_IMG_PATH = "img/chose.png";
+            const END_IMG_PATH = "img/end.png";
+
             //initial state
             const REST_SERVICE_URL = 'restServiceF.php';
             const CORRECT = 'CORRECT';
@@ -32,144 +38,166 @@
             const END_TEST_SESSION = 'END_TEST_SESSION';
             const GUESS = 'GUESS';
 
+            var result = {}; //Obj.
+            var trainingQuestions; // [{"pictureName": "bm01.bmp","sentence": "atak-arap-sa"}
+            var testQuestions; // "bmt01.bmp": {"v1": {"text": "eket-arap-sa","isCorrect": true}, "v2": {"text": "eket-arap","isCorrect": false}} ...
+            var testQuestionsOrder; // ["bmt01.bmp", ...]
+            var testCase = 0; // Integer
+            var startTime;
+            var pictureMap = {};
+
             $scope.data = {next_action: "img/start.png", data: ""};
             setProgressResultBar(0);
             disableNextButton();
             disableLearnButtons();
             $scope.score = "";
             $scope.nrOfSeconds = 300;
-            setPicture("1px.png");
             setSentenceV1("");
             setSentenceV2("");
+
+            $scope.loadTest = function () {
+                setNextActionIMG(START_IMG_PATH);
+
+                var parameter = {
+                    data: {action: "START"}
+                };
+
+                var req = buildGETRequest(parameter);
+                var myDataPromise = getData(req);
+
+                myDataPromise.then(function (result) {
+                    var data = JSON.parse(window.atob(result.data.data));
+                    trainingQuestions = data.trainingQuestions;
+                    testQuestions = data.testQuestions;
+                    testQuestionsOrder = data.testQuestionsOrder;
+
+                    var queue = new createjs.LoadQueue();
+                    createjs.Sound.alternateExtensions = ["wav"];
+                    queue.installPlugin(createjs.Sound);
+
+                    var sounds = []; //List of songs, id vs sound path; ex: [{id: "latd01.wav", src: "dsounds/latd01.wav"},..]
+                    sounds.push({id: "CHORD", src: "sounds/CHORD.WAV"});
+                    sounds.push({id: "DING", src: "sounds/DING.WAV"});
+
+                    // queue.addEventListener("fileload", handleFileLoad);
+                    // queue.addEventListener("complete", handleComplete);
+                    queue.loadManifest(sounds);
+
+                    var queueImg = new createjs.LoadQueue();
+                    queueImg.on("fileload", handleFileLoadImg);
+                    queueImg.on("complete", handleComplete);
+                    var imgFileArray = [];
+                    imgFileArray.push({id: "1px.png", src: "resources/fpictures/1px.png"});
+                    testQuestionsOrder.forEach(function (picture) {
+                        imgFileArray.push({id: picture, src: "resources/fpictures/" + picture});
+                    });
+                    trainingQuestions.forEach(function (question) {
+                        imgFileArray.push({
+                            id: question.pictureName,
+                            src: "resources/fpictures/" + question.pictureName
+                        });
+                    });
+
+                    queueImg.loadManifest(imgFileArray);
+                    queueImg.load();
+                });
+            };
 
             $scope.start = function () {
                 var participantName = $scope.participantName;
                 var nrOfSeconds = $scope.nrOfSeconds;
-
+                setNextActionIMG(TIMER_IMG_PATH);
                 if (participantName == null || participantName == "" || nrOfSeconds == null || nrOfSeconds == "") {
                     alert("Please Fill All Required Field");
                     return false;
                 }
                 disableStartButton();
                 enableLearnButtons();
+                initResult(participantName, nrOfSeconds);
 
-                var parameter = JSON.stringify({
-                    name: participantName,
-                    nrOfSeconds: nrOfSeconds,
-                    action: "START"
-                });
-                var req = buildPOSTRequest(parameter);
-                var reqData = {next_action: "img/hourglass.png", data: ""};
-                makeRequestWithData(req, reqData);
                 setTimeout(function () {
+                    disableLearnButtons();
+                    enableNextButton();
                     playChord();
-                    var startTestJSON = JSON.stringify({
-                        action: "START_TEST"
-                    });
-                    var reqStartTest = {
-                        method: 'POST',
-                        url: REST_SERVICE_URL,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        data: startTestJSON
-                    };
-                    var reqData = {next_action: "img/next.png", data: ""};
-                    makeRequestWithData(reqStartTest, reqData);
+                    setNextActionIMG(NEXT_IMG_PATH);
                     setSentenceV1("");
                     setPicture("1px.png");
-                    enableNextButton();
-                    disableLearnButtons();
+                    $scope.$apply();
                 }, nrOfSeconds * 1000);
             };
 
 
             $scope.process = function (response) {
-                $scope.method = 'GET';
-                $scope.url = REST_SERVICE_URL+'?test-case-response=' + response;
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
                 disableResponseButtons();
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    if (result.data.result == CORRECT) {
-                        setProgressResultBar($scope.progress + 5);
-                        playDing();
-                    }
-                    if (result.data.result == WRONG) {
-                        setProgressResultBar($scope.progress - 5);
-                        playChord();
-                    }
-                    setPicture("1px.png");
-                    setSentenceV1("");
-                    setSentenceV2("");
-                    enableNextButton()
-                });
+                var userResponseTime = new Date().getTime() - startTime;
+                var testImage = testQuestionsOrder[testCase - 1];
+
+                var isCorrect = false;
+                if (testQuestions[testImage][response].isCorrect == true) {
+                    setProgressResultBar($scope.progress + 5);
+                    result.finalResult++;
+                    playDing();
+                    isCorrect = true;
+                } else {
+                    setProgressResultBar($scope.progress - 5);
+                    playChord();
+                }
+
+                var testCaseResult = {
+                    questionNumber: testCase - 1,
+                    question: testQuestionsOrder[testCase - 1],
+                    answer: response,
+                    isCorrect: isCorrect,
+                    answerTimeSeconds: userResponseTime / 1000
+                };
+                result.testResults.push(testCaseResult);
+                setNextActionIMG(NEXT_IMG_PATH);
+                setPicture("1px.png");
+                setSentenceV1("");
+                setSentenceV2("");
+                enableNextButton();
             };
 
             $scope.next = function () {
                 disableNextButton();
-                $scope.method = 'GET';
-                $scope.url = REST_SERVICE_URL+'?next=true';
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    if (result.data.result == END_TEST_SESSION) {
-                        playChord();
-                        $scope.score = ($scope.progress) + " %";
+                setNextActionIMG(CHOSE_IMG_PATH);
+                if (testCase === testQuestionsOrder.length) {
+                    setNextActionIMG(END_IMG_PATH);
+                    playChord();
+                    if ((result.finalResult - 10) > 0) {
+                        result.finalResult = parseFloat(10 * result.finalResult - 100).toFixed(0) + "%";
                     } else {
-                        var testCase = result.data.data;
-                        var pictureName = testCase.pictureName;
-                        setPicture(pictureName);
-                        setSentenceV1(testCase.v1);
-                        setSentenceV2(testCase.v2);
-                        enableResponseButtons();
+                        result.finalResult = "0%";
                     }
-                });
+                    $scope.score = result.finalResult;
+                    var req = buildPOSTRequest(window.btoa(JSON.stringify(result)));
+                    makeRequest(req);
+                    return;
+                }
+                var pictureName = testQuestionsOrder[testCase];
+                setPicture(pictureName);
+                setSentenceV1(testQuestions[pictureName].v1.text);
+                setSentenceV2(testQuestions[pictureName].v2.text);
+                testCase++;
+                startTime = new Date().getTime();
+                enableResponseButtons();
             };
 
             $scope.getPicture = function (index) {
-                $scope.method = 'GET';
-                $scope.url = REST_SERVICE_URL+'?pictureIndex=' + index;
-                $scope.code = null;
-                $scope.response = null;
-
-                var req = {method: $scope.method, url: $scope.url};
-                var myDataPromise = getData(req);
-                myDataPromise.then(function (result) {
-                    $scope.data = result.data;
-                    var pictureName = result.data.data.pictureName;
-                    setPicture(pictureName);
-                    var sentence = result.data.data.sentence;
-                    setSentenceV1(sentence);
-                });
+                var pictureName = trainingQuestions[index].pictureName;
+                setPicture(pictureName);
+                var sentence = trainingQuestions[index].sentence;
+                setSentenceV1(sentence);
             };
 
             $scope.close = function () {
-                var parameter = JSON.stringify({
-                    action: "CLOSE"
-                });
-                var req = {
-                    method: 'POST',
-                    url: REST_SERVICE_URL,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: parameter
-                };
-                makeRequest(req);
                 window.close();
             };
 
             function setPicture(pictureName) {
-                $scope.picture = "resources/fpictures/" + pictureName;
+                var elem = pictureMap[pictureName];
+                document.getElementById("picture-placeholder").innerHTML = "";
+                document.getElementById("picture-placeholder").appendChild(elem);
             }
 
             function setSentenceV1(value) {
@@ -199,14 +227,27 @@
                 });
             }
 
-            function makeRequestWithData(req, reqData) {
-                $http(req).success(function (data, status) {
-                    $scope.status = status;
-                    $scope.data = reqData;
-                }).error(function (data, status) {
-                    $scope.data = data || "Request failed";
-                    $scope.status = status;
-                });
+            function initResult(participantName, nrOfSeconds) {
+                result.name = participantName;
+                result.nrOfSeconds = nrOfSeconds;
+                result.testResults = [];
+                result.startDateTime = getUTCDateNow();
+                result.finalResult = "";
+            }
+
+            function buildGETRequest(parameters) {
+                return {method: 'GET', url: REST_SERVICE_URL, params: parameters};
+            }
+
+            function buildPOSTRequest(reqData) {
+                return {
+                    method: 'POST',
+                    url: REST_SERVICE_URL,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: reqData
+                };
             }
 
             function makeRequest(req) {
@@ -219,16 +260,25 @@
                 });
             }
 
-            function buildPOSTRequest(reqData) {
+            function handleFileLoad(event) {
+                // Update the UI
+                document.getElementById('dots').innerHTML += '.';
+            }
 
-                return {
-                    method: 'POST',
-                    url: REST_SERVICE_URL,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    data: reqData
-                };
+            function handleFileLoadImg(event) {
+                // Update the UI
+                document.getElementById('dots').innerHTML += '.';
+                pictureMap[event.item.id] = event.result;
+            }
+
+            function setNextActionIMG(imgPath) {
+                $scope.next_action = imgPath;
+            }
+
+            function handleComplete(event) {
+                //hide loading div
+                document.getElementById('loading').style.display = 'none';
+                setPicture("1px.png");
             }
         }]);
 

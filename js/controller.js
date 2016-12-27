@@ -16,6 +16,7 @@
             //initial state
             const REST_SERVICE_URL = 'restService.php';
             const START_IMG_PATH = "img/start.png";
+            const TIMER_IMG_PATH = "img/hourglass.png";
             const NEXT_IMG_PATH = "img/next.png";
             const CHOSE_IMG_PATH = "img/chose.png";
             const END_IMG_PATH = "img/end.png";
@@ -74,7 +75,7 @@
                     vocabulary = data.vocabulary;
                     testCases = data.testCases;
                 });
-
+                setNextActionIMG(TIMER_IMG_PATH);
                 setTimeout(function () {
                     disablePictureButtons();
                     $scope.PROGRAM_PHASE = TEST_PHASE;

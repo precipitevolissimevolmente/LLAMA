@@ -27,6 +27,7 @@
         function ($scope, $http, $sce) {
             const START_IMG_PATH = "img/start.png";
             const NEXT_IMG_PATH = "img/next.png";
+            const TIMER_IMG_PATH = "img/hourglass.png";
             const CHOSE_IMG_PATH = "img/chose.png";
             const LISTEN_IMG_PATH = "img/listen.png";
             const END_IMG_PATH = "img/end.png";
@@ -109,11 +110,13 @@
                 initResult(participantName, nrOfSeconds);
                 disableStartButton();
                 enableSoundButtons();
-
+                setNextActionIMG(TIMER_IMG_PATH);
                 setTimeout(function () {
                     playChord();
+                    setNextActionIMG(NEXT_IMG_PATH);
                     enableNextButton();
                     disableSoundButtons();
+                    $scope.$apply();
                 }, nrOfSeconds * 1000);
             };
 

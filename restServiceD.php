@@ -2,7 +2,6 @@
 header("Content-Type:application/json");
 require('Enum.php');
 require('EmailService.php');
-include "ResultD.php";
 
 function getSoundMap() {
     return loadSounds('sounds.json');

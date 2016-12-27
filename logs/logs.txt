@@ -6,3 +6,52 @@ Array
     [randomisationSequence] => 2003
     [action] => START
 )
+
+Array
+(
+    [name] => qqq
+    [nrOfSeconds] => 120
+    [randomisationSequence] => 2003
+    [action] => START
+)
+
+Array
+(
+    [name] => aaaa
+    [nrOfSeconds] => 5
+    [randomisationSequence] => 2003
+    [action] => START
+)
+
+Could not send mail! Please check your PHP mail configuration.
+Array
+(
+    [name] => sss
+    [nrOfSeconds] => 120
+    [randomisationSequence] => 2003
+    [action] => START
+)
+
+Array
+(
+    [name] => 1qw
+    [nrOfSeconds] => 10
+    [randomisationSequence] => 2003
+    [action] => START
+)
+
+Array
+(
+    [name] => 12
+    [nrOfSeconds] => 10
+    [randomisationSequence] => 2003
+    [action] => START
+)
+
+Array
+(
+    [name] => qqqq
+    [nrOfSeconds] => 10
+    [randomisationSequence] => 2003
+    [action] => START
+)

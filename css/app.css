@@ -462,6 +462,10 @@ ul {
     width: 100%;
 }
 
+#picture-placeholder img {
+    width: 100%;
+}
+
 .btn-height-large {
     height: 33px;
 }
