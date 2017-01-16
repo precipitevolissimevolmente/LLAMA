@@ -1,3 +1,8 @@
+<?php
+include('php/config.php');
+include('php/session.php');
+$userDetails=$userClass->userDetails($session_uid);
+?>
 <!doctype html>
 <html>
 <head>
@@ -32,8 +37,8 @@
                         <img src="img/pencilv2.png" class="left img-mini-e"/>
                         <div class="left">
                             <input ng-model="participantName" required id="participantName" type="text"
-                                   placeholder="Name"
-                                   class="input-large input-blue"/>
+                                   ng-init="participantName = '<?php echo $userDetails->name; ?>'"
+                                   class="input-large input-blue" disabled/>
                         </div>
                     </div>
                     <div class="right padding4">
