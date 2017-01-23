@@ -1,7 +1,12 @@
 <?php
 include('php/config.php');
 include('php/session.php');
+include('php/util.php');
 $userDetails = $userClass->userDetails($session_uid);
+$result_b = getResultFromDb($userDetails->name, "b");
+$result_d = getResultFromDb($userDetails->name, "d");
+$result_e = getResultFromDb($userDetails->name, "e");
+$result_f = getResultFromDb($userDetails->name, "f");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +15,7 @@ $userDetails = $userClass->userDetails($session_uid);
     <title>LLMA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/util.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap_3.3.7.js"></script>
     <script language="javascript" type="text/javascript">
@@ -36,163 +42,354 @@ $userDetails = $userClass->userDetails($session_uid);
     <br/>
     <div class="clearfix">
         <h4>Subtest 1 - LLAMA B (word-picture)</h4>
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#llama-b">Read instructions
+        <button type="button" class="btn btn-info left" data-toggle="collapse" data-target="#llama-b">Read instructions
         </button>
-        <div id="llama-b" class="collapse">
+        <div id="llama-b" class="collapse left">
             <blockquote>READ ALL INSTRUCTIONS FIRST. TEST ONLY RUNS IN FIREFOX, CHROME AND EDGE.</blockquote>
             <img src="img/llamab.JPG" class="img-responsive" alt="Responsive image">
-            This sub-test requires you to memorise names of different objects. There is first a 2 minute long
-            <em>training phase</em>
-            where you click on the objects to learn their names, followed by a
-            <em>test phase</em>
-            where you see a name and have to
-            match it with the right object.
+            <p>This sub-test requires you to memorise names of different objects. There is first a 2 minute long
+                <em>training phase</em>
+                where you click on the objects to learn their names, followed by a
+                <em>test phase</em>
+                where you see a name and have to
+                match it with the right object.</p>
+            <p class="bg-warning">It is not allowed to take notes on paper or to use help in other ways. Your responses
+                will be subjected to statistical processing.</p>
+            <table>
+                <tr>
+                    <td>
+                        Note: Do not change anything in these boxes
+                    </td>
+                    <td><img src="img/llamab-param.JPG" class="img-responsive img-mini" alt="Responsive image">
+                    </td>
+                    <td>. They are default settings and should remain as they are.
+                    </td>
+                </tr>
+            </table>
+
             <ol>
                 <li>
-                    It is not allowed to take notes on paper or to use help in other ways. Your responses will be
-                    subjected
-                    to statistical processing.
-                    Note: Do not change anything in these boxes . They are default settings and should remain as they
-                    are
-                </li>
-                <li>
-                    <h4>TRAINING PHASE</h4>
+                    <p>TRAINING PHASE</p>
+                    <span>
                     When you click on an object, the object's name (a word) will be shown in the middle of the test
                     screen.
                     Try to memorise as many words as possible during this exercise period. The exercise time is 2
                     minutes.
-                    Click the START button in the upper right corner to start the training phase. The limited exercise
+                        <table>
+                        <tr>
+                            <td>
+                    Click the START button
+                            </td>
+                            <td>
+                                <img src="img/start-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                            <td>
+                                in the upper right corner to start the training phase.
+                            </td>
+                        </tr>
+                        </table>
+                        The limited exercise
                     time
                     starts counting down immediately upon clicking this button!
-
+                    </span>
+                </li>
+                <li>
+                    <p>TEST PHASE</p>
+                    <span>
+                        <table>
+                        <tr>
+                            <td>
+                    When you click on the centre arrow
+                                 </td>
+                            <td>
+                                <img src="img/next-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                            <td>
+                                a name appears in the box above.
+                            </td>
+                        </tr>
+                        </table>
+                        You must then click on the
+                    object associated with that name. Click the centre arrow again for the next word to be displayed. In
+                    total, 20 words will be tested. The test phase has no time constraint.
+                    <br/>
+                        <table>
+                        <tr>
+                            <td>
+                    After answering all the questions you may close the test window or click the EXIT button in the
+                    lower right corner.
+                              </td>
+                            <td>
+                                <img src="img/exit-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                        </tr>
+                        </table>
+                    </span>
                 </li>
             </ol>
         </div>
 
-        <button type="button" class="btn btn-success"
+        <button type="button" class="btn btn-success left"
                 onclick="openPopUp('llamab.php', 575, 615, 'Llama B'); return false;"
                 target="_blank">GOT IT! Take me to the first sub-test
         </button>
+        <p class="bg-success left padding6">Result: <?php echo $result_b ?>%</p>
     </div>
 
     <div class="clearfix">
         <h4>Subtest 2 - LLAMA D (sound sequences)</h4>
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#llama-d">Read instructions
+        <button type="button" class="btn btn-info left" data-toggle="collapse" data-target="#llama-d">Read instructions
         </button>
-        <div id="llama-d" class="collapse">
+        <div id="llama-d" class="collapse left">
             <blockquote>READ ALL INSTRUCTIONS FIRST. TEST ONLY RUNS IN FIREFOX, CHROME AND EDGE.</blockquote>
-            This sub-test requires you to memorise names of different objects. There is first a 2 minute long
-            <em>training phase</em>
-            where you click on the objects to learn their names, followed by a
-            <em>test phase</em>
-            where you see a name and have to
-            match it with the right object.
+            <img src="img/llamad.JPG" class="img-responsive" alt="Responsive image">
+            This sub-test is a sound recognition task where you have to decide if words that you listen to are familiar
+            (you have heard them before) or unfamiliar (you have never heard them before).
+            <p class="bg-warning">It is not allowed to take notes on paper or to use help in other ways. Your responses
+                will be subjected to statistical processing.</p>
             <ol>
                 <li>
-                    It is not allowed to take notes on paper or to use help in other ways. Your responses will be
-                    subjected
-                    to statistical processing.
-                    Note: Do not change anything in these boxes . They are default settings and should remain as they
-                    are
+                    <p>TRAINING PHASE</p>
+                    <span>
+                    In the first part of the test, the computer plays a sequence of ten words. Listen carefully to these
+                    words. Later, in the test phase, you will hear these words alongside other words that you have not
+                    heard before.
+                        <table>
+                        <tr>
+                            <td>
+                            When you click the START button
+                            </td>
+                            <td>
+                                <img src="img/start-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                            <td>
+                                in the upper right corner,
+                            </td>
+                        </tr>
+                        </table> the ten words will be played immediately so make sure to be fully focused from the start.
+                        You can not pause playback or repeat the words. The training phase ends with a beep.
+                    </span>
                 </li>
                 <li>
-                    <h4>TRAINING PHASE</h4>
-                    When you click on an object, the object's name (a word) will be shown in the middle of the test
-                    screen.
-                    Try to memorise as many words as possible during this exercise period. The exercise time is 2
-                    minutes.
-                    Click the START button in the upper right corner to start the training phase. The limited exercise
-                    time
-                    starts counting down immediately upon clicking this button!
-
+                    <p>TEST PHASE</p>
+                    <span>
+                        <table>
+                        <tr>
+                            <td>
+                                When you click on the centre arrow
+                            <td>
+                                <img src="img/next-mini.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                            <td>
+                                the computer plays a word.
+                            </td>
+                        </tr>
+                        </table>
+                        Click on the happy face if you think that you have heard the word before (during the training phase). Click on the sad face if you have not heard the word before. In total, 30 words will be tested. The test phase has no time constraint.
+                        <br/>
+                        <table>
+                        <tr>
+                            <td>
+                    After answering all the questions you may close the test window or click the EXIT button in the
+                    lower right corner.
+                              </td>
+                            <td>
+                                <img src="img/exit-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                        </tr>
+                        </table>
+                    </span>
                 </li>
             </ol>
         </div>
 
-        <button type="button" class="btn btn-success"
+        <button type="button" class="btn btn-success left"
                 onclick="openPopUp('llamad.php', 310, 400, 'Llama D'); return false;"
                 target="_blank">GOT IT! Take me to the second sub-test
         </button>
+        <p class="bg-success left padding6">Result: <?php echo $result_d ?>%</p>
     </div>
 
     <div class="clearfix">
         <h4>Subtest 3 - LLAMA E (sound–spelling)</h4>
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#llama-e">Read instructions
+        <button type="button" class="btn btn-info left" data-toggle="collapse" data-target="#llama-e">Read instructions
         </button>
-        <div id="llama-e" class="collapse">
+        <div id="llama-e" class="collapse left">
             <blockquote>READ ALL INSTRUCTIONS FIRST. TEST ONLY RUNS IN FIREFOX, CHROME AND EDGE.</blockquote>
-            This sub-test requires you to memorise names of different objects. There is first a 2 minute long
-            <em>training phase</em>
-            where you click on the objects to learn their names, followed by a
-            <em>test phase</em>
-            where you see a name and have to
-            match it with the right object.
+            <img src="img/llamae.JPG" class="img-responsive" alt="Responsive image">
+            This sub-test requires you to learn a spelling system, that is, to make connections between sounds and
+            symbols. There is first a 2 minute long <em>training phase</em>> where you click on the symbols to hear
+            their sounds,
+            followed by a <em>test phase</em> where you hear a spoken word and have to match it with the right spelling.
+            <p class="bg-warning">It is not allowed to take notes on paper or to use help in other ways. Your responses
+                will be subjected to statistical processing.</p>
+            <table>
+                <tr>
+                    <td>
+                        Note: Do not change the default exercise time setting
+                    </td>
+                    <td>
+                        <img src="img/time-input.JPG" class="img-responsive img-mini" alt="Responsive image">
+                    </td>
+                    <td>
+                        .
+                    </td>
+                </tr>
+            </table>
             <ol>
                 <li>
-                    It is not allowed to take notes on paper or to use help in other ways. Your responses will be
-                    subjected
-                    to statistical processing.
-                    Note: Do not change anything in these boxes . They are default settings and should remain as they
-                    are
+                    <p>TRAINING PHASE</p>
+                    <span>
+                        When you click on a symbol, the computer plays a sound. Your task is to learn the correspondences between sound and symbol, much like a spelling system (alphabet) in a real language.
+                        Click on the symbols and try to learn as much as possible of this spelling system. Exercise time is 2 minutes.
+                        <table>
+                        <tr>
+                            <td>
+                                Click the START button
+                            </td>
+                            <td>
+                                <img src="img/start-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                            <td>
+                                in the upper right corner to start the training phase.
+                            </td>
+                        </tr>
+                        </table>
+                        The limited exercise time starts counting down immediately upon clicking this button!
+                    </span>
                 </li>
                 <li>
-                    <h4>TRAINING PHASE</h4>
-                    When you click on an object, the object's name (a word) will be shown in the middle of the test
-                    screen.
-                    Try to memorise as many words as possible during this exercise period. The exercise time is 2
-                    minutes.
-                    Click the START button in the upper right corner to start the training phase. The limited exercise
-                    time
-                    starts counting down immediately upon clicking this button!
-
+                    <p>TEST PHASE</p>
+                    <span>
+                        <table>
+                        <tr>
+                            <td>
+                                When you click on the centre arrow
+                            </td>
+                            <td>
+                                <img src="img/next-mini.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                            <td>
+                                the computer plays a short word.
+                            </td>
+                        </tr>
+                        </table>
+                        Your task is to choose between two alternative spellings of the word that you hear.
+                        Click the spelling that you think corresponds to the spoken word. In total, 20 such words are tested. The test phase has no time constraint.
+                        <br/>
+                        <table>
+                        <tr>
+                            <td>
+                                After answering all the questions you may close the test window or click the EXIT button in the
+                                lower right corner.
+                            </td>
+                            <td>
+                                <img src="img/exit-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                        </tr>
+                        </table>
+                    </span>
                 </li>
             </ol>
         </div>
 
-        <button type="button" class="btn btn-success"
+        <button type="button" class="btn btn-success left"
                 onclick="openPopUp('llamae.php', 380, 500, 'Llama E'); return false;"
                 target="_blank">GOT IT! Take me to the third sub-test
         </button>
+        <p class="bg-success left padding6">Result: <?php echo $result_e ?>%</p>
     </div>
 
     <div class="clearfix">
         <h4>Subtest 4 -LLAMA F (grammar)</h4>
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#llama-f">Read instructions
+        <button type="button" class="btn btn-info left" data-toggle="collapse" data-target="#llama-f">Read instructions
         </button>
-        <div id="llama-f" class="collapse">
+        <div id="llama-f" class="collapse left">
             <blockquote>READ ALL INSTRUCTIONS FIRST. TEST ONLY RUNS IN FIREFOX, CHROME AND EDGE.</blockquote>
-            This sub-test requires you to memorise names of different objects. There is first a 2 minute long
-            <em>training phase</em>
-            where you click on the objects to learn their names, followed by a
-            <em>test phase</em>
-            where you see a name and have to
-            match it with the right object.
+            This sub-test requires you to learn grammar and vocabulary in an unfamiliar language. There is first a 5
+            minute long <em>training phase</em> where you study correspondences between pictures and sentences that
+            describe the pictures. This is followed by a <em>test phase</em> where you are shown pictures that have to
+            be matched with their correct sentences.
+            <p class="bg-warning">It is not allowed to take notes on paper or to use help in other ways. Your responses
+                will be subjected to statistical processing.</p>
+            <table>
+                <tr>
+                    <td>
+                        Note: Do not change the default exercise time setting
+                    </td>
+                    <td>
+                        <img src="img/time-input.JPG" class="img-responsive img-mini" alt="Responsive image">
+                    </td>
+                    <td>
+                        .
+                    </td>
+                </tr>
+            </table>
             <ol>
                 <li>
-                    It is not allowed to take notes on paper or to use help in other ways. Your responses will be
-                    subjected
-                    to statistical processing.
-                    Note: Do not change anything in these boxes . They are default settings and should remain as they
-                    are
+                    <h4>TRAINING PHASE</h4>
+                    <span>
+                    When you click on any of the 20 small squares on the screen's left side, this activates an image in
+                    the picture frame on the right, and a sentence that describes that particular picture. click on the
+                    squares and study the images and their associated sentences. Try to learn as much as possible of
+                    this unknown language. Practice time is 5 minutes.
+                    <table>
+                        <tr>
+                            <td>
+                                Click the START button
+                            </td>
+                            <td>
+                                <img src="img/start-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                            <td>
+                                in the upper right corner to start the training phase.
+                            </td>
+                        </tr>
+                    </table>
+                    The limited exercise time starts counting down immediately upon clicking this button!
+                    </span>
                 </li>
                 <li>
-                    <h4>TRAINING PHASE</h4>
-                    When you click on an object, the object's name (a word) will be shown in the middle of the test
-                    screen.
-                    Try to memorise as many words as possible during this exercise period. The exercise time is 2
-                    minutes.
-                    Click the START button in the upper right corner to start the training phase. The limited exercise
-                    time
-                    starts counting down immediately upon clicking this button!
-
+                    <p>TEST PHASE</p>
+                    <span>
+                    <table>
+                        <tr>
+                            <td>
+                                When you click on the centre arrow
+                            </td>
+                            <td>
+                                <img src="img/next-mini.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                            <td>
+                                , an image appears on the screen and to the left of it are two
+                                alternative sentences.
+                            </td>
+                        </tr>
+                    </table>
+                    Your task is to decide which of the two sentences accurately describes the
+                    image. The test phase has no time constraint.
+                    <br/>
+                    <table>
+                        <tr>
+                            <td>
+                                After answering all the questions you may close the test window or click the EXIT button in the
+                                lower right corner.
+                            </td>
+                            <td>
+                                <img src="img/exit-btn.JPG" class="img-responsive img-mini" alt="Responsive image">
+                            </td>
+                        </tr>
+                        </table>
+                    </span>
                 </li>
             </ol>
         </div>
 
-        <button type="button" class="btn btn-success"
+        <button type="button" class="btn btn-success left"
                 onclick="openPopUp('llamaf.php', 440, 610, 'Llama F'); return false;"
                 target="_blank">GOT IT! Take me to the fourth sub-test
         </button>
+        <p class="bg-success left padding6">Result: <?php echo $result_f ?>%</p>
     </div>
 
 

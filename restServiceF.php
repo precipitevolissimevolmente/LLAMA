@@ -2,6 +2,7 @@
 header("Content-Type:application/json");
 require('Enum.php');
 require('EmailService.php');
+include('php/config.php');
 require('php/util.php');
 const WRONG = "WRONG";
 const CORRECT = "CORRECT";
@@ -53,26 +54,19 @@ function deliver_response_base64($status, $data)
 
 function writeResultToFile($result)
 {
-    $file_name = $result['name'] . "_" . gmdate("Y-m-d H.i.s") . ".json";
+    $username = $result['name'];
+    $tst_result = rtrim($result['finalResult'], "%");
+    $timeStamp = gmdate("Y-m-d h:m:s");
+    $llama = "f";
+    saveResultToDb($username, $tst_result, $timeStamp, $llama);
+
+    $file_name = $username . "_" . gmdate("Y-m-d H.i.s") . ".json";
     logg($file_name);
     $nameWithPath = "results/f/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));
     fclose($myFile);
     sendEmailWithAttachment($file_name, $nameWithPath, "F");
-}
-
-/**
- * @return ResultE
- */
-function initResult($data)
-{
-    $result = new ResultE();
-    $result->setName($data["name"]);
-    $result->setNrOfSeconds($data["nrOfSeconds"]);
-    $result->setFinalResult(0);
-    $result->setStartDateTime(gmdate("Y-m-d H:i:s"));
-    return $result;
 }
 
 ?>

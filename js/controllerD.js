@@ -196,6 +196,7 @@
             };
 
             $scope.close = function () {
+                window.opener.location.reload();
                 window.close();
             };
 
@@ -291,5 +292,9 @@
     function enableResponseButtons() {
         document.getElementById("newword").disabled = false;
         document.getElementById("familiarword").disabled = false;
+    }
+    window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
     }
 })(window.angular);

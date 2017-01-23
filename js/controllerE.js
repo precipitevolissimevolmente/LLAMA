@@ -191,6 +191,7 @@
             };
 
             $scope.close = function () {
+                window.opener.location.reload();
                 window.close();
             };
 
@@ -308,5 +309,9 @@
     function enableResponseButtons() {
         document.getElementById("left-spelling").disabled = false;
         document.getElementById("right-spelling").disabled = false;
+    }
+    window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
     }
 })(window.angular);

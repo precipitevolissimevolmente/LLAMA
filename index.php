@@ -57,10 +57,10 @@ if (!empty($_POST['signupSubmit'])) {
     <div id="login">
         <h3>Login</h3>
         <form method="post" action="" name="login">
-            <label>Username or Email</label>
-            <input type="text" name="usernameEmail" autocomplete="off" required/>
-            <label>Password</label>
-            <input type="password" name="password" autocomplete="off" required/>
+            <label for="usernameEmail">Username or Email</label>
+            <input id="usernameEmail" type="text" name="usernameEmail" autocomplete="off" required/>
+            <label for="login-password">Password</label>
+            <input id="login-password" type="password" name="password" autocomplete="off" required/>
             <div class="errorMsg"><?php echo $errorMsgLogin; ?></div>
             <input type="submit" class="button" name="loginSubmit" value="Login">
         </form>
@@ -69,12 +69,12 @@ if (!empty($_POST['signupSubmit'])) {
     <div id="signup" class="clear">
         <h3>Registration</h3>
         <form method="post" action="" name="signup">
-            <label>*Username</label>
-            <input type="text" name="usernameReg" autocomplete="off" required/>
-            <label>Email (optional)</label>
-            <input type="text" name="emailReg" autocomplete="off"/>
-            <label>*Password</label>
-            <input type="password" name="passwordReg" autocomplete="off" required/>
+            <label for="usernameReg">*Username</label>
+            <input id="usernameReg" type="text" name="usernameReg" autocomplete="off" required/>
+            <label for="emailReg">Email (optional)</label>
+            <input id="emailReg" type="text" name="emailReg" autocomplete="off"/>
+            <label for="passwordReg">*Password</label>
+            <input id="passwordReg" type="password" name="passwordReg" autocomplete="off" required/>
             <div class="errorMsg"><?php echo $errorMsgReg; ?></div>
             <input type="submit" class="button" name="signupSubmit" value="Signup">
         </form>

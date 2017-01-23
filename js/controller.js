@@ -145,6 +145,7 @@
             };
 
             $scope.close = function () {
+                window.opener.location.reload();
                 window.close();
             };
 
@@ -239,6 +240,11 @@
             function disablePictureButtons() {
                 var soundButtons = document.getElementsByClassName("pictureB"); //returns NodeList
                 Array.from(soundButtons).forEach(disableButton);
+            }
+
+            window.onunload = refreshParent;
+            function refreshParent() {
+                window.opener.location.reload();
             }
         }]);
 })(window.angular);

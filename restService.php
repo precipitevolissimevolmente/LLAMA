@@ -2,6 +2,8 @@
 header("Content-Type:application/json");
 require('Enum.php');
 require('EmailService.php');
+include('php/config.php');
+include("php/util.php");
 
 /**
  * @param $data
@@ -76,7 +78,13 @@ function logg($data)
 
 function writeResultToFile($result)
 {
-    $file_name = $result['name'] . "_" . gmdate("Y-m-d H.i.s") . ".json";
+    $username = $result['name'];
+    $tst_result = rtrim($result['finalResult'], "%");
+    $timeStamp = gmdate("Y-m-d h:m:s");
+    $llama = "b";
+    saveResultToDb($username, $tst_result, $timeStamp, $llama);
+
+    $file_name = $username . "_" . gmdate("Y-m-d H.i.s") . ".json";
     $nameWithPath = "results/b/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");
     fwrite($myFile, json_encode($result));

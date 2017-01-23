@@ -2,6 +2,8 @@
 header("Content-Type:application/json");
 require('Enum.php');
 require('EmailService.php');
+include('php/config.php');
+include("php/util.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $data = json_decode($_GET['data'], true);
@@ -54,7 +56,13 @@ function deliver_response_base64($status, $data)
 
 function writeResultToFile($result)
 {
-    $file_name = $result['name'] . "_" . gmdate("Y-m-d H.i.s") . ".json";
+    $username = $result['name'];
+    $tst_result = rtrim($result['finalResult'], "%");
+    $timeStamp = gmdate("Y-m-d h:m:s");
+    $llama = "e";
+    saveResultToDb($username, $tst_result, $timeStamp, $llama);
+
+    $file_name = $username . "_" . gmdate("Y-m-d H.i.s") . ".json";
     logg($file_name);
     $nameWithPath = "results/e/" . $file_name;
     $myFile = fopen($nameWithPath, "w") or die("Unable to open file!");

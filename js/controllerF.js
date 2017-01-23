@@ -191,6 +191,7 @@
             };
 
             $scope.close = function () {
+                window.opener.location.reload();
                 window.close();
             };
 
@@ -320,5 +321,10 @@
     function enableResponseButtons() {
         document.getElementById("btn-sentence-v1").disabled = false;
         document.getElementById("btn-sentence-v2").disabled = false;
+    }
+
+    window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
     }
 })(window.angular);
