@@ -142,11 +142,17 @@
                     setProgressResultBar($scope.progress - 5);
                     playChord();
                 }
+                var expected = "";
+                if(testQuestions[testImage]["v1"].isCorrect == true) {
+                    expected = testQuestions[testImage]["v1"].text;
+                } else {
+                    expected = testQuestions[testImage]["v2"].text;
+                }
 
                 var testCaseResult = {
                     questionNumber: testCase - 1,
-                    question: testQuestionsOrder[testCase - 1],
-                    answer: response,
+                    question: expected,
+                    answer: testQuestions[testImage][response].text,
                     isCorrect: isCorrect,
                     answerTimeSeconds: userResponseTime / 1000
                 };
