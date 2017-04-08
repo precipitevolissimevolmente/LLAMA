@@ -55,7 +55,7 @@ foreach ($files as $file) {
     usort($testResults, 'sort_based_on_list_of_values');
 
     foreach ($testResults as $testCaseResult) {
-        $isCorrect = $testCaseResult['question'] == $testCaseResult['answer'] ? 1 : 0;
+        $isCorrect = $testCaseResult['isCorrect'] ? 1 : 0;
         array_push($result_cols, $isCorrect);
         array_push($result_cols, $testCaseResult['question']);
         array_push($result_cols, $testCaseResult['answer']);

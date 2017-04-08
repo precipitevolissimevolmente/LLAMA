@@ -53,8 +53,7 @@ $result_f = getResultFromDb($userDetails->name, "f");
                 <em>test phase</em>
                 where you see a name and have to
                 match it with the right object.</p>
-            <p class="bg-warning">It is not allowed to take notes on paper or to use help in other ways. Your responses
-                will be subjected to statistical processing.</p>
+            <p class="bg-warning">Do not take notes or use help in other ways.</p>
             <table>
                 <tr>
                     <td>
@@ -145,8 +144,7 @@ $result_f = getResultFromDb($userDetails->name, "f");
             <img src="img/llamad.JPG" class="img-responsive" alt="Responsive image">
             This sub-test is a sound recognition task where you have to decide if words that you listen to are familiar
             (you have heard them before) or unfamiliar (you have never heard them before).
-            <p class="bg-warning">It is not allowed to take notes on paper or to use help in other ways. Your responses
-                will be subjected to statistical processing.</p>
+            <p class="bg-warning">Do not take notes or use help in other ways.</p>
             <ol>
                 <li>
                     <p>TRAINING PHASE</p>
@@ -218,11 +216,10 @@ $result_f = getResultFromDb($userDetails->name, "f");
             <blockquote>READ ALL INSTRUCTIONS FIRST. TEST ONLY RUNS IN FIREFOX, CHROME AND EDGE.</blockquote>
             <img src="img/llamae.JPG" class="img-responsive" alt="Responsive image">
             This sub-test requires you to learn a spelling system, that is, to make connections between sounds and
-            symbols. There is first a 2 minute long <em>training phase</em>> where you click on the symbols to hear
-            their sounds,
-            followed by a <em>test phase</em> where you hear a spoken word and have to match it with the right spelling.
-            <p class="bg-warning">It is not allowed to take notes on paper or to use help in other ways. Your responses
-                will be subjected to statistical processing.</p>
+            symbols. There is first a 2 minute long <em>training phase</em> where you click on the symbols to hear
+            their sounds, followed by a <em>test phase</em> where you hear a spoken word and have to match it with the
+            right spelling.
+            <p class="bg-info">You can take any written notes that you need.</p>
             <table>
                 <tr>
                     <td>
@@ -306,12 +303,12 @@ $result_f = getResultFromDb($userDetails->name, "f");
         </button>
         <div id="llama-f" class="collapse left">
             <blockquote>READ ALL INSTRUCTIONS FIRST. TEST ONLY RUNS IN FIREFOX, CHROME AND EDGE.</blockquote>
+            <img src="img/llamaf.JPG" class="img-responsive" alt="Responsive image">
             This sub-test requires you to learn grammar and vocabulary in an unfamiliar language. There is first a 5
             minute long <em>training phase</em> where you study correspondences between pictures and sentences that
             describe the pictures. This is followed by a <em>test phase</em> where you are shown pictures that have to
             be matched with their correct sentences.
-            <p class="bg-warning">It is not allowed to take notes on paper or to use help in other ways. Your responses
-                will be subjected to statistical processing.</p>
+            <p class="bg-info">You can take any written notes that you need.</p>
             <table>
                 <tr>
                     <td>
