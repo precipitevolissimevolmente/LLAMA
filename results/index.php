@@ -1,3 +1,14 @@
+<?php
+include('../php/config.php');
+include('../php/session.php');
+include('../php/util.php');
+$userDetails = $userClass->userDetails($session_uid);
+if (!isAdmin($userDetails->name)) {
+    header('HTTP/1.0 403 Forbidden');
+    $url=BASE_URL.'accessForbidden.html';
+    header("Location: $url");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

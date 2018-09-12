@@ -4,6 +4,14 @@ header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=LLAMA_B_RESULTS.csv');
 
 require('../php/util.php');
+include('../php/config.php');
+include('../php/session.php');
+$userDetails = $userClass->userDetails($session_uid);
+if (!isAdmin($userDetails->name)) {
+    header('HTTP/1.0 403 Forbidden');
+    $url=BASE_URL.'accessForbidden.html';
+    header("Location: $url");
+}
 
 // create a file pointer connected to the output stream
 $output = fopen('php://output', 'w');
